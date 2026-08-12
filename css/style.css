@@ -683,4 +683,11 @@ footer h2 {
   .hero h1 span:last-child {
     transform: translateX(var(--hero-separation));
   }
+  .hero h1 span {
+  transition: transform 80ms linear;
+}
+
+.hero h1.hero-intro-done span {
+  animation: none;
+}
 }
