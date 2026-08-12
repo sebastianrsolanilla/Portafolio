@@ -78,6 +78,10 @@ nav {
 }
 
 .hero h1 {
+  --hero-separation: 0px;
+
+  overflow: visible;
+
   font-size: clamp(64px, 10vw, 128px);
   line-height: 0.88;
   text-align: center;
@@ -87,14 +91,45 @@ nav {
 
 .hero h1 span {
   display: block;
+  will-change: transform, opacity;
+
+  animation-duration: 1.1s;
+  animation-timing-function: cubic-bezier(0.22, 0.8, 0.25, 1);
+  animation-fill-mode: both;
 }
 
 .hero h1 span:first-child {
-  transform: translateX(-10%);
+  animation-name: hero-enter-left;
+  transform: translateX(calc(-10% - var(--hero-separation)));
 }
 
 .hero h1 span:last-child {
-  transform: translateX(10%);
+  animation-name: hero-enter-right;
+  transform: translateX(calc(10% + var(--hero-separation)));
+}
+
+@keyframes hero-enter-left {
+  from {
+    transform: translateX(-55vw);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(calc(-10% - var(--hero-separation)));
+    opacity: 1;
+  }
+}
+
+@keyframes hero-enter-right {
+  from {
+    transform: translateX(55vw);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(calc(10% + var(--hero-separation)));
+    opacity: 1;
+  }
 }
 
 .hero-grid {
@@ -489,8 +524,6 @@ footer h2 {
   font-weight: 500;
 }
 
-/* TABLET Y MÓVIL */
-
 @media (max-width: 800px) {
   .site-header {
     height: auto;
@@ -608,8 +641,6 @@ footer h2 {
   }
 }
 
-/* MÓVILES PEQUEÑOS */
-
 @media (max-width: 460px) {
   nav a:not(.nav-work) {
     display: none;
@@ -635,5 +666,17 @@ footer h2 {
   .education article p {
     grid-column: auto;
     margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 span {
+    animation: none;
+    transform: translateX(calc(var(--hero-separation) * -1));
+    opacity: 1;
+  }
+
+  .hero h1 span:last-child {
+    transform: translateX(var(--hero-separation));
   }
 }
