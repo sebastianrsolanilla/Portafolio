@@ -2,38 +2,31 @@ const hero = document.querySelector(".hero");
 const title = document.querySelector("#hero-title");
 
 if (hero && title) {
-  let ticking = false;
+  const firstLine = title.querySelector("span:first-child");
+  const secondLine = title.querySelector("span:last-child");
 
   function updateTitleSeparation() {
-    const distance = Math.max(hero.offsetHeight * 0.72, 1);
+    const distance = Math.max(hero.offsetHeight * 0.8, 1);
 
     const progress = Math.min(
-      Math.max(-hero.getBoundingClientRect().top / distance, 0),
+      Math.max(window.scrollY / distance, 0),
       1
     );
 
-    const maxSeparation = window.innerWidth * 0.12;
+    const separation = progress * window.innerWidth * 0.14;
 
-    title.style.setProperty(
-      "--hero-separation",
-      `${progress * maxSeparation}px`
-    );
+    firstLine.style.transform =
+      `translateX(calc(-10% - ${separation}px))`;
 
-    ticking = false;
+    secondLine.style.transform =
+      `translateX(calc(10% + ${separation}px))`;
   }
 
-  function requestUpdate() {
-    if (!ticking) {
-      window.requestAnimationFrame(updateTitleSeparation);
-      ticking = true;
-    }
-  }
-
-  window.addEventListener("scroll", requestUpdate, {
+  window.addEventListener("scroll", updateTitleSeparation, {
     passive: true
   });
 
-  window.addEventListener("resize", requestUpdate);
+  window.addEventListener("resize", updateTitleSeparation);
 
   title.addEventListener(
     "animationend",
