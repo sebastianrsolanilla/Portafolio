@@ -98,6 +98,10 @@ nav {
   animation-fill-mode: both;
 }
 
+.hero h1.hero-intro-done span {
+  animation: none;
+}
+
 .hero h1 span:first-child {
   animation-name: hero-enter-left;
   transform: translateX(calc(-10% - var(--hero-separation)));
