@@ -65,9 +65,12 @@ nav {
 }
 
 .nav-work {
-  margin-right: min(26vw, 360px);
+  position: absolute;
+  left: 50%;
+
   color: var(--blue);
   font-style: italic;
+  transform: translateX(-50%);
 }
 
 .hero {
@@ -82,10 +85,10 @@ nav {
   overflow: visible;
 
   font-size: clamp(64px, 10vw, 128px);
+  line-height: 0.9;
   text-align: center;
   font-weight: 700;
   letter-spacing: 0.01em;
-  line-height: 0.9;
 }
 
 .hero h1 span {
@@ -241,7 +244,7 @@ h2 {
   place-items: center;
   aspect-ratio: 1.64;
 
-  color: #333;
+  color: #333333;
   font-size: 22px;
   font-weight: 700;
   line-height: 0.9;
@@ -313,7 +316,7 @@ h2 {
   height: 728px;
 
   background: linear-gradient(145deg, #dedede, #a9a9a9);
-  color: #777;
+  color: #777777;
   font-size: 20px;
   font-weight: 700;
 }
@@ -447,7 +450,9 @@ h2 {
 
 .education article p {
   grid-column: 1 / -1;
+
   max-width: 351px;
+
   font-size: 14px;
   line-height: 1.15;
 }
@@ -499,10 +504,6 @@ footer h2 {
 
   nav {
     gap: 18px;
-  }
-
-  .nav-work {
-    margin-right: 0;
   }
 
   .hero {
