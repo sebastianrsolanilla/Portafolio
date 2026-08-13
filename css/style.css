@@ -9,7 +9,7 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
 
 /* Hero layout matching the reference: description and ABOUT ME grouped on the left. */
 .hero-grid {
-  grid-template-columns: minmax(360px, 520px) minmax(60px, 1fr) minmax(260px, 360px);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
   align-items: start;
   gap: 42px;
 }
@@ -26,7 +26,9 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: min(520px, 100%);
   padding-top: 70px;
+  translate: calc(var(--hero-scroll-side, 0px) * -1) 0;
   will-change: transform, opacity, filter;
   animation: hero-copy-left 1100ms cubic-bezier(.22, .8, .25, 1) 320ms both;
 }
@@ -45,6 +47,7 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
 .hero-statement {
   align-self: start;
   padding-top: 0;
+  translate: var(--hero-scroll-side, 0px) 0;
   will-change: transform, opacity, filter;
   animation: hero-copy-right 1100ms cubic-bezier(.22, .8, .25, 1) 460ms both;
 }
@@ -105,6 +108,7 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
 
   .hero-left {
     align-items: flex-start;
+    width: 100%;
     padding-top: 0;
   }
 
@@ -486,6 +490,11 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
     transform: none;
     opacity: 1;
     filter: none;
+  }
+
+  .hero-left,
+  .hero-statement {
+    translate: none;
   }
 
   .hero h1 span:last-child {
