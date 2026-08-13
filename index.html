@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="description" content="Portfolio of Sebastian Solanilla, Product Designer.">
 
   <title>Sebastian Solanilla — Product Designer</title>
@@ -13,7 +12,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -42,20 +41,29 @@
 
       <div class="hero-grid">
 
-        <p>
-          I design digital products and experiences that balance user needs,
-          business goals, and visual clarity. My work spans UX/UI,
-          information architecture, e-commerce, and visual design.
-        </p>
+        <div class="hero-left">
+          <p>
+            I design digital products and experiences that balance user needs,
+            business goals, and visual clarity. My work spans UX/UI,
+            information architecture, e-commerce, and visual design, from early
+            structure and user flows to high-fidelity interfaces and implementation.
+          </p>
 
-        <a class="pill pill-red" href="#about">ABOUT ME</a>
+          <a class="pill pill-red" href="#about">
+            ABOUT ME
+          </a>
+        </div>
+
+        <div class="hero-spacer"></div>
 
         <div class="hero-statement">
           <p>
             A Product Designer turning complexity into intuitive digital experiences.
           </p>
 
-          <a class="pill pill-blue" href="#work">WORK</a>
+          <a class="pill pill-blue" href="#work">
+            WORK
+          </a>
         </div>
 
       </div>
@@ -89,7 +97,8 @@
 
         <p>
           The Master’s in Design strengthened my ability to approach design
-          through research, strategy, and visual communication.
+          through research, strategy, and visual communication. It expanded my
+          perspective beyond product development.
         </p>
 
         <div class="project-image image-packer">
@@ -135,7 +144,8 @@
           The Master’s in Design strengthened my ability to approach design
           through research, strategy, and visual communication. It expanded my
           perspective beyond product development, allowing me to explore how
-          design can respond to complex problems and create meaningful experiences.
+          design can respond to complex problems, communicate ideas clearly,
+          and create meaningful experiences.
         </p>
 
       </div>
@@ -182,7 +192,7 @@
           <strong>
             Led the end-to-end redesign of the company's B2B digital platform,
             transforming information architecture, user experience, branding,
-            and content structure.
+            and content structure to create a scalable and intuitive customer experience.
           </strong>
 
           <p>
@@ -301,49 +311,8 @@
     <div class="footer-bracket">]</div>
 
   </footer>
-<script>
-  const hero = document.querySelector(".hero");
-  const title = document.querySelector("#hero-title");
 
-  if (hero && title) {
-    const firstLine = title.querySelector("span:first-child");
-    const secondLine = title.querySelector("span:last-child");
-
-    function updateTitleSeparation() {
-      const distance = Math.max(hero.offsetHeight * 0.8, 1);
-
-      const progress = Math.min(
-        Math.max(window.scrollY / distance, 0),
-        1
-      );
-
-      const separation = progress * window.innerWidth * 0.14;
-
-      firstLine.style.transform =
-        `translateX(calc(-10% - ${separation}px))`;
-
-      secondLine.style.transform =
-        `translateX(calc(10% + ${separation}px))`;
-    }
-
-    window.addEventListener("scroll", updateTitleSeparation, {
-      passive: true
-    });
-
-    window.addEventListener("resize", updateTitleSeparation);
-
-    title.addEventListener(
-      "animationend",
-      () => {
-        title.classList.add("hero-intro-done");
-        updateTitleSeparation();
-      },
-      { once: true }
-    );
-
-    updateTitleSeparation();
-  }
-</script>
+  <script src="js/script.js"></script>
 
 </body>
 </html>
