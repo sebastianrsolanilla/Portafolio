@@ -270,6 +270,8 @@
         const mobile = viewportWidth < 700;
         const radiusX = mobile ? Math.min(viewportWidth * 0.42, 180) : Math.min(viewportWidth * 0.34, 560);
         const radiusY = mobile ? 42 : 112;
+        const introProgress = clamp(currentPosition / 0.85, 0, 1);
+        const stackSpacing = mobile ? 5 : 10;
 
         cards.forEach((card, index) => {
           const distance = index - currentPosition;
@@ -282,10 +284,21 @@
           const opacity = clamp(0.16 + 0.84 * Math.exp(-absoluteDistance * 0.72), 0.08, 1);
           const rotation = Math.sin(angle) * (mobile ? -3 : -5);
           const zIndex = Math.round(100 + depth * 100 - absoluteDistance * 4);
+          const stackX = index * stackSpacing;
+          const stackY = ((index % 3) - 1) * (mobile ? 4 : 9);
+          const stackScale = clamp(0.96 - index * 0.025, 0.72, 0.96);
+          const stackRotation = (index % 2 ? 1 : -1) * (2 + (index % 4) * 1.1);
+          const blendedX = stackX + (x - stackX) * introProgress;
+          const blendedY = stackY + (y - stackY) * introProgress;
+          const blendedScale = stackScale + (scale - stackScale) * introProgress;
+          const blendedRotation = stackRotation + (rotation - stackRotation) * introProgress;
+          const stackOpacity = clamp(0.74 - index * 0.035, 0.42, 0.74);
+          const blendedOpacity = stackOpacity + (opacity - stackOpacity) * introProgress;
+          const blendedZIndex = Math.round((1 - introProgress) * (300 + index) + introProgress * zIndex);
 
-          card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotateZ(${rotation}deg)`;
-          card.style.opacity = opacity;
-          card.style.zIndex = zIndex;
+          card.style.transform = `translate3d(calc(-50% + ${blendedX}px), calc(-50% + ${blendedY}px), 0) scale(${blendedScale}) rotateZ(${blendedRotation}deg)`;
+          card.style.opacity = blendedOpacity;
+          card.style.zIndex = blendedZIndex;
           card.classList.toggle("is-active", absoluteDistance < 0.5);
           card.setAttribute("aria-current", absoluteDistance < 0.5 ? "true" : "false");
         });
