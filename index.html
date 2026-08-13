@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of Sebastian Solanilla, Product Designer.">
-
   <title>Sebastian Solanilla — Product Designer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
@@ -45,8 +43,7 @@
           <p>
             I design digital products and experiences that balance user needs,
             business goals, and visual clarity. My work spans UX/UI,
-            information architecture, e-commerce, and visual design, from early
-            structure and user flows to high-fidelity interfaces and implementation.
+            information architecture, e-commerce, and visual design.
           </p>
 
           <a class="pill pill-red" href="#about">
@@ -86,21 +83,18 @@
       <h2>[MY WORK]</h2>
 
       <article class="featured-card card-sago">
-
         <div class="project-image image-sago">
           <span>SAGO<br>PACKAGING</span>
         </div>
 
         <h3>SAGO PACKAGING SOLUTIONS</h3>
-
       </article>
 
       <article class="featured-card card-packer">
 
         <p>
           The Master’s in Design strengthened my ability to approach design
-          through research, strategy, and visual communication. It expanded my
-          perspective beyond product development.
+          through research, strategy, and visual communication.
         </p>
 
         <div class="project-image image-packer">
@@ -108,7 +102,6 @@
         </div>
 
         <h3>BE YOUR PACKER</h3>
-
       </article>
 
       <div class="work-tags">
@@ -139,8 +132,7 @@
           The Master’s in Design strengthened my ability to approach design
           through research, strategy, and visual communication. It expanded my
           perspective beyond product development, allowing me to explore how
-          design can respond to complex problems, communicate ideas clearly,
-          and create meaningful experiences.
+          design can respond to complex problems and create meaningful experiences.
         </p>
 
       </div>
@@ -168,17 +160,10 @@
         <div class="entry-number">[01]</div>
 
         <div class="entry-meta">
-
           <strong>Product Designer</strong>
-
           <span>Sago Packaging Solutions</span>
-
           <span>2023 – Present.</span>
-
-          <p>
-            Madrid, <strong>Spain.</strong>
-          </p>
-
+          <p>Madrid, <strong>Spain.</strong></p>
         </div>
 
         <div class="entry-copy">
@@ -186,7 +171,7 @@
           <strong>
             Led the end-to-end redesign of the company's B2B digital platform,
             transforming information architecture, user experience, branding,
-            and content structure to create a scalable and intuitive customer experience.
+            and content structure.
           </strong>
 
           <p>
@@ -202,11 +187,6 @@
 
             <strong>Optimized key user journeys across the homepage</strong>,
             category, product and landing pages.
-
-            <br><br>
-
-            Designed responsive interfaces, user flows and reusable UI
-            components to streamline the quotation request experience.
           </p>
 
           <a href="#contact">[View project]</a>
@@ -229,13 +209,10 @@
           <b>2022 – 2023</b>
 
           <p>
-            The Master’s in Design strengthened my ability to approach design
-            through research, strategy, and visual communication.
+            Research, strategy and visual communication applied to digital experiences.
           </p>
 
-          <small>
-            Madrid, <strong>Spain.</strong>
-          </small>
+          <small>Madrid, <strong>Spain.</strong></small>
         </article>
 
         <article>
@@ -244,13 +221,10 @@
           <b>2014 – 2019</b>
 
           <p>
-            The Master’s in Design strengthened my ability to approach design
-            through research, strategy, and visual communication.
+            Industrial design, product development and visual communication.
           </p>
 
-          <small>
-            Bogotá, <strong>Colombia.</strong>
-          </small>
+          <small>Bogotá, <strong>Colombia.</strong></small>
         </article>
 
         <article>
@@ -259,23 +233,20 @@
           <b>2024 – 2025</b>
 
           <p>
-            The Master’s in Design strengthened my ability to approach design
-            through research, strategy, and visual communication.
+            Web design, publishing and digital content development.
           </p>
 
-          <small>
-            Madrid, <strong>Spain.</strong>
-          </small>
+          <small>Madrid, <strong>Spain.</strong></small>
         </article>
 
         <aside>
           <h3>[Continuous<br>Learning]</h3>
 
           <p>
-            – Introduction to Design Systems with Figma.<br>
+            – Design Systems with Figma.<br>
             – UX/UI Design Specialization.<br>
-            – Innovative Web Design in Figma.<br>
-            – UX Storytelling for Digital Experiences.
+            – Innovative Web Design.<br>
+            – UX Storytelling.
           </p>
         </aside>
 
@@ -303,7 +274,6 @@
 
   </footer>
 
-  <!-- JavaScript dentro de index.html -->
   <script>
     const hero = document.querySelector(".hero");
     const title = document.querySelector("#hero-title");
@@ -314,7 +284,6 @@
 
       function updateTitleSeparation() {
         const distance = Math.max(hero.offsetHeight * 0.8, 1);
-
         const progress = Math.min(
           Math.max(window.scrollY / distance, 0),
           1
@@ -329,16 +298,41 @@
           `translateX(calc(10% + ${separation}px))`;
       }
 
-      window.addEventListener(
-        "scroll",
-        updateTitleSeparation,
-        { passive: true }
-      );
+      const header = document.querySelector(".site-header");
+      const aboutSection = document.querySelector(".about");
+      const blueSection = document.querySelector(".experience-lead");
 
-      window.addEventListener(
-        "resize",
-        updateTitleSeparation
-      );
+      function updateHeaderTheme() {
+        const scanLine = header.getBoundingClientRect().bottom + 8;
+
+        const aboutRect = aboutSection.getBoundingClientRect();
+        const blueRect = blueSection.getBoundingClientRect();
+
+        const overBlue =
+          blueRect.top <= scanLine &&
+          blueRect.bottom > scanLine;
+
+        const overWhite =
+          aboutRect.top <= scanLine &&
+          aboutRect.bottom > scanLine;
+
+        header.classList.toggle("header-blue", overBlue);
+        header.classList.toggle(
+          "header-light",
+          !overBlue && overWhite
+        );
+      }
+
+      window.addEventListener("scroll", updateTitleSeparation, {
+        passive: true
+      });
+
+      window.addEventListener("scroll", updateHeaderTheme, {
+        passive: true
+      });
+
+      window.addEventListener("resize", updateTitleSeparation);
+      window.addEventListener("resize", updateHeaderTheme);
 
       title.addEventListener(
         "animationend",
@@ -350,6 +344,7 @@
       );
 
       updateTitleSeparation();
+      updateHeaderTheme();
     }
   </script>
 
