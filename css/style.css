@@ -82,10 +82,10 @@ nav {
   overflow: visible;
 
   font-size: clamp(64px, 10vw, 128px);
-  line-height: 0.88;
+  line-height: 0.74;
   text-align: center;
   font-weight: 700;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.12em;
 }
 
 .hero h1 span {
@@ -153,15 +153,12 @@ nav {
   padding-top: 132px;
 }
 
-.hero-left > p {
-  max-width: 360px;
+.hero-left p {
+  max-width: 390px;
   color: #d8908d;
-  line-height: 1.15;
+  font-size: 16px;
+  line-height: 1.08;
   text-align: center;
-}
-
-.hero-spacer {
-  min-height: 1px;
 }
 
 .hero-statement {
@@ -171,7 +168,7 @@ nav {
 
 .hero-statement p {
   font-size: 30px;
-  line-height: 1.14;
+  line-height: 1.08;
   font-weight: 600;
 }
 
@@ -250,10 +247,6 @@ h2 {
   line-height: 0.9;
 }
 
-.project-image span {
-  opacity: 0.6;
-}
-
 .image-sago {
   background: linear-gradient(135deg, #ebe8e0, #8a9e9d);
 }
@@ -273,9 +266,11 @@ h2 {
 }
 
 .card-packer > p {
-  max-width: 400px;
+  max-width: 450px;
   margin-bottom: 32px;
-  line-height: 1.15;
+
+  font-size: 16px;
+  line-height: 1.08;
 }
 
 .work-tags {
@@ -342,25 +337,12 @@ h2 {
   text-align: right;
 }
 
-.portrait-note {
-  display: grid;
-  gap: 18px;
-
-  width: 193px;
-
-  font-size: 14px;
-  text-align: right;
-}
-
-.mini-image {
-  height: 229px;
-  background: #d9d9d9;
-}
-
 .about-copy > p:last-child {
-  width: min(357px, 100%);
+  width: min(430px, 100%);
   margin-right: auto;
-  line-height: 1.2;
+
+  font-size: 16px;
+  line-height: 1.08;
 }
 
 .experience {
@@ -417,18 +399,8 @@ h2 {
 .entry-meta {
   display: grid;
   align-content: start;
-  gap: 72px;
+  gap: 20px;
   font-size: 16px;
-}
-
-.entry-meta div {
-  display: grid;
-  gap: 9px;
-}
-
-.entry-meta p {
-  margin-top: 45px;
-  font-size: 15px;
 }
 
 .entry-copy {
@@ -441,10 +413,6 @@ h2 {
 
 .entry-copy p {
   font-weight: 500;
-}
-
-.entry-copy a {
-  margin-top: 10px;
 }
 
 .education {
@@ -468,7 +436,7 @@ h2 {
 .education article {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 30px 28px;
+  gap: 15px 28px;
 }
 
 .education h3 {
@@ -477,23 +445,11 @@ h2 {
   line-height: 1.1;
 }
 
-.education article strong,
-.education article b {
-  font-size: 13px;
-}
-
 .education article p {
   grid-column: 1 / -1;
-
   max-width: 351px;
-  margin-bottom: -18px;
-
-  font-size: 12px;
-  line-height: 1.15;
-}
-
-.education small {
   font-size: 14px;
+  line-height: 1.15;
 }
 
 .education aside {
@@ -505,11 +461,6 @@ h2 {
   color: var(--red);
   font-size: 22px;
   line-height: 1.05;
-}
-
-.education aside p {
-  font-size: 12px;
-  line-height: 1.5;
 }
 
 footer {
@@ -533,14 +484,12 @@ footer h2 {
 .footer-bracket {
   font-size: clamp(120px, 15vw, 200px);
   font-weight: 300;
-  line-height: 0.7;
 }
 
 .footer-links {
   display: grid;
   gap: 7px;
   font-size: 14px;
-  font-weight: 500;
 }
 
 @media (max-width: 800px) {
@@ -570,7 +519,7 @@ footer h2 {
     padding-top: 0;
   }
 
-  .hero-left > p {
+  .hero-left p {
     max-width: none;
     text-align: left;
   }
@@ -620,10 +569,6 @@ footer h2 {
     text-align: left;
   }
 
-  .portrait-note {
-    display: none;
-  }
-
   .experience-lead {
     grid-template-columns: 1fr;
     min-height: 0;
@@ -636,20 +581,8 @@ footer h2 {
     padding: 60px 24px;
   }
 
-  .entry-meta {
-    gap: 30px;
-  }
-
-  .entry-meta p {
-    margin-top: 0;
-  }
-
   .education {
     padding: 75px 24px;
-  }
-
-  .education h2 {
-    margin-bottom: 65px;
   }
 
   .education-grid {
@@ -689,18 +622,9 @@ footer h2 {
 
   .education article {
     grid-template-columns: 1fr;
-    gap: 15px;
   }
 
   .education article p {
     grid-column: auto;
-    margin: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero h1 span {
-    animation: none;
-    opacity: 1;
   }
 }
