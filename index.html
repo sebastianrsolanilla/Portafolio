@@ -39,14 +39,13 @@
       </section>
 
       <section class="projects-section" id="work" aria-labelledby="work-title">
-        <div class="projects-heading">
-          <p class="section-kicker">SELECTED PROJECTS</p>
-          <h2 id="work-title">[MY WORK]</h2>
-          <p class="projects-intro">A continuous orbit through product, editorial and brand experiences.</p>
-        </div>
-
         <div class="projects-orbit-wrap" data-projects-orbit>
           <div class="projects-orbit-stage">
+            <div class="projects-heading">
+              <p class="section-kicker">SELECTED PROJECTS</p>
+              <h2 id="work-title">[MY WORK]</h2>
+              <p class="projects-intro">A continuous orbit through product, editorial and brand experiences.</p>
+            </div>
             <div class="orbit-axis" aria-hidden="true"></div>
             <div class="projects-orbit-title" aria-hidden="true"></div>
             <div class="projects-track" aria-live="polite"></div>
@@ -224,6 +223,8 @@
       let rafId = 0;
 
       orbit.style.setProperty("--project-count", items.length);
+      activeCategory = categories[0].name;
+      categoryTitle.textContent = categories[0].headline;
 
       track.innerHTML = items.map((project, index) => `
         <article class="orbit-card orbit-card-${project.tone}" data-project-index="${index}" aria-label="${project.title}">
@@ -273,11 +274,16 @@
         const radiusY = mobile ? 42 : 112;
         const introProgress = clamp(currentPosition / 0.42, 0, 1);
         const stackSpacing = mobile ? 5 : 10;
+        const categoryFade = clamp((introProgress - 0.08) / 0.62, 0, 1);
+        const headingLift = Math.max(stage.clientHeight * 0.5 - (mobile ? 82 : 108), 0) * introProgress;
+
+        stage.style.setProperty("--orbit-y", `${-7 * introProgress}%`);
+        stage.style.setProperty("--projects-category-opacity", categoryFade);
 
         if (projectsHeading) {
-          const headingLift = (1 - introProgress) * 22;
-          projectsHeading.style.setProperty("--projects-heading-y", `${headingLift}px`);
-          projectsHeading.style.setProperty("--projects-heading-opacity", `${0.9 + introProgress * 0.1}`);
+          projectsHeading.style.setProperty("--projects-heading-lift", `${headingLift}px`);
+          projectsHeading.style.setProperty("--projects-heading-side-opacity", categoryFade);
+          projectsHeading.style.setProperty("--projects-heading-side-x", `${(1 - categoryFade) * 22}px`);
         }
 
         cards.forEach((card, index) => {
@@ -291,7 +297,7 @@
           const opacity = clamp(0.16 + 0.84 * Math.exp(-absoluteDistance * 0.72), 0.08, 1);
           const rotation = Math.sin(angle) * (mobile ? -3 : -5);
           const zIndex = Math.round(100 + depth * 100 - absoluteDistance * 4);
-          const stackX = index * stackSpacing;
+          const stackX = (index - (cards.length - 1) / 2) * stackSpacing;
           const stackY = ((index % 3) - 1) * (mobile ? 4 : 9);
           const stackScale = clamp(0.96 - index * 0.025, 0.72, 0.96);
           const stackRotation = (index % 2 ? 1 : -1) * (2 + (index % 4) * 1.1);
