@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Sebastian Solanilla, Product Designer">
+  <meta name="description" content="Portfolio of Sebastian Solanilla, Product Designer.">
+
   <title>Sebastian Solanilla — Product Designer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
@@ -21,7 +23,7 @@
       SOLANILLA
     </a>
 
-    <nav>
+    <nav aria-label="Main navigation">
       <a class="nav-work" href="#work">[WORK]</a>
       <a href="#about">ABOUT</a>
       <a href="#contact">CONTACT</a>
@@ -30,7 +32,7 @@
 
   <main id="top">
 
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
 
       <h1 id="hero-title">
         <span>SEBASTIAN</span>
@@ -83,12 +85,14 @@
 
       <h2>[MY WORK]</h2>
 
-      <article class="featured-card">
+      <article class="featured-card card-sago">
+
         <div class="project-image image-sago">
           <span>SAGO<br>PACKAGING</span>
         </div>
 
         <h3>SAGO PACKAGING SOLUTIONS</h3>
+
       </article>
 
       <article class="featured-card card-packer">
@@ -104,6 +108,7 @@
         </div>
 
         <h3>BE YOUR PACKER</h3>
+
       </article>
 
       <div class="work-tags">
@@ -145,6 +150,7 @@
     <section class="experience">
 
       <div class="experience-lead">
+
         <h2>[XP.]</h2>
 
         <p>
@@ -154,6 +160,7 @@
         </p>
 
         <em>The Master’s in Design</em>
+
       </div>
 
       <article class="experience-entry">
@@ -161,17 +168,25 @@
         <div class="entry-number">[01]</div>
 
         <div class="entry-meta">
+
           <strong>Product Designer</strong>
+
           <span>Sago Packaging Solutions</span>
+
           <span>2023 – Present.</span>
-          <p>Madrid, <strong>Spain.</strong></p>
+
+          <p>
+            Madrid, <strong>Spain.</strong>
+          </p>
+
         </div>
 
         <div class="entry-copy">
+
           <strong>
             Led the end-to-end redesign of the company's B2B digital platform,
             transforming information architecture, user experience, branding,
-            and content structure.
+            and content structure to create a scalable and intuitive customer experience.
           </strong>
 
           <p>
@@ -187,9 +202,15 @@
 
             <strong>Optimized key user journeys across the homepage</strong>,
             category, product and landing pages.
+
+            <br><br>
+
+            Designed responsive interfaces, user flows and reusable UI
+            components to streamline the quotation request experience.
           </p>
 
           <a href="#contact">[View project]</a>
+
         </div>
 
       </article>
@@ -206,39 +227,55 @@
           <h3>Universidad Complutense de Madrid</h3>
           <strong>Master’s in Design</strong>
           <b>2022 – 2023</b>
+
           <p>
-            Research, strategy and visual communication applied to digital experiences.
+            The Master’s in Design strengthened my ability to approach design
+            through research, strategy, and visual communication.
           </p>
-          <small>Madrid, <strong>Spain.</strong></small>
+
+          <small>
+            Madrid, <strong>Spain.</strong>
+          </small>
         </article>
 
         <article>
           <h3>Universidad El Bosque</h3>
           <strong>Bachelor’s Degree in Industrial Design</strong>
           <b>2014 – 2019</b>
+
           <p>
-            Industrial design, product development and visual communication.
+            The Master’s in Design strengthened my ability to approach design
+            through research, strategy, and visual communication.
           </p>
-          <small>Bogotá, <strong>Colombia.</strong></small>
+
+          <small>
+            Bogotá, <strong>Colombia.</strong>
+          </small>
         </article>
 
         <article>
           <h3>Grupo Aspasia</h3>
           <strong>Web Design and Publishing Certificate</strong>
           <b>2024 – 2025</b>
+
           <p>
-            Web design, publishing and digital content development.
+            The Master’s in Design strengthened my ability to approach design
+            through research, strategy, and visual communication.
           </p>
-          <small>Madrid, <strong>Spain.</strong></small>
+
+          <small>
+            Madrid, <strong>Spain.</strong>
+          </small>
         </article>
 
         <aside>
           <h3>[Continuous<br>Learning]</h3>
+
           <p>
-            – Design Systems with Figma.<br>
+            – Introduction to Design Systems with Figma.<br>
             – UX/UI Design Specialization.<br>
-            – Innovative Web Design.<br>
-            – UX Storytelling.
+            – Innovative Web Design in Figma.<br>
+            – UX Storytelling for Digital Experiences.
           </p>
         </aside>
 
@@ -249,6 +286,7 @@
   </main>
 
   <footer id="contact">
+
     <div class="footer-bracket">[</div>
 
     <h2>
@@ -262,9 +300,10 @@
     </div>
 
     <div class="footer-bracket">]</div>
+
   </footer>
 
-  <!-- SCRIPT DENTRO DEL INDEX -->
+  <!-- JavaScript dentro de index.html -->
   <script>
     const hero = document.querySelector(".hero");
     const title = document.querySelector("#hero-title");
@@ -275,6 +314,7 @@
 
       function updateTitleSeparation() {
         const distance = Math.max(hero.offsetHeight * 0.8, 1);
+
         const progress = Math.min(
           Math.max(window.scrollY / distance, 0),
           1
