@@ -195,30 +195,13 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
 
 .projects-orbit-stage::before,
 .projects-orbit-stage::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(78vw, 980px);
-  height: min(28vw, 300px);
-  border: 1px solid rgba(255,255,255,.11);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotate(-8deg);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.projects-orbit-stage::after {
-  width: min(58vw, 720px);
-  height: min(18vw, 190px);
-  border-color: rgba(202,76,80,.24);
-  transform: translate(-50%, -50%) rotate(8deg);
+  display: none;
 }
 
 .orbit-axis {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 43%;
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -239,7 +222,7 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
 .projects-orbit-title {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 43%;
   z-index: 1;
   width: max-content;
   max-width: none;
@@ -280,7 +263,7 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
   --card-width: clamp(250px, 31vw, 470px);
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 43%;
   width: var(--card-width);
   transform-origin: center center;
   transform-style: preserve-3d;
@@ -388,9 +371,7 @@ footer { min-height:369px; background:var(--red); display:flex; align-items:cent
   .projects-hint { font-size: 9px; }
   .orbit-card { --card-width: min(67vw, 320px); }
   .orbit-card-meta { display: grid; gap: 5px; }
-  .projects-orbit-stage::before { width: 130vw; height: 44vw; }
-  .projects-orbit-stage::after { width: 100vw; height: 30vw; }
-  .projects-orbit-title { top: 50%; font-size: clamp(56px, 15vw, 130px); }
+  .projects-orbit-title { top: 43%; font-size: clamp(56px, 15vw, 130px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
