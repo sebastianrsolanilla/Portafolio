@@ -46,6 +46,31 @@ p {
   padding: 19px 27px;
 
   background: rgba(51, 51, 51, 0.96);
+
+  transition:
+    background-color 260ms ease,
+    color 260ms ease;
+}
+
+.site-header.header-light {
+  background: #ffffff;
+}
+
+.site-header.header-light .brand {
+  color: var(--ink);
+}
+
+.site-header.header-blue {
+  background: var(--blue);
+}
+
+.site-header.header-blue .brand,
+.site-header.header-blue .nav-work {
+  color: #ffffff;
+}
+
+.site-header.header-blue nav a:not(.nav-work) {
+  color: var(--ink);
 }
 
 .brand {
@@ -67,6 +92,8 @@ nav {
 .nav-work {
   position: absolute;
   left: 50%;
+
+  margin: 0;
 
   color: var(--blue);
   font-style: italic;
@@ -523,10 +550,6 @@ footer h2 {
   .hero-left p {
     max-width: none;
     text-align: left;
-  }
-
-  .hero-left .pill-red {
-    align-self: center;
   }
 
   .hero-statement {
