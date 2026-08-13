@@ -207,6 +207,7 @@
       const track = orbit.querySelector(".projects-track");
       const categoryTitle = orbit.querySelector(".projects-orbit-title");
       const indexLabel = orbit.querySelector(".projects-index");
+      const projectsHeading = document.querySelector(".projects-heading");
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const items = categories.flatMap((category) => category.projects.map((project) => ({
         ...project,
@@ -264,14 +265,20 @@
 
       const render = () => {
         rafId = 0;
-        const ease = prefersReducedMotion ? 1 : 0.06;
+        const ease = prefersReducedMotion ? 1 : 0.14;
         currentPosition += (targetPosition - currentPosition) * ease;
         const viewportWidth = stage.clientWidth;
         const mobile = viewportWidth < 700;
         const radiusX = mobile ? Math.min(viewportWidth * 0.42, 180) : Math.min(viewportWidth * 0.34, 560);
         const radiusY = mobile ? 42 : 112;
-        const introProgress = clamp(currentPosition / 0.85, 0, 1);
+        const introProgress = clamp(currentPosition / 0.42, 0, 1);
         const stackSpacing = mobile ? 5 : 10;
+
+        if (projectsHeading) {
+          const headingLift = (1 - introProgress) * 22;
+          projectsHeading.style.setProperty("--projects-heading-y", `${headingLift}px`);
+          projectsHeading.style.setProperty("--projects-heading-opacity", `${0.9 + introProgress * 0.1}`);
+        }
 
         cards.forEach((card, index) => {
           const distance = index - currentPosition;
