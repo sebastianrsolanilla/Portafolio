@@ -7,7 +7,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,7 +23,7 @@
       SOLANILLA
     </a>
 
-    <nav>
+    <nav aria-label="Main navigation">
       <a class="nav-work" href="#work">[WORK]</a>
       <a href="#about">ABOUT</a>
       <a href="#contact">CONTACT</a>
@@ -27,7 +31,7 @@
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <h1 id="hero-title">
         <span>SEBASTIAN</span>
         <span>SOLANILLA</span>
@@ -71,10 +75,11 @@
     <section class="projects-section" id="work">
       <div class="projects-heading">
         <p class="section-kicker">SELECTED PROJECTS</p>
+
         <h2>[MY WORK]</h2>
+
         <p class="projects-intro">
-          A continuous orbit through product, editorial and visual
-          experiences.
+          A continuous orbit through product, editorial and visual experiences.
         </p>
       </div>
 
@@ -230,6 +235,46 @@
         updateHero();
       }
 
+      const header = document.querySelector(".site-header");
+      const aboutSection = document.querySelector(".about");
+      const blueSection = document.querySelector(".experience-lead");
+
+      function updateHeaderTheme() {
+        if (!header || !aboutSection || !blueSection) return;
+
+        const scanLine =
+          header.getBoundingClientRect().bottom + 8;
+
+        const aboutRect =
+          aboutSection.getBoundingClientRect();
+
+        const blueRect =
+          blueSection.getBoundingClientRect();
+
+        const overBlue =
+          blueRect.top <= scanLine &&
+          blueRect.bottom > scanLine;
+
+        const overWhite =
+          aboutRect.top <= scanLine &&
+          aboutRect.bottom > scanLine;
+
+        header.classList.toggle("header-blue", overBlue);
+
+        header.classList.toggle(
+          "header-light",
+          !overBlue && overWhite
+        );
+      }
+
+      window.addEventListener("scroll", updateHeaderTheme, {
+        passive: true
+      });
+
+      window.addEventListener("resize", updateHeaderTheme);
+
+      updateHeaderTheme();
+
       const categories = [
         {
           name: "DISEÑO WEB",
@@ -335,197 +380,187 @@
 
       const orbit = document.querySelector("[data-projects-orbit]");
 
-      if (orbit) {
-        const stage = orbit.querySelector(".projects-orbit-stage");
-        const track = orbit.querySelector(".projects-track");
-        const categoryTitle = orbit.querySelector(".projects-orbit-title");
-        const indexLabel = orbit.querySelector(".projects-index");
+      if (!orbit) return;
 
-        const items = categories.flatMap(category =>
-          category.projects.map(project => ({
-            ...project,
-            category: category.name,
-            categoryHeadline: category.headline
-          }))
+      const stage = orbit.querySelector(".projects-orbit-stage");
+      const track = orbit.querySelector(".projects-track");
+      const categoryTitle = orbit.querySelector(".projects-orbit-title");
+      const indexLabel = orbit.querySelector(".projects-index");
+
+      const items = categories.flatMap(category =>
+        category.projects.map(project => ({
+          ...project,
+          category: category.name,
+          categoryHeadline: category.headline
+        }))
+      );
+
+      const lastIndex = items.length - 1;
+
+      let targetPosition = 0;
+      let currentPosition = 0;
+      let sectionTop = 0;
+      let scrollRange = 1;
+      let activeIndex = -1;
+      let activeCategory = "";
+      let animationFrame = 0;
+
+      orbit.style.setProperty("--project-count", items.length);
+
+      track.innerHTML = items.map((project, index) => `
+        <article
+          class="orbit-card orbit-card-${project.tone}"
+          data-project-index="${index}"
+          aria-label="${project.title}"
+        >
+          <div class="orbit-card-media">
+            ${
+              project.cover
+                ? `<img src="${project.cover}" alt="${project.title}" loading="lazy">`
+                : ""
+            }
+
+            <span>${project.label}</span>
+
+            <strong class="orbit-card-title">
+              [ ${project.title} ]
+            </strong>
+          </div>
+        </article>
+      `).join("");
+
+      const cards = [...track.querySelectorAll(".orbit-card")];
+
+      function measure() {
+        const step = Math.max(window.innerHeight * 0.78, 520);
+
+        orbit.style.height =
+          `${stage.offsetHeight + lastIndex * step}px`;
+
+        sectionTop =
+          orbit.getBoundingClientRect().top + window.scrollY;
+
+        scrollRange =
+          Math.max(orbit.offsetHeight - stage.offsetHeight, 1);
+      }
+
+      function updateTarget() {
+        const progress = clamp(
+          (window.scrollY - sectionTop) / scrollRange,
+          0,
+          1
         );
 
-        const lastIndex = items.length - 1;
+        targetPosition = progress * lastIndex;
 
-        let targetPosition = 0;
-        let currentPosition = 0;
-        let sectionTop = 0;
-        let scrollRange = 1;
-        let activeIndex = -1;
-        let activeCategory = "";
-        let animationFrame = 0;
-
-        orbit.style.setProperty("--project-count", items.length);
-
-        track.innerHTML = items.map((project, index) => `
-          <article
-            class="orbit-card orbit-card-${project.tone}"
-            data-project-index="${index}"
-            aria-label="${project.title}"
-          >
-            <div class="orbit-card-media">
-              ${
-                project.cover
-                  ? `<img src="${project.cover}" alt="${project.title}" loading="lazy">`
-                  : ""
-              }
-
-              <span>${project.label}</span>
-            </div>
-
-            <div class="orbit-card-meta">
-              <strong>${project.title}</strong>
-              <small>${project.detail}</small>
-            </div>
-          </article>
-        `).join("");
-
-        const cards = [...track.querySelectorAll(".orbit-card")];
-
-        function measure() {
-          const step = Math.max(window.innerHeight * 0.78, 520);
-
-          orbit.style.height =
-            `${stage.offsetHeight + lastIndex * step}px`;
-
-          sectionTop =
-            orbit.getBoundingClientRect().top + window.scrollY;
-
-          scrollRange =
-            Math.max(
-              orbit.offsetHeight - stage.offsetHeight,
-              1
-            );
+        if (!animationFrame) {
+          animationFrame = requestAnimationFrame(render);
         }
+      }
 
-        function updateTarget() {
-          const progress = clamp(
-            (window.scrollY - sectionTop) / scrollRange,
-            0,
+      function updateCategory(index) {
+        const project = items[index];
+
+        if (!project || index === activeIndex) return;
+
+        activeIndex = index;
+
+        indexLabel.textContent =
+          `${String(index + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+
+        if (project.category !== activeCategory) {
+          activeCategory = project.category;
+
+          categoryTitle.classList.remove("is-changing");
+          void categoryTitle.offsetWidth;
+
+          categoryTitle.textContent =
+            project.categoryHeadline;
+
+          categoryTitle.classList.add("is-changing");
+        }
+      }
+
+      function render() {
+        animationFrame = 0;
+
+        currentPosition +=
+          (targetPosition - currentPosition) * 0.06;
+
+        const width = stage.clientWidth;
+        const mobile = width < 700;
+
+        const radiusX = mobile
+          ? Math.min(width * 0.42, 180)
+          : Math.min(width * 0.34, 560);
+
+        const radiusY = mobile ? 42 : 112;
+
+        cards.forEach((card, index) => {
+          const distance = index - currentPosition;
+          const absoluteDistance = Math.abs(distance);
+          const angle = distance * (mobile ? 0.72 : 0.54);
+
+          const x = Math.sin(angle) * radiusX;
+
+          const y =
+            Math.sign(distance) *
+            (1 - Math.cos(angle)) *
+            radiusY;
+
+          const scale = clamp(
+            0.48 + 0.70 * Math.exp(-absoluteDistance * 0.72),
+            0.42,
+            1.18
+          );
+
+          const opacity = clamp(
+            0.16 + 0.84 * Math.exp(-absoluteDistance * 0.72),
+            0.08,
             1
           );
 
-          targetPosition = progress * lastIndex;
+          const rotation =
+            Math.sin(angle) * (mobile ? -3 : -5);
 
-          if (!animationFrame) {
-            animationFrame = requestAnimationFrame(render);
-          }
-        }
+          const depth = Math.cos(angle);
 
-        function updateCategory(index) {
-          const project = items[index];
+          card.style.transform =
+            `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotateZ(${rotation}deg)`;
 
-          if (!project || index === activeIndex) return;
+          card.style.opacity = opacity;
 
-          activeIndex = index;
-
-          indexLabel.textContent =
-            `${String(index + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
-
-          if (project.category !== activeCategory) {
-            activeCategory = project.category;
-
-            categoryTitle.classList.remove("is-changing");
-            void categoryTitle.offsetWidth;
-
-            categoryTitle.textContent =
-              project.categoryHeadline;
-
-            categoryTitle.classList.add("is-changing");
-          }
-        }
-
-        function render() {
-          animationFrame = 0;
-
-          currentPosition +=
-            (targetPosition - currentPosition) * 0.085;
-
-          const width = stage.clientWidth;
-          const mobile = width < 700;
-
-          const radiusX = mobile
-            ? Math.min(width * 0.42, 180)
-            : Math.min(width * 0.34, 560);
-
-          const radiusY = mobile ? 42 : 112;
-
-          cards.forEach((card, index) => {
-            const distance = index - currentPosition;
-            const absoluteDistance = Math.abs(distance);
-            const angle = distance * (mobile ? 0.72 : 0.54);
-
-            const x = Math.sin(angle) * radiusX;
-
-            const y =
-              Math.sign(distance) *
-              (1 - Math.cos(angle)) *
-              radiusY;
-
-            const scale = clamp(
-              0.48 + 0.70 * Math.exp(-absoluteDistance * 0.72),
-              0.42,
-              1.18
+          card.style.zIndex =
+            Math.round(
+              100 + depth * 100 - absoluteDistance * 4
             );
-
-            const opacity = clamp(
-              0.16 + 0.84 * Math.exp(-absoluteDistance * 0.72),
-              0.08,
-              1
-            );
-
-            const rotation =
-              Math.sin(angle) * (mobile ? -3 : -5);
-
-            const depth =
-              Math.cos(angle);
-
-            card.style.transform =
-              `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotateZ(${rotation}deg)`;
-
-            card.style.opacity = opacity;
-
-            card.style.zIndex =
-              Math.round(
-                100 + depth * 100 - absoluteDistance * 4
-              );
-
-            card.classList.toggle(
-              "is-active",
-              absoluteDistance < 0.5
-            );
-          });
-
-          updateCategory(
-            clamp(
-              Math.round(currentPosition),
-              0,
-              lastIndex
-            )
-          );
-
-          if (Math.abs(targetPosition - currentPosition) > 0.001) {
-            animationFrame = requestAnimationFrame(render);
-          }
-        }
-
-        measure();
-
-        window.addEventListener("scroll", updateTarget, {
-          passive: true
         });
 
-        window.addEventListener("resize", () => {
-          measure();
-          updateTarget();
-        });
+        updateCategory(
+          clamp(
+            Math.round(currentPosition),
+            0,
+            lastIndex
+          )
+        );
 
-        updateTarget();
+        if (Math.abs(targetPosition - currentPosition) > 0.001) {
+          animationFrame = requestAnimationFrame(render);
+        }
       }
+
+      measure();
+
+      window.addEventListener("scroll", updateTarget, {
+        passive: true
+      });
+
+      window.addEventListener("resize", () => {
+        measure();
+        updateTarget();
+      });
+
+      updateTarget();
     })();
   </script>
 </body>
