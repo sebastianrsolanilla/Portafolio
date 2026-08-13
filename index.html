@@ -11,6 +11,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap"
       rel="stylesheet"
@@ -78,9 +79,7 @@
       <section class="projects-section" id="work" aria-labelledby="work-title">
         <div class="projects-heading">
           <p class="section-kicker">SELECTED PROJECTS</p>
-
           <h2 id="work-title">[MY WORK]</h2>
-
           <p class="projects-intro">
             A continuous orbit through product, editorial and brand experiences.
           </p>
@@ -89,16 +88,8 @@
         <div class="projects-orbit-wrap" data-projects-orbit>
           <div class="projects-orbit-stage">
             <div class="orbit-axis" aria-hidden="true"></div>
-
-            <div
-              class="projects-orbit-title"
-              aria-hidden="true"
-            ></div>
-
-            <div
-              class="projects-track"
-              aria-live="polite"
-            ></div>
+            <div class="projects-orbit-title" aria-hidden="true"></div>
+            <div class="projects-track" aria-live="polite"></div>
 
             <div class="projects-caption">
               <span class="projects-index">01 / 10</span>
@@ -292,13 +283,10 @@
       <div class="footer-bracket">]</div>
     </footer>
 
-    <!-- JAVASCRIPT DENTRO DEL INDEX -->
     <script>
       (() => {
         const clamp = (value, min, max) =>
           Math.min(Math.max(value, min), max);
-
-        /* HERO */
 
         const hero = document.querySelector(".hero");
         const title = document.querySelector("#hero-title");
@@ -311,6 +299,21 @@
             const distance = Math.max(hero.offsetHeight * 0.8, 1);
             const progress = clamp(window.scrollY / distance, 0, 1);
             const separation = progress * window.innerWidth * 0.14;
+
+            const fadeStart = Math.max(hero.offsetHeight * 0.18, 1);
+            const fadeDistance = Math.max(hero.offsetHeight * 0.62, 1);
+
+            const fadeProgress = clamp(
+              (window.scrollY - fadeStart) / fadeDistance,
+              0,
+              1
+            );
+
+            const fade = 1 - fadeProgress;
+            const blur = fadeProgress * 10;
+
+            hero.style.setProperty("--hero-scroll-fade", fade);
+            hero.style.setProperty("--hero-scroll-blur", `${blur}px`);
 
             firstLine.style.transform =
               `translateX(calc(-10% - ${separation}px))`;
@@ -341,8 +344,6 @@
 
           updateTitleSeparation();
         }
-
-        /* HEADER */
 
         const header = document.querySelector(".site-header");
         const aboutSection = document.querySelector(".about");
@@ -391,8 +392,6 @@
 
           updateHeaderTheme();
         }
-
-        /* PROYECTOS */
 
         const categories = [
           {
@@ -494,7 +493,7 @@
         const indexLabel =
           orbit.querySelector(".projects-index");
 
-        const reducedMotion =
+        const prefersReducedMotion =
           window.matchMedia(
             "(prefers-reduced-motion: reduce)"
           ).matches;
@@ -523,35 +522,33 @@
           items.length
         );
 
-        track.innerHTML = items
-          .map(
-            (project, index) => `
-              <article
-                class="orbit-card orbit-card-${project.tone}"
-                data-project-index="${index}"
-                aria-label="${project.title}"
-              >
-                <div class="orbit-card-media">
-                  ${
-                    project.cover
-                      ? `
-                        <img
-                          src="${project.cover}"
-                          alt="${project.title}"
-                          loading="lazy"
-                        />
-                      `
-                      : ""
-                  }
-                </div>
+        track.innerHTML = items.map(
+          (project, index) => `
+            <article
+              class="orbit-card orbit-card-${project.tone}"
+              data-project-index="${index}"
+              aria-label="${project.title}"
+            >
+              <div class="orbit-card-media">
+                ${
+                  project.cover
+                    ? `
+                      <img
+                        src="${project.cover}"
+                        alt="${project.title}"
+                        loading="lazy"
+                      />
+                    `
+                    : ""
+                }
+              </div>
 
-                <strong class="orbit-card-title">
-                  [ ${project.title} ]
-                </strong>
-              </article>
-            `
-          )
-          .join("");
+              <strong class="orbit-card-title">
+                [ ${project.title} ]
+              </strong>
+            </article>
+          `
+        ).join("");
 
         const cards = [
           ...track.querySelectorAll(".orbit-card")
@@ -577,8 +574,7 @@
 
         const updateTarget = () => {
           const progress = clamp(
-            (window.scrollY - sectionTop) /
-              scrollRange,
+            (window.scrollY - sectionTop) / scrollRange,
             0,
             1
           );
@@ -631,7 +627,7 @@
           rafId = 0;
 
           const ease =
-            reducedMotion ? 1 : 0.06;
+            prefersReducedMotion ? 1 : 0.06;
 
           currentPosition +=
             (targetPosition - currentPosition) *
