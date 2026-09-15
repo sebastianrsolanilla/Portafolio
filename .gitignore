@@ -1,0 +1,5 @@
+.DS_Store
+node_modules/
+.pnpm-store/
+downloads-preview/
+dev_server.py
