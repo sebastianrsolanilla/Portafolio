@@ -1,142 +1,901 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfolio of Sebastian Solanilla, Product Designer." />
     <title>Sebastian Solanilla — Product Designer</title>
+    <link rel="icon" href="images/ss-logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="is-loading">
+    <!-- Fondo editorial: es decorativo y nunca captura la interacción del portfolio. -->
+    <svg class="fluid-film-grain" aria-hidden="true" focusable="false" preserveAspectRatio="none">
+      <filter id="fluid-film-grain-noise" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="3" seed="17" stitchTiles="stitch" result="noise" />
+        <feColorMatrix in="noise" type="saturate" values="0" result="mono-noise" />
+        <feComponentTransfer in="mono-noise">
+          <feFuncR type="linear" slope="2.4" intercept="-0.7" />
+          <feFuncG type="linear" slope="2.4" intercept="-0.7" />
+          <feFuncB type="linear" slope="2.4" intercept="-0.7" />
+        </feComponentTransfer>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#fluid-film-grain-noise)" />
+    </svg>
+    <div class="grain-layer grain-layer-base" aria-hidden="true"></div>
+    <div class="intro-loader" id="intro-loader" role="status" aria-live="polite" aria-label="Cargando portfolio">
+      <div class="intro-panel intro-panel-blue" aria-hidden="true"></div>
+      <div class="intro-panel intro-panel-red" aria-hidden="true"></div>
+      <div class="intro-panel intro-panel-cream" aria-hidden="true"></div>
+      <div class="intro-panel intro-panel-brown" aria-hidden="true"></div>
+      <div class="intro-panel intro-panel-green" aria-hidden="true"></div>
+      <div class="intro-panel intro-panel-ink" aria-hidden="true"></div>
+
+      <p class="intro-counter"><span class="intro-counter-bracket" aria-hidden="true">[</span><span class="intro-counter-value"><span id="intro-count">0</span><span>%</span></span><span class="intro-counter-bracket" aria-hidden="true">]</span></p>
+    </div>
+
     <header class="site-header">
-      <a class="brand" href="#top">SEBASTIAN<br />SOLANILLA</a>
+      <a class="brand brand-mark" href="#top" aria-label="Sebastian Solanilla">
+        <span class="brand-logo-bracket" aria-hidden="true">[</span>
+        <span class="brand-logo-s" aria-hidden="true">S</span>
+        <span class="brand-logo-bracket" aria-hidden="true">]</span>
+      </a>
+      <a class="header-identity" href="#top" aria-label="Volver al inicio" aria-hidden="true" tabindex="-1">
+        <span class="header-identity-bracket" aria-hidden="true">[</span>
+        <span class="header-identity-name"><span>SEBASTIAN</span><span>SOLANILLA</span></span>
+        <span class="header-identity-bracket" aria-hidden="true">]</span>
+      </a>
       <nav aria-label="Main navigation">
-        <a class="nav-work" href="#work">[WORK]</a>
-        <a href="#about">ABOUT</a>
-        <a href="#contact">CONTACT</a>
+        <a href="#work">PROJECTS</a>
+        <a href="#about">ABOUT ME</a>
+        <a href="#experience">EXP.</a>
+        <a href="#contact">GET IN TOUCH</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <h1 id="hero-title"><span>SEBASTIAN</span><span>SOLANILLA</span></h1>
-        <div class="hero-grid">
-          <div class="hero-left">
-            <p>I design digital products and experiences that balance user needs, business goals, and visual clarity. My work spans UX/UI, information architecture, e-commerce, and visual design, from early structure and user flows to high-fidelity interfaces and implementation.</p>
-            <a class="pill pill-red" href="#about">ABOUT ME</a>
-          </div>
-          <div class="hero-statement">
-            <p>A Product Designer turning complexity into intuitive digital experiences.</p>
-            <a class="pill pill-blue" href="#work">WORK</a>
-          </div>
+      <section class="hero hero-editorial" aria-labelledby="hero-editorial-title">
+        <div class="hero-editorial__background" aria-hidden="true">
+          <img src="images/hero/hero-background.png" alt="" />
         </div>
-        <div class="disciplines" aria-label="Areas of expertise">
-          <span>DIGITAL</span><span>PRODUCT</span><span>DIGITAL</span><span>E-COMMERCE</span><span>BRAND</span><span>WEB</span><span>INDUSTRIAL</span><span>VISUAL</span>
+        <div class="hero-editorial__shade" aria-hidden="true"></div>
+        <canvas class="fluid-background" id="fluid-background" aria-hidden="true"></canvas>
+        <div class="hero-editorial__frame">
+          <div class="hero-editorial__topline" aria-label="Sebastian Solanilla, Product Designer">
+            <p>SEBASTIAN SOLANILLA</p>
+            <p>[ PRODUCT DESIGNER ]</p>
+          </div>
+          <div class="hero-editorial__statement">
+            <h1 id="hero-editorial-title">GOOD IDEAS<br />DESERVE TO<br />EXIST.</h1>
+            <img src="images/hero-portrait.png" alt="Portrait of Sebastian Solanilla" />
+          </div>
+          <p class="hero-editorial__disciplines">PRODUCT / DIGITAL / VISUAL</p>
+          <div class="hero-editorial__footer">
+            <p class="hero-editorial__intro">I like turning ideas into things people can actually see, use and experience. From digital products and websites to visual identities and physical objects, I move between thinking and making, exploring, refining and finding the details that make each project feel just right.</p>
+            <p class="hero-editorial__scroll projects-hint">SCROLL TO EXPLORE</p>
+          </div>
         </div>
       </section>
 
       <section class="projects-section" id="work" aria-labelledby="work-title">
-        <div class="projects-heading">
-          <p class="section-kicker">SELECTED PROJECTS</p>
-          <h2 id="work-title">[MY WORK]</h2>
-          <p class="projects-intro">A continuous orbit through product, editorial and brand experiences.</p>
-        </div>
-
         <div class="projects-orbit-wrap" data-projects-orbit>
           <div class="projects-orbit-stage">
-            <div class="orbit-axis" aria-hidden="true"></div>
-            <div class="projects-track" aria-live="polite"></div>
-            <div class="projects-caption">
-              <span class="projects-index">01 / 09</span>
-              <span class="projects-category">WEB DESIGN</span>
-              <span class="projects-hint">SCROLL TO EXPLORE ↘</span>
+            <div class="projects-heading">
+              <p class="section-kicker">SELECTED PROJECTS</p>
+              <h2 id="work-title">[MY WORK]</h2>
+              <p class="projects-intro">A continuous orbit through product, editorial and brand experiences.</p>
             </div>
+            <div class="orbit-axis" aria-hidden="true"></div>
+            <div class="projects-orbit-title" aria-hidden="true"></div>
+            <div class="projects-track" aria-live="polite"></div>
+            <p class="projects-active-description" aria-live="polite"><strong></strong><span></span></p>
+            <div class="projects-caption">
+              <span class="projects-index">01 / 10</span>
+              <span class="projects-hint">SCROLL TO EXPLORE</span>
+            </div>
+            <a class="projects-about-link" href="#about" aria-label="Skip projects and go to About Me">
+              <span>ABOUT ME</span><span aria-hidden="true">↓</span>
+            </a>
+            <svg class="projects-wave" viewBox="0 0 1440 480" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path class="projects-wave-path" d="M0 500 C360 500 720 500 1080 500 S1440 500 1440 500 V480 H0 Z"></path>
+            </svg>
           </div>
         </div>
       </section>
 
       <section class="about" id="about" aria-labelledby="about-title">
-        <div class="about-image" role="img" aria-label="Placeholder for Sebastian Solanilla portrait"><span>PHOTO</span></div>
-        <div class="about-copy">
-          <h2 id="about-title">[ABOUT ME]</h2>
-          <p class="origin">Made in Bogotá, <strong>Colombia.</strong></p>
-          <div class="portrait-note"><div class="mini-image"></div><p>Made in Bogotá, <strong>Colombia.</strong></p></div>
-          <p>The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication. It expanded my perspective beyond product development, allowing me to explore how design can respond to complex problems, communicate ideas clearly, and create meaningful experiences.</p>
+        <div class="about-stage">
+          <div class="about-image">
+            <img src="images/about/foto-1-crop.png" alt="Sebastian Solanilla sentado en una silla" />
+          </div>
+          <div class="about-copy">
+            <h2 id="about-title">[ ABOUT ME ]</h2>
+            <p class="origin"><span class="origin-made"><strong>MADE IN</strong> COLOMBIA</span><br /><span class="origin-based"><strong>BASED IN</strong> MADRID.</span></p>
+            <div class="portrait-note"><div class="mini-image"></div><p>Outside design, you'll probably find me walking around a new city, taking photos of random details, building LEGO, cooking something, at a concert, travelling or simply enjoying some time on my own. Music, photography, cinema, objects, people and spontaneous everyday moments constantly find their way into how I see and think about design.<br /><br />I don't believe everything needs to be taken too seriously. Design should never be boring. It can be simple and useful while still having character, making people curious and, hopefully, bringing a little joy along the way.</p></div>
+            <p>The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication. It expanded my perspective beyond product development, allowing me to explore how design can respond to complex problems, communicate ideas clearly, and create meaningful experiences.</p>
+          </div>
+          <div class="about-editorial" aria-label="About Sebastian Solanilla">
+            <p class="about-editorial-lead">Curious by nature, a little obsessed with details, and always interested in understanding why things work the way they do and how they could work better.<br /><br />My background is in Industrial Design, but I've never really stayed in just one side of design. I've moved between physical and digital products, visual design, 3D, branding and, eventually, UX/UI and digital experiences. It wasn't a perfectly planned path more a mix of curiosity, experimentation and following the things that genuinely interested me.<br /><br />What I enjoy most is seeing an idea become real. That moment when a thought becomes a sketch, a sketch becomes a concept, and eventually something you can see, touch or interact with. I like experimenting, questioning, refining and finding that little something that gives each project its own personality.</p>
+            <div class="about-editorial-columns">
+              <p><strong>Approach</strong><br />I connect research, structure and visual craft to shape digital products that feel considered from the first interaction to the final detail.</p>
+              <p><strong>Perspective</strong><br />My industrial design background brings systems thinking, material sensitivity and a human point of view to every interface and brand experience.</p>
+            </div>
+            <p class="about-editorial-title">(OBSESSED WITH DETAILS).</p>
+          </div>
         </div>
       </section>
 
-      <section class="experience" aria-labelledby="experience-title">
-        <div class="experience-lead"><h2 id="experience-title">[XP.]</h2><p>The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication. It expanded my perspective beyond product development, allowing me to explore how design can respond to complex problems, communicate ideas clearly, and create meaningful experiences.</p><em>The Master’s in Design</em></div>
-        <article class="experience-entry">
-          <div class="entry-number">[01]</div>
-          <div class="entry-meta"><div><strong>Product Designer</strong><span>Sago Packaging Solutions</span></div><span>2023 – Present.</span><p>Madrid, <strong>Spain.</strong></p></div>
-          <div class="entry-copy"><strong>Led the end-to-end redesign of the company's B2B digital platform, transforming information architecture, user experience, branding, and content structure to create a scalable and intuitive customer experience.</strong><p>Modernized the company's visual identity and digital presence to strengthen its positioning in the premium B2B packaging market.<br /><br />Restructured the website's information architecture and product taxonomy, consolidating nearly 300 duplicated products into approximately 60 optimized product pages.<br /><br /><strong>Optimized key user journeys across the homepage</strong>, category, product and landing pages, improving navigation and product discoverability.<br /><br />Designed responsive interfaces, user flows and reusable UI components to streamline the quotation request experience.</p><a href="#contact">[View project]</a></div>
-        </article>
+      <section class="experience" id="experience" aria-labelledby="experience-title">
+        <div class="experience-lead">
+          <div class="experience-lead__inner">
+            <div class="experience-lead__intro">
+              <p class="experience-lead__eyebrow">[EXP.]</p>
+              <p class="experience-lead__copy">Almost eight years of designing, learning, changing perspectives and figuring things out along the way.<br /><br />My journey has taken me through different sides of design, from physical products, packaging and visual communication to branding, e-commerce, UX/UI and digital products. Each role has brought a different way of thinking, new people to learn from and new problems to solve.<br /><br />Working alongside developers, marketing teams, production, sales, content and other creatives has taught me that good design rarely happens in isolation. It comes from listening, asking the right questions, understanding different perspectives and connecting the dots.<br /><br />Over time, I’ve learned not only how to design things, but how to understand the systems, people and decisions behind them. Today, I bring all those experiences together in my work as a <strong>Product Designer,</strong> creating digital experiences for B2B and e-commerce while still carrying with me everything I learned from designing beyond the screen.</p>
+            </div>
+            <h2 id="experience-title">Different <span class="experience-term" data-tags="PRODUCT DESIGN|UX/UI|WEB|VISUAL">roles</span>, different <span class="experience-term" data-tags="PHYSICAL → DIGITAL|INDUSTRIAL|BRANDING|E-COMMERCE">disciplines</span>, different <span class="experience-term" data-tags="DEVELOPERS|MARKETING|PRODUCTION|SALES|CREATIVES">people</span>,<br />all part of the same <span class="experience-term" data-tags="8 YEARS|LEARNING BY DOING|MADRID + BOGOTÁ|STILL CURIOUS">journey</span>.</h2>
+          </div>
+        </div>
       </section>
 
-      <section class="education" aria-labelledby="education-title">
-        <h2 id="education-title">[EDUCATION]</h2>
-        <div class="education-grid">
-          <article><div><h3>Universidad Complutense de Madrid</h3><strong>Master’s in Design</strong></div><b>2022 – 2023</b><p>The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication.</p><small>Madrid, <strong>Spain.</strong></small></article>
-          <article><div><h3>Universidad El Bosque</h3><strong>Bachelor’s Degree in Industrial Design</strong></div><b>2014 – 2019</b><p>The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication.</p><small>Bogotá, <strong>Colombia.</strong></small></article>
-          <article><div><h3>Grupo Aspasia</h3><strong>Web Design and Publishing Certificate</strong></div><b>2024 – 2025</b><p>The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication.</p><small>Madrid, <strong>Spain.</strong></small></article>
-          <aside><h3>[Continuous<br />Learning]</h3><p>– Introduction to Design Systems with Figma.<br />– UX/UI Design Specialization: From Research to Accessibility.<br />– Innovative Web Design in Figma.<br />– UX Storytelling: Narrative for Digital Experiences.</p></aside>
+      <!-- Isolated visual prototype: it does not replace the Experience timeline above. -->
+      <section class="sago-experience-test" id="sago-experience-test" aria-labelledby="sago-experience-test-title">
+        <header class="sago-experience-test__top">
+          <div class="sago-experience-test__headline">
+            <div class="sago-experience-test__periods">
+              <button class="sago-experience-test__period-past" type="button"></button>
+              <p class="sago-experience-test__period">24’–26’</p>
+              <button class="sago-experience-test__period-shadow" type="button" aria-label="Show Be Your Packer project">24’–25’</button>
+            </div>
+            <div class="sago-experience-test__role">
+              <h2 id="sago-experience-test-title">Product Designer</h2>
+            </div>
+          </div>
+          <div class="sago-experience-test__summary">
+            <p class="sago-experience-test__intro">Led the end-to-end redesign of the company's B2B digital platform, transforming information architecture, user experience, branding, and content structure to create a scalable and intuitive customer experience.</p>
+            <a class="sago-experience-test__company" href="#work" data-project-title="Sago Packaging Solutions">
+              <span class="sago-experience-test__company-preview" aria-hidden="true"><img src="images/beyourpacker/portada%20beyourpacke.jpg" alt="" /></span>
+              <span class="sago-experience-test__company-label">Sago Packaging Solutions</span>
+            </a>
+          </div>
+        </header>
+        <div class="sago-experience-test__keywords" aria-label="Sago Packaging Solutions responsibilities"></div>
+      </section>
+
+      <section class="education" id="education" aria-labelledby="education-title">
+        <div class="education-intro">
+          <h2 id="education-title">[EDUCATION / BACKGROUND]</h2>
+          <p>My education has never been about learning just one side of design. It started with Industrial Design, where I learned how physical products are imagined, researched, developed, prototyped and brought to life understanding materials, manufacturing, functionality and the people they are made for. From there, I moved into Design, UX/UI and Web Design, expanding that same way of thinking into digital products, interfaces and experiences. Together, these disciplines gave me something I value most: an end-to-end understanding of the product design process.</p>
         </div>
+        <div class="education-grid" aria-label="Education background">
+          <article class="education-card education-card--masters" tabindex="0">
+            <h3>MASTER</h3>
+            <p class="education-card-institution">Universidad Complutense de Madrid</p>
+            <p class="education-card-location">Madrid, <strong>Spain.</strong></p>
+            <p class="education-card-description">The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication. It expanded my perspective beyond product development, allowing me to explore how design can respond to complex problems, communicate ideas clearly, and create meaningful experiences.</p>
+            <p class="education-card-years">22’–23’</p>
+            <p class="education-card-degree">IN DESIGN</p>
+          </article>
+          <article class="education-card education-card--bachelor" tabindex="0">
+            <h3>BACHELOR</h3>
+            <p class="education-card-institution">Universidad El Bosque</p>
+            <p class="education-card-location">Bogotá, <strong>Colombia.</strong></p>
+            <p class="education-card-description">The Bachelor’s in Industrial Design gave me a strong foundation in research, ergonomics, materials, manufacturing, prototyping, and product development. It taught me to understand people, systems, and production constraints, turning observations and ideas into thoughtful physical solutions.</p>
+            <p class="education-card-years">14’–19’</p>
+            <p class="education-card-degree">IN DESIGN</p>
+          </article>
+          <article class="education-card education-card--certificate" tabindex="0">
+            <h3>CERTIFICATE</h3>
+            <p class="education-card-institution">Grupo Aspasia</p>
+            <p class="education-card-location">Madrid, <strong>Spain.</strong></p>
+            <p class="education-card-description">The Certificate in Web Design expanded my digital practice into responsive interfaces, web structure, visual systems, and front-end fundamentals. It helped me connect design decisions with how experiences are built, tested, and adapted across devices.</p>
+            <p class="education-card-years">24’–25’</p>
+            <p class="education-card-degree">IN WEB DESIGN</p>
+          </article>
+        </div>
+        <p class="education-outro">From the first question and early research to concept, structure, prototyping, visual design, development and the final experience. Physical or digital, I like understanding the whole picture, not just designing one piece of it.</p>
       </section>
     </main>
 
-    <footer id="contact"><div class="footer-bracket">[</div><h2>SEBASTIAN<br />SOLANILLA</h2><div class="footer-links"><a href="mailto:hello@example.com">CONTACT</a><a href="#about">ABOUT</a></div><div class="footer-bracket">]</div></footer>
-  <script>
+    <footer id="contact" class="contact-footer" aria-labelledby="contact-title">
+      <p class="contact-kicker">[LET'S]</p>
+      <h2 id="contact-title"><span>GET IN</span><span>TOUCH.</span></h2>
+      <div class="contact-details">
+        <p>Let's make something good.</p>
+        <a href="mailto:sebastiansolanilla@gmail.com">sebastiansolanilla@gmail.com</a>
+        <a href="tel:+34682925687">+34 682 925 687</a>
+      </div>
+      <p class="contact-note">I'm always happy to talk about design, interesting ideas, new opportunities or something that doesn't have a name yet.</p>
+      <small class="contact-year">'26</small>
+    </footer>
+  <script type="importmap">
+    {
+      "imports": {
+        "gsap": "./node_modules/gsap/index.js",
+        "gsap/ScrollTrigger": "./node_modules/gsap/ScrollTrigger.js",
+        "gsap/Draggable": "./node_modules/gsap/Draggable.js"
+      }
+    }
+  </script>
+  <script src="css/js/fluid-background.js?v=8" defer></script>
+  <script type="module">
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { Draggable } from "gsap/Draggable";
+
+    gsap.registerPlugin(ScrollTrigger, Draggable);
+    const teardownCallbacks = [];
+    const onTeardown = (callback) => teardownCallbacks.push(callback);
+
+    window.addEventListener("pagehide", (event) => {
+      if (event.persisted) return;
+      teardownCallbacks.splice(0).forEach((callback) => callback());
+    });
+
     (() => {
       const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-      /* Hero: entrada lateral y separación progresiva con el scroll. */
-      const hero = document.querySelector(".hero");
-      const title = document.querySelector("#hero-title");
+      const loader = document.querySelector("#intro-loader");
+      const counter = document.querySelector("#intro-count");
+      const introCounter = counter?.closest(".intro-counter");
 
-      if (hero && title) {
-        const firstLine = title.querySelector("span:first-child");
-        const secondLine = title.querySelector("span:last-child");
-
-        const updateTitleSeparation = () => {
-          const distance = Math.max(hero.offsetHeight * 0.8, 1);
-          const progress = clamp(window.scrollY / distance, 0, 1);
-          const separation = progress * window.innerWidth * 0.14;
-          firstLine.style.transform = `translateX(calc(-10% - ${separation}px))`;
-          secondLine.style.transform = `translateX(calc(10% + ${separation}px))`;
+      if (loader && counter && introCounter) {
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let introFailsafe = 0;
+        let introFinished = false;
+        window.scrollTo(0, 0);
+        const finishIntro = () => {
+          if (introFinished) return;
+          introFinished = true;
+          window.clearTimeout(introFailsafe);
+          document.body.classList.remove("is-loading");
+          document.body.classList.add("is-loaded");
+          loader.setAttribute("aria-hidden", "true");
+          window.scrollTo(0, 0);
+          document.dispatchEvent(new CustomEvent("portfolio:intro-complete"));
         };
 
-        window.addEventListener("scroll", updateTitleSeparation, { passive: true });
-        window.addEventListener("resize", updateTitleSeparation);
-        title.addEventListener("animationend", () => {
-          title.classList.add("hero-intro-done");
-          updateTitleSeparation();
-        }, { once: true });
-        updateTitleSeparation();
+        if (reducedMotion) {
+          gsap.set(".intro-panel:not(.intro-panel-ink)", { autoAlpha: 0 });
+          gsap.set(".intro-panel-ink", { yPercent: -100, y: 60 });
+          gsap.set(introCounter, { autoAlpha: 0 });
+          finishIntro();
+        } else {
+          const counterState = { value: 0 };
+          const introTimeline = gsap.timeline({ defaults: { ease: "power2.inOut" } });
+          const colorPanels = ".intro-panel-blue, .intro-panel-red, .intro-panel-cream, .intro-panel-brown, .intro-panel-green";
+
+          gsap.set(".intro-panel", { yPercent: 100, y: 0, autoAlpha: 1 });
+          gsap.set(introCounter, { xPercent: -50, yPercent: -50, y: 0, autoAlpha: 0 });
+
+          introTimeline
+            .to(introCounter, { autoAlpha: 1, duration: .01 }, 0)
+            .to(counterState, {
+              value: 100,
+              duration: 4.8,
+              ease: "none",
+              onUpdate: () => {
+                counter.textContent = String(Math.round(counterState.value));
+              }
+            }, 0)
+            .to(".intro-panel-blue", { yPercent: 0, duration: .62 }, .55)
+            .to(".intro-panel-red", { yPercent: 0, duration: .62 }, 1.17)
+            .to(".intro-panel-cream", { yPercent: 0, duration: .62 }, 1.79)
+            .to(".intro-panel-brown", { yPercent: 0, duration: .62 }, 2.41)
+            .to(".intro-panel-green", { yPercent: 0, duration: .62 }, 3.03)
+            .to(".intro-panel-ink", { yPercent: 0, duration: .77 }, 3.65)
+            .to(colorPanels, { autoAlpha: 0, duration: .18, ease: "none" }, 4.37)
+            .to(introCounter, { autoAlpha: 0, y: -12, duration: .288 }, 4.512)
+            .to(".intro-panel-ink", { yPercent: -100, y: 60, duration: .83 }, 4.42)
+            .call(finishIntro, [], 5.25);
+          introTimeline.timeScale(1.35);
+          introFailsafe = window.setTimeout(finishIntro, 4200);
+        }
       }
 
       /* Header: cambia automáticamente sobre las secciones blanca y azul. */
       const header = document.querySelector(".site-header");
+      const brandMark = document.querySelector(".brand-mark");
       const aboutSection = document.querySelector(".about");
       const blueSection = document.querySelector(".experience-lead");
+      const workSectionForHeader = document.querySelector(".projects-section");
 
-      if (header && aboutSection && blueSection) {
+      let brandReplayTimer = 0;
+      const replayBrandMark = () => {
+        brandMark.classList.remove("is-replaying");
+        void brandMark.offsetWidth;
+        brandMark.classList.add("is-replaying");
+        window.clearTimeout(brandReplayTimer);
+        brandReplayTimer = window.setTimeout(() => brandMark.classList.remove("is-replaying"), 560);
+      };
+      brandMark?.addEventListener("click", replayBrandMark);
+      onTeardown(() => {
+        brandMark?.removeEventListener("click", replayBrandMark);
+        window.clearTimeout(brandReplayTimer);
+      });
+
+      if (header && aboutSection && blueSection && workSectionForHeader) {
+        let headerFrame = 0;
         const updateHeaderTheme = () => {
           const scanLine = header.getBoundingClientRect().bottom + 8;
           const aboutRect = aboutSection.getBoundingClientRect();
           const blueRect = blueSection.getBoundingClientRect();
+          const workRect = workSectionForHeader.getBoundingClientRect();
           const overBlue = blueRect.top <= scanLine && blueRect.bottom > scanLine;
           const overWhite = aboutRect.top <= scanLine && aboutRect.bottom > scanLine;
+          const overWork = workRect.top <= scanLine && workRect.bottom > scanLine;
+          const activeWorkTheme = workSectionForHeader.getAttribute("data-work-theme");
+          if (overWork && activeWorkTheme) header.setAttribute("data-work-theme", activeWorkTheme);
+          if (!overWork) {
+            header.removeAttribute("data-work-theme");
+            header.classList.remove("is-work-exiting");
+          }
           header.classList.toggle("header-blue", overBlue);
           header.classList.toggle("header-light", !overBlue && overWhite);
         };
 
-        window.addEventListener("scroll", updateHeaderTheme, { passive: true });
-        window.addEventListener("resize", updateHeaderTheme);
-        updateHeaderTheme();
+        const requestHeaderTheme = () => {
+          if (headerFrame) return;
+          headerFrame = requestAnimationFrame(() => {
+            headerFrame = 0;
+            updateHeaderTheme();
+          });
+        };
+
+        window.addEventListener("scroll", requestHeaderTheme, { passive: true });
+        window.addEventListener("resize", requestHeaderTheme);
+        requestHeaderTheme();
+        onTeardown(() => {
+          window.removeEventListener("scroll", requestHeaderTheme);
+          window.removeEventListener("resize", requestHeaderTheme);
+          cancelAnimationFrame(headerFrame);
+        });
+      }
+
+      /* Hero: la fotografía vive en su propia capa. El canvas, grano y
+         listeners del cursor permanecen intactos; al llegar a My Work solo
+         desaparece esta imagen. */
+      const hero = document.querySelector(".hero-editorial");
+      const heroBackground = hero?.querySelector(".hero-editorial__background");
+      const prefersReducedHeroMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (hero && heroBackground) {
+        let heroBackgroundTween = null;
+        let heroScrollHintTween = null;
+        const heroScrollHint = hero.querySelector(".hero-editorial__scroll");
+
+        const setHeroBackgroundMotion = () => {
+          ScrollTrigger.getById("hero-background-fade")?.kill();
+          ScrollTrigger.getById("hero-scroll-hint-fade")?.kill();
+          heroBackgroundTween?.scrollTrigger?.kill();
+          heroBackgroundTween?.kill();
+          heroScrollHintTween?.scrollTrigger?.kill();
+          heroScrollHintTween?.kill();
+          gsap.set(heroBackground, { autoAlpha: 1 });
+          if (heroScrollHint) gsap.set(heroScrollHint, { autoAlpha: 1 });
+
+          if (prefersReducedHeroMotion.matches) return;
+
+          heroBackgroundTween = gsap.to(heroBackground, {
+            autoAlpha: 0,
+            ease: "none",
+            scrollTrigger: {
+              id: "hero-background-fade",
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: .45,
+              invalidateOnRefresh: true
+            }
+          });
+
+          if (heroScrollHint) {
+            heroScrollHintTween = gsap.to(heroScrollHint, {
+              autoAlpha: 0,
+              ease: "none",
+              scrollTrigger: {
+                id: "hero-scroll-hint-fade",
+                trigger: hero,
+                start: "top top",
+                end: "bottom top",
+                scrub: .45,
+                invalidateOnRefresh: true
+              }
+            });
+          }
+        };
+
+        setHeroBackgroundMotion();
+        prefersReducedHeroMotion.addEventListener("change", setHeroBackgroundMotion);
+        onTeardown(() => {
+          prefersReducedHeroMotion.removeEventListener("change", setHeroBackgroundMotion);
+          heroBackgroundTween?.scrollTrigger?.kill();
+          heroBackgroundTween?.kill();
+          heroScrollHintTween?.scrollTrigger?.kill();
+          heroScrollHintTween?.kill();
+        });
+      }
+
+      /* Experience: paneles editoriales controlados por scroll. */
+      const experienceOverview = document.querySelector(".xp-overview");
+      const experienceLead = document.querySelector(".experience-lead");
+
+      if (experienceLead) {
+        const setExperienceFluidPalette = () => {
+          window.dispatchEvent(new CustomEvent("portfolio:fluid-palette", {
+            detail: { primary: "#333333", secondary: "#CA4C50" }
+          }));
+        };
+        const experiencePaletteObserver = new IntersectionObserver(entries => {
+          if (entries.some(entry => entry.isIntersecting)) setExperienceFluidPalette();
+        }, { threshold: .08 });
+        if (experienceLead) experiencePaletteObserver.observe(experienceLead);
+        if (experienceOverview) experiencePaletteObserver.observe(experienceOverview);
+
+        const experienceTerms = Array.from(experienceLead?.querySelectorAll(".experience-term[data-tags]") || []);
+        const experienceTermHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+        let removeExperienceTermHover = () => {};
+        const setupExperienceTermHover = () => {
+          removeExperienceTermHover();
+          if (!experienceTermHover.matches || !experienceTerms.length) return;
+
+          const preview = document.createElement("div");
+          preview.className = "experience-term-preview";
+          preview.setAttribute("aria-hidden", "true");
+          document.body.append(preview);
+
+          let activeTerm = null;
+          let closeTimer = 0;
+          const positionPreview = term => {
+            const rect = term.getBoundingClientRect();
+            const previewWidth = preview.offsetWidth || 320;
+            const left = Math.max(12, Math.min(window.innerWidth - previewWidth - 12, rect.left + rect.width / 2 - previewWidth / 2));
+            const top = Math.max(12, Math.min(window.innerHeight - preview.offsetHeight - 12, rect.top - preview.offsetHeight * .32));
+            gsap.set(preview, { left, top });
+          };
+          const hidePreview = () => {
+            activeTerm = null;
+            gsap.killTweensOf([preview, preview.children]);
+            gsap.to(preview, { autoAlpha: 0, y: -5, duration: .16, ease: "power2.out", overwrite: true });
+          };
+          const showPreview = term => {
+            window.clearTimeout(closeTimer);
+            const tags = (term.dataset.tags || "").split("|").filter(Boolean);
+            if (!tags.length) return;
+            const isNewTerm = activeTerm !== term;
+            activeTerm = term;
+            if (isNewTerm) preview.innerHTML = tags.map(tag => `<span class="experience-term-preview__tag">${tag}</span>`).join("");
+            positionPreview(term);
+            gsap.killTweensOf([preview, preview.children]);
+            gsap.set(preview, { autoAlpha: 1, y: 0 });
+            gsap.fromTo(preview.children,
+              { autoAlpha: 0, y: 7, scale: .92 },
+              { autoAlpha: 1, y: 0, scale: 1, duration: .28, stagger: .035, ease: "power3.out", overwrite: true }
+            );
+          };
+          const updateActivePosition = () => { if (activeTerm) positionPreview(activeTerm); };
+          const listeners = experienceTerms.map(term => {
+            const enter = () => showPreview(term);
+            const leave = () => { closeTimer = window.setTimeout(hidePreview, 42); };
+            term.addEventListener("pointerenter", enter);
+            term.addEventListener("pointerleave", leave);
+            return () => {
+              term.removeEventListener("pointerenter", enter);
+              term.removeEventListener("pointerleave", leave);
+            };
+          });
+          window.addEventListener("resize", updateActivePosition);
+          window.addEventListener("scroll", updateActivePosition, { passive: true });
+          removeExperienceTermHover = () => {
+            window.clearTimeout(closeTimer);
+            listeners.forEach(remove => remove());
+            window.removeEventListener("resize", updateActivePosition);
+            window.removeEventListener("scroll", updateActivePosition);
+            gsap.killTweensOf([preview, preview.children]);
+            preview.remove();
+          };
+        };
+        experienceTermHover.addEventListener("change", setupExperienceTermHover);
+        setupExperienceTermHover();
+
+        const experienceTimeline = {
+          "2026": {
+            period: "24’–26’",
+            role: "Product Designer",
+            company: "Sago Packaging Solutions",
+            location: "Madrid",
+            country: "Spain.",
+            tag: "Digital product",
+            projectTitle: "Sago Packaging Solutions",
+            cover: "images/beyourpacker/portada beyourpacke.jpg",
+            linkLabel: "[View project]",
+            lead: "Led the end-to-end redesign of the company's B2B digital platform, transforming information architecture, user experience, branding, and content structure to create a scalable and intuitive customer experience.",
+            details: [
+              "Modernized the company's visual identity and digital presence to strengthen its positioning in the premium B2B packaging market.",
+              "Restructured the website's information architecture and product taxonomy, consolidating nearly 300 duplicated products into approximately 60 optimized product pages.",
+              "Optimized key user journeys across the homepage, category, product and landing pages, improving navigation and product discoverability.",
+              "Designed responsive interfaces, user flows and reusable UI components to streamline the quotation request experience.",
+              "Developed the website in PrestaShop using Creative Elements, ensuring consistency across desktop and mobile.",
+              "Reorganized the CMS by structuring products, categories, attributes and technical specifications to improve scalability and content management.",
+              "Partnered with SEO and business stakeholders to align user experience with commercial objectives."
+            ]
+          },
+          "2024": {
+            period: "21’–25’",
+            role: "Digital Designer",
+            company: "Mi Espacio Cero",
+            location: "Bogotá",
+            country: "Colombia.",
+            tag: "Visual design",
+            projectTitle: "Mi espacio cero",
+            cover: "images/mi-espacio-cero/2_mi_espacio_cero_social_media.jpg",
+            linkLabel: "[View project]",
+            lead: "Supported the development of visual communication and digital marketing assets for a wellness brand, strengthening consistency across social media, editorial content, and promotional materials.",
+            details: [
+              "Developed visual assets and social media content aligned with the brand identity.",
+              "Designed posts, carousels, and short-form video content to support digital marketing campaigns.",
+              "Created editorial materials for courses, workshops, and events across digital and print formats.",
+              "Produced creative assets for Meta campaigns to strengthen brand visibility and audience engagement.",
+              "Collaborated with the client to ensure a consistent visual identity across all communication channels."
+            ]
+          },
+          "2023": {
+            period: "23’",
+            role: "Digital Designer",
+            company: "LUXENTER",
+            location: "Madrid",
+            country: "Spain.",
+            tag: "Digital design",
+            projectTitle: "Donuts",
+            cover: "images/donuts/10_donuts_web_design_portada.jpg",
+            linkLabel: "[View project]",
+            lead: "Contributed to the design and implementation of digital experiences for a jewelry e-commerce brand, creating landing pages, email campaigns, and marketing assets across web and print.",
+            details: [
+              "Designed and built responsive landing pages from scratch in Elementor for marketing campaigns and product launches.",
+              "Translated marketing briefs into high-fidelity web layouts focused on creating a consistent user experience.",
+              "Designed email newsletters aligned with the brand identity and campaign objectives.",
+              "Produced digital and printed product catalogues for sales teams and customer presentations.",
+              "Created in-store marketing materials and visual assets for retail campaigns.",
+              "Collaborated with the marketing team to deliver cohesive experiences across web, email, social media, and print."
+            ]
+          }
+        };
+        /* Experience panels: the data above remains the single source of truth.
+           Desktop unfolds each sheet through scroll; mobile keeps an editorial
+           stacked reading order without pinned scrolling. */
+        const experienceStage = experienceOverview?.querySelector(".xp-stage");
+        if (experienceStage) {
+          // Object keys that are years are enumerated in ascending numeric order.
+          // Sort explicitly so the newest experience is always the front sheet.
+          const panelEntries = Object.entries(experienceTimeline)
+            .sort(([firstYear], [secondYear]) => Number(secondYear) - Number(firstYear));
+          // The front sheet starts resolved in Black. The layers behind it
+          // step back through Bold, Medium and Light, so the stack is stable
+          // before the user starts scrolling.
+          const weightSteps = [900, 700, 500, 300];
+          experienceStage.innerHTML = panelEntries.map(([year, item], index) => `
+            <article class="xp-slide" data-experience-panel="${year}" style="--xp-layer:${index}; --xp-weight:${weightSteps[index] || 300}">
+              <span class="xp-slide__label">${year}</span>
+              <span class="xp-slide__year" aria-hidden="true">${item.period}</span>
+              <div class="xp-slide__content">
+                <div class="xp-slide__role-block">
+                  <div class="xp-slide__meta">
+                    <p class="xp-slide__company">${item.company}</p>
+                    <p class="xp-slide__location">${item.location}, <strong>${item.country}</strong></p>
+                  </div>
+                  <h3>${item.role.toUpperCase()}</h3>
+                </div>
+                <p class="xp-slide__description">${item.lead}</p>
+                <div class="xp-slide__details" aria-label="Experience details">
+                  ${item.details.map(detail => {
+                    const [label, ...descriptionWords] = detail.split(/\s+/);
+                    return `
+                      <div class="xp-slide__detail">
+                        <button class="xp-slide__detail-trigger" type="button" aria-expanded="false">${label}</button>
+                        <div class="xp-slide__detail-description" aria-hidden="true">${descriptionWords.join(" ")}</div>
+                      </div>`;
+                  }).join("")}
+                </div>
+              </div>
+              <div class="xp-slide__media" aria-hidden="true"><img src="${item.cover}" alt="" loading="lazy" decoding="async" /></div>
+              <a class="xp-slide__link" href="#work" data-project-title="${item.projectTitle}">${item.linkLabel}</a>
+            </article>
+          `).join("");
+
+          const panels = [...experienceStage.querySelectorAll(".xp-slide")];
+          const toggleExperienceDetail = event => {
+            const trigger = event.target.closest(".xp-slide__detail-trigger");
+            if (!trigger || !experienceStage.contains(trigger)) return;
+            event.preventDefault();
+            const detail = trigger.closest(".xp-slide__detail");
+            const description = detail?.querySelector(".xp-slide__detail-description");
+            if (!detail || !description) return;
+            const isOpen = detail.classList.toggle("is-open");
+            trigger.setAttribute("aria-expanded", String(isOpen));
+            description.setAttribute("aria-hidden", String(!isOpen));
+          };
+          const openExperienceProject = event => {
+            const link = event.target.closest(".xp-slide__link[data-project-title]");
+            if (!link) return;
+            event.preventDefault();
+            window.dispatchEvent(new CustomEvent("portfolio:open-project", {
+              detail: { title: link.dataset.projectTitle }
+            }));
+          };
+          experienceStage.addEventListener("click", toggleExperienceDetail);
+          experienceStage.addEventListener("click", openExperienceProject);
+          const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+          const desktopExperience = window.matchMedia("(min-width: 801px)");
+          let experiencePanelsContext;
+
+          const buildExperiencePanels = () => {
+            experiencePanelsContext?.revert();
+            ScrollTrigger.getById("experience-panel-stack")?.kill();
+            experiencePanelsContext = gsap.context(() => {
+              const desktop = desktopExperience.matches && !reduceMotion.matches;
+              if (!desktop) {
+                gsap.set(panels, { clearProps: "transform,opacity,visibility" });
+                return;
+              }
+
+              const panelContent = panels.map((panel) => panel.querySelector(".xp-slide__content"));
+              const panelMedia = panels.map((panel) => panel.querySelector(".xp-slide__media"));
+              const panelLinks = panels.map((panel) => panel.querySelector(".xp-slide__link"));
+              const panelYears = panels.map((panel) => panel.querySelector(".xp-slide__year"));
+              gsap.set(panels, { autoAlpha: 0, yPercent: 8, scale: .975, transformOrigin: "center center" });
+              gsap.set(panelYears, { xPercent: 0, yPercent: 0, scale: 1 });
+              const timeline = gsap.timeline({
+                defaults: { ease: "none" },
+                scrollTrigger: {
+                  id: "experience-panel-stack",
+                  trigger: experienceOverview,
+                  start: "top top",
+                  end: () => `+=${Math.max(1, panels.length * window.innerHeight * 1.65)}`,
+                  pin: true,
+                  scrub: 0.45,
+                  anticipatePin: 1,
+                  invalidateOnRefresh: true,
+                  onEnterBack: () => gsap.set(panels, { autoAlpha: 1, yPercent: 0, scale: 1 }),
+                  onLeave: () => gsap.set(panels, { autoAlpha: 0 }),
+                  onLeaveBack: () => gsap.set(panels, { autoAlpha: 0 })
+                }
+              });
+
+              gsap.set(panelContent, { autoAlpha: 0, y: 36 });
+              gsap.set(panelMedia, { autoAlpha: 0, x: 42 });
+              gsap.set(panelLinks, { autoAlpha: 0, y: 18 });
+
+              const introHold = 0.65;
+              const panelStep = 2.1;
+
+              timeline.to(panels, {
+                autoAlpha: 1,
+                yPercent: 0,
+                scale: 1,
+                duration: .52,
+                stagger: .075,
+                ease: "power3.out"
+              }, 0);
+
+              panels.forEach((panel, index) => {
+                // Leave a small, deliberate scroll range before any sheet
+                // moves. This prevents the first panel from settling itself
+                // as soon as the Experience section enters the viewport.
+                const at = introHold + (index * panelStep);
+                timeline
+                .set(panelYears[index], { xPercent: 0, yPercent: 0, scale: 1, transformOrigin: "left bottom" }, 0)
+                .to(panelYears[index], {
+                  yPercent: 47,
+                  scale: 1,
+                  fontWeight: 900,
+                  transformOrigin: "left bottom"
+                }, at)
+                .to(panelContent[index], { autoAlpha: 1, y: 0 }, at + 0.22)
+                .to(panelMedia[index], { autoAlpha: 1, x: 0 }, at + 0.32)
+                .to(panelLinks[index], { autoAlpha: 1, y: 0 }, at + 0.42);
+
+                if (index < panels.length - 1) {
+                  timeline
+                    .to([panelContent[index], panelMedia[index], panelLinks[index]], { autoAlpha: 0, duration: 0.18 }, at + 1.15)
+                    .to(panel, { xPercent: 108, duration: 0.85 }, at + 1.15);
+                }
+              });
+            }, experienceOverview);
+          };
+
+          const rebuildExperiencePanels = () => {
+            buildExperiencePanels();
+            requestAnimationFrame(() => ScrollTrigger.refresh());
+          };
+
+          buildExperiencePanels();
+          reduceMotion.addEventListener("change", rebuildExperiencePanels);
+          desktopExperience.addEventListener("change", rebuildExperiencePanels);
+          onTeardown(() => {
+            experienceTermHover.removeEventListener("change", setupExperienceTermHover);
+            removeExperienceTermHover();
+            reduceMotion.removeEventListener("change", rebuildExperiencePanels);
+            desktopExperience.removeEventListener("change", rebuildExperiencePanels);
+            experiencePanelsContext?.revert();
+            ScrollTrigger.getById("experience-panel-stack")?.kill();
+            experiencePaletteObserver.disconnect();
+            experienceStage.removeEventListener("click", toggleExperienceDetail);
+            experienceStage.removeEventListener("click", openExperienceProject);
+          });
+        }
+
+      }
+
+      /* Isolated Sago Experience visual test. The current Experience panels above
+         remain untouched; this only mounts content inside .sago-experience-test. */
+      const sagoExperienceTest = document.querySelector(".sago-experience-test");
+      if (sagoExperienceTest) {
+        const sagoExperiences = [
+          {
+            period: "24’–26’", role: "Product Designer", company: "Sago Packaging Solutions", projectTitle: "Sago Packaging Solutions", preview: "images/beyourpacker/portada%20beyourpacke.jpg", background: "#CA4C50", theme: "sago",
+            intro: "Led the end-to-end redesign of the company's B2B digital platform, transforming information architecture, user experience, branding, and content structure to create a scalable and intuitive customer experience.",
+            items: [
+              { keyword: "Designed", descriptor: "Responsive<br>interfaces", description: "Designed responsive interfaces, user flows and reusable UI components to streamline the quotation request experience.", row: 2 },
+              { keyword: "Reorganized", descriptor: "CMS by<br>structuring<br>products", description: "Reorganized the CMS by structuring products, categories, attributes and technical specifications to improve scalability and content management.", row: 2 },
+              { keyword: "Restructured", descriptor: "Website's<br>information<br>architecture", description: "Restructured the website's information architecture and product taxonomy, consolidating nearly 300 duplicated products into approximately 60 optimized product pages.", row: 4 },
+              { keyword: "Partnered", descriptor: "SEO and<br>business<br>stakeholders", description: "Partnered with SEO and business stakeholders to align user experience with commercial objectives.", row: 4 },
+              { keyword: "Optimized", descriptor: "Key user<br>journeys", description: "Optimized key user journeys across the homepage, category, product and landing pages, improving navigation and product discoverability.", row: 3 },
+              { keyword: "Developed", descriptor: "Website in<br>PrestaShop", description: "Developed the website in PrestaShop using Creative Elements, ensuring consistency across desktop and mobile.", row: 3 },
+              { keyword: "Modernized", descriptor: "Company's<br>visual identity", description: "Modernized the company's visual identity and digital presence to strengthen its positioning in the premium B2B packaging market.", row: 1 }
+            ]
+          },
+          {
+            period: "24’–25’", role: "Product Designer", company: "Be Your Packer", projectTitle: "Be Your Packer", preview: "images/be-your-packer-5-web-design-cover.png", background: "var(--blue)", theme: "packer",
+            intro: "Led the digital redesign of Be Your Packer, transforming the spin-off into a more modern and intuitive e-commerce experience while aligning its digital presence with the brand's commercial goals.",
+            items: [
+              { keyword: "Refreshed", descriptor: "Visual<br>identity", description: "Established a refreshed visual identity and translated it into a cohesive e-commerce experience.", row: 1 },
+              { keyword: "Simplified", descriptor: "Product presentation<br>and navigation", description: "Simplified product presentation and navigation to make packaging solutions easier to explore and compare.", row: 2 },
+              { keyword: "Designed", descriptor: "Responsive<br>interfaces", description: "Designed responsive interfaces across the homepage, category, product and landing pages, focusing on clarity and ease of use.", row: 2 },
+              { keyword: "Created", descriptor: "Wireframes, UI<br>and components", description: "Created wireframes, high-fidelity interfaces and reusable UI components in Figma.", row: 3 },
+              { keyword: "Developed", descriptor: "E-commerce in<br>PrestaShop", description: "Developed the e-commerce experience in PrestaShop using Creative Elements, ensuring responsive implementation across desktop and mobile.", row: 3 }
+            ]
+          },
+          {
+            period: "23’", role: "Digital Design Intern", company: "Luxenter", projectTitle: "Luxenter", preview: "images/luxenter/luxenter-cover.jpg", background: "#3C2A20", theme: "luxenter",
+            intro: "Contributed to the design and implementation of digital experiences for a jewelry e-commerce brand, creating landing pages, email campaigns, and marketing assets across web and print.",
+            items: [
+              { keyword: "Designed", descriptor: "Responsive<br>landing pages", description: "Designed and built responsive landing pages from scratch in Elementor for marketing campaigns and product launches.", row: 1 },
+              { keyword: "Translated", descriptor: "Marketing briefs<br>into web layouts", description: "Translated marketing briefs into high-fidelity web layouts focused on creating a consistent user experience.", row: 2 },
+              { keyword: "Created", descriptor: "Email<br>newsletters", description: "Designed email newsletters aligned with the brand identity and campaign objectives.", row: 2 },
+              { keyword: "Produced", descriptor: "Digital and printed<br>catalogues", description: "Produced digital and printed product catalogues for sales teams and customer presentations.", row: 3 },
+              { keyword: "Developed", descriptor: "Retail marketing<br>assets", description: "Created in-store marketing materials and visual assets for retail campaigns.", row: 3 },
+              { keyword: "Collaborated", descriptor: "Web, email, social<br>and print", description: "Collaborated with the marketing team to deliver cohesive experiences across web, email, social media, and print.", row: 4 }
+            ]
+          },
+          {
+            period: "21’–25’", role: "Digital Designer", company: "Mi Espacio Cero", projectTitle: "Mi espacio cero", preview: "images/mi-espacio-cero/2_mi_espacio_cero_social_media.jpg", background: "#0D2823", theme: "mi-espacio-cero",
+            intro: "Supported the development of visual communication and digital marketing assets for a wellness brand, strengthening consistency across social media, editorial content, and promotional materials.",
+            items: [
+              { keyword: "Developed", descriptor: "Visual assets and<br>social media content", description: "Developed visual assets and social media content aligned with the brand identity.", row: 1 },
+              { keyword: "Designed", descriptor: "Posts, carousels and<br>short-form video", description: "Designed posts, carousels, and short-form video content to support digital marketing campaigns.", row: 2 },
+              { keyword: "Created", descriptor: "Editorial materials for<br>courses and events", description: "Created editorial materials for courses, workshops, and events across digital and print formats.", row: 2 },
+              { keyword: "Produced", descriptor: "Creative assets for<br>Meta campaigns", description: "Produced creative assets for Meta campaigns to strengthen brand visibility and audience engagement.", row: 3 },
+              { keyword: "Collaborated", descriptor: "Consistent visual<br>identity", description: "Collaborated with the client to ensure a consistent visual identity across all communication channels.", row: 4 }
+            ]
+          }
+        ];
+        const keywordRoot = sagoExperienceTest.querySelector(".sago-experience-test__keywords");
+        const period = sagoExperienceTest.querySelector(".sago-experience-test__period");
+        const periodPast = sagoExperienceTest.querySelector(".sago-experience-test__period-past");
+        const periods = sagoExperienceTest.querySelector(".sago-experience-test__periods");
+        const periodControl = sagoExperienceTest.querySelector(".sago-experience-test__period-shadow");
+        const role = sagoExperienceTest.querySelector(".sago-experience-test__role h2");
+        const intro = sagoExperienceTest.querySelector(".sago-experience-test__intro");
+        const company = sagoExperienceTest.querySelector(".sago-experience-test__company");
+        const companyLabel = sagoExperienceTest.querySelector(".sago-experience-test__company-label");
+        const companyPreview = sagoExperienceTest.querySelector(".sago-experience-test__company-preview img");
+        const sagoHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+        let activeTestItem = null;
+        let closeActiveTestItem = () => {};
+        let activeExperienceIndex = 0;
+        let periodAnimationTimer;
+
+        const setPeriod = (nextPeriod, direction = 0) => {
+          const currentPeriod = period.textContent;
+          if (!direction || !currentPeriod || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            period.textContent = nextPeriod;
+            return;
+          }
+
+          const outgoingPeriod = period.cloneNode(true);
+          outgoingPeriod.classList.add("sago-experience-test__period--outgoing", direction > 0 ? "is-moving-up" : "is-moving-down");
+          periods.append(outgoingPeriod);
+          period.textContent = nextPeriod;
+          period.classList.remove("is-entering-up", "is-entering-down");
+          void period.offsetWidth;
+          period.classList.add(direction > 0 ? "is-entering-up" : "is-entering-down");
+          clearTimeout(periodAnimationTimer);
+          periodAnimationTimer = window.setTimeout(() => {
+            outgoingPeriod.remove();
+            period.classList.remove("is-entering-up", "is-entering-down");
+          }, 760);
+        };
+
+        const renderSagoExperience = (experience, nextExperience, previousExperience = null, direction = 0) => {
+          sagoExperienceTest.style.background = experience.background;
+          sagoExperienceTest.dataset.experienceTheme = experience.theme;
+          periods.classList.toggle("has-history", Boolean(previousExperience));
+          periodPast.textContent = previousExperience?.period || "";
+          periodPast.disabled = !previousExperience;
+          periodPast.setAttribute("aria-label", previousExperience ? `Return to ${previousExperience.company} project` : "");
+          setPeriod(experience.period, direction);
+          periodControl.textContent = nextExperience.period;
+          periodControl.setAttribute("aria-label", `Show ${nextExperience.company} project`);
+          role.textContent = experience.role;
+          intro.textContent = experience.intro;
+          company.dataset.projectTitle = experience.projectTitle;
+          companyLabel.textContent = experience.company;
+          companyPreview.src = experience.preview;
+          keywordRoot.replaceChildren();
+
+          const testRows = new Map();
+          [1, 2, 3, 4].forEach(row => {
+            const element = document.createElement("div");
+            element.className = `sago-experience-test__row sago-experience-test__row--${row}`;
+            keywordRoot.append(element);
+            testRows.set(row, element);
+          });
+          experience.items.forEach(item => {
+            const button = document.createElement("button");
+            button.className = "sago-experience-test__item";
+            button.type = "button";
+            button.setAttribute("aria-pressed", "false");
+            button.innerHTML = `<span class="sago-experience-test__keyword">${item.keyword}</span><span class="sago-experience-test__descriptor">${item.descriptor}</span><span class="sago-experience-test__description">${item.description}</span>`;
+            testRows.get(item.row).append(button);
+          });
+
+          const testButtons = [...keywordRoot.querySelectorAll(".sago-experience-test__item")];
+          activeTestItem = null;
+          const setActiveTestItem = nextItem => {
+            const nextActive = activeTestItem === nextItem ? null : nextItem;
+            testButtons.forEach(button => {
+              const active = button === nextActive;
+              button.classList.toggle("is-expanded", active);
+              button.setAttribute("aria-pressed", String(active));
+            });
+            activeTestItem = nextActive;
+          };
+          closeActiveTestItem = () => { if (activeTestItem) setActiveTestItem(null); };
+          testButtons.forEach(button => {
+            const openSagoItem = () => {
+              if (sagoHover.matches && activeTestItem !== button) setActiveTestItem(button);
+            };
+            button.addEventListener("pointerenter", openSagoItem);
+            button.querySelector(".sago-experience-test__descriptor")?.addEventListener("pointerenter", openSagoItem);
+            button.addEventListener("click", () => setActiveTestItem(button));
+          });
+        };
+
+        keywordRoot.addEventListener("pointerleave", () => {
+          if (sagoHover.matches) closeActiveTestItem();
+        });
+        periodControl.addEventListener("click", () => {
+          activeExperienceIndex = (activeExperienceIndex + 1) % sagoExperiences.length;
+          const nextExperience = sagoExperiences[(activeExperienceIndex + 1) % sagoExperiences.length];
+          const previousExperience = sagoExperiences[activeExperienceIndex - 1] || null;
+          renderSagoExperience(sagoExperiences[activeExperienceIndex], nextExperience, previousExperience, 1);
+        });
+        periodPast.addEventListener("click", () => {
+          if (activeExperienceIndex === 0) return;
+          activeExperienceIndex -= 1;
+          const nextExperience = sagoExperiences[activeExperienceIndex + 1];
+          const previousExperience = sagoExperiences[activeExperienceIndex - 1] || null;
+          renderSagoExperience(sagoExperiences[activeExperienceIndex], nextExperience, previousExperience, -1);
+        });
+        company.addEventListener("click", event => {
+          event.preventDefault();
+          window.dispatchEvent(new CustomEvent("portfolio:open-project", {
+            detail: { title: event.currentTarget.dataset.projectTitle }
+          }));
+        });
+        renderSagoExperience(sagoExperiences[activeExperienceIndex], sagoExperiences[1]);
       }
 
       /*
@@ -146,27 +905,173 @@
        */
       const categories = [
         {
-          name: "WEB DESIGN",
+          name: "DISEÑO WEB",
+          headline: "WEB DESIGN",
+          theme: "blue",
+          backgroundColor: "#333333",
+          cursorColor: "#CA4C50",
           projects: [
-            { title: "Sago Packaging Solutions", label: "SAGO", detail: "Digital product", tone: "sago", cover: "" },
-            { title: "Be Your Packer", label: "BE YOUR", detail: "E-commerce", tone: "packer", cover: "" },
-            { title: "Oryzo Wearable", label: "ORYZO", detail: "Product experience", tone: "oryzo", cover: "" },
-            { title: "Studio Commerce", label: "STUDIO", detail: "Web platform", tone: "studio", cover: "" }
+            { title: "Sago Packaging Solutions", label: "SAGO", detail: "Digital product", tone: "sago", cover: "images/beyourpacker/portada beyourpacke.jpg", hidden: true },
+            { title: "Be Your Packer", label: "BE YOUR", detail: "E-commerce", tone: "packer", cover: "images/be-your-packer-5-web-design-cover.png", gallery: [
+              { type: "video", src: "https://player.vimeo.com/video/1135297527?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0&background=1", width: 2800, height: 1602 },
+              "images/be-your-packer/case-study-1.jpg",
+              "images/be-your-packer/case-study-2.jpg",
+              { type: "video", src: "https://player.vimeo.com/video/1137192683?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0&background=1", width: 2800, height: 1400 },
+              { type: "video", src: "https://player.vimeo.com/video/1137180778?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0&background=1", width: 2800, height: 1919 },
+              { type: "video", src: "https://player.vimeo.com/video/1135304855?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0&background=1", width: 2800, height: 1575 },
+              "images/be-your-packer/case-study-3.jpg"
+            ] },
+            { title: "Donuts", label: "DONUTS", detail: "Web design", tone: "donuts", cover: "images/donuts/10_donuts_web_design_portada.jpg", gallery: [
+              "images/donuts/1_donuts_web_design.jpg.png",
+              "images/donuts/2_donuts_web_design.jpg.png",
+              "images/donuts/3_donuts_web_design.jpg.png",
+              "images/donuts/4_donuts_web_design.jpg.png",
+              "images/donuts/5_donuts_web_design.jpg.png",
+              "images/donuts/6_donuts_web_design.jpg.png",
+              "images/donuts/7_donuts_web_design.jpg.png",
+              "images/donuts/8_donuts_web_design.jpg.jpg",
+              "images/donuts/9_donuts_web_design.jpg"
+            ] },
+            { title: "Luxenter", label: "LUXENTER", detail: "Web design", tone: "luxenter", cover: "images/luxenter/luxenter-cover.jpg", gallery: [
+              "images/luxenter/luxenter-web-1.jpg",
+              "images/luxenter/luxenter-web-2.jpg",
+              "images/luxenter/luxenter-web-3.jpg"
+            ] },
           ]
         },
         {
-          name: "EDITORIAL DESIGN",
+          name: "DISEÑO DE PRODUCTO",
+          headline: "PRODUCT DESIGN",
+          theme: "yellow",
+          backgroundColor: "#F6D087",
+          cursorColor: "#16564A",
           projects: [
-            { title: "Objects & Context", label: "OBJECTS", detail: "Editorial system", tone: "objects", cover: "" },
-            { title: "Field Notes", label: "FIELD", detail: "Art direction", tone: "field", cover: "" },
-            { title: "Material Index", label: "MATERIAL", detail: "Publication", tone: "material", cover: "" }
+            { title: "SÜSS", label: "SÜSS", detail: "Product design", tone: "suss", cover: "images/suss/20_suss_product_design_portada.png", gallery: [
+              "images/suss/1_suss_product_design.png",
+              "images/suss/2_suss_product_design.png",
+              { group: "pair", src: "images/suss/3_suss_product_design.png" },
+              { group: "pair", src: "images/suss/4_suss_product_design.png" },
+              "images/suss/5_suss_product_design.png",
+              "images/suss/6_suss_product_design.png",
+              "images/suss/7_suss_product_design.png",
+              "images/suss/8_suss_product_design.png",
+              { group: "pair", src: "images/suss/9_suss_product_design.png" },
+              { group: "pair", src: "images/suss/10_suss_product_design.png" },
+              "images/suss/11_suss_product_design.png",
+              { group: "pair", src: "images/suss/12_suss_product_design.png" },
+              { group: "pair", src: "images/suss/13_suss_product_design.png" },
+              "images/suss/14_suss_product_design.png",
+              "images/suss/15_suss_product_design.png",
+              "images/suss/16_suss_product_design.png",
+              "images/suss/17_suss_product_design.png",
+              "images/suss/18_suss_product_design.png"
+            ] },
+            { title: "CIENTO DIECIOCHO", label: "118", detail: "Product design", tone: "ciento-dieciocho", cover: "images/ciento-dieciocho/21_118_product_design_portada.jpg", gallery: [
+              "images/ciento-dieciocho/20_118_product_design.png",
+              "images/ciento-dieciocho/15_118_product_design.png",
+              "images/ciento-dieciocho/16_118_product_design.png",
+              "images/ciento-dieciocho/1_118_product_design.png",
+              "images/ciento-dieciocho/2_118_product_design.png",
+              "images/ciento-dieciocho/3_118_product_design.png",
+              "images/ciento-dieciocho/4_118_product_design.png",
+              "images/ciento-dieciocho/5_118_product_design.png",
+              "images/ciento-dieciocho/6_118_product_design.png",
+              "images/ciento-dieciocho/7_118_product_design.png",
+              "images/ciento-dieciocho/8_118_product_design.png",
+              { group: "collage", src: "images/ciento-dieciocho/25_118_product_design.png" },
+              { group: "collage", src: "images/ciento-dieciocho/27_118_product_design.png" },
+              { group: "collage", src: "images/ciento-dieciocho/24_118_product_design.png" },
+              { group: "collage", src: "images/ciento-dieciocho/28_118_product_design.png" },
+              { group: "collage", src: "images/ciento-dieciocho/26_118_product_design.png" },
+              { group: "collage", src: "images/ciento-dieciocho/23_118_product_design.png" },
+              { group: "collage", src: "images/ciento-dieciocho/22_118_product_design.png" },
+              "images/ciento-dieciocho/10_118_product_design.png",
+              "images/ciento-dieciocho/11_118_product_design.png",
+              "images/ciento-dieciocho/12_118_product_design.png",
+              { group: "pair", src: "images/ciento-dieciocho/13_118_product_design.png" },
+              { group: "pair", src: "images/ciento-dieciocho/14_118_product_design.png" },
+              "images/ciento-dieciocho/29_118_product_design.png"
+            ] },
+            { title: "KEO", label: "KEO", detail: "Product design", tone: "keo", cover: "images/keo/20_keo_product_design.png", gallery: [
+              "images/keo/2_keo_product_design.png",
+              "images/keo/11_keo_product_design.png",
+              "images/keo/12_keo_product_design.png",
+              "images/keo/13_keo_product_design.png",
+              "images/keo/14_keo_product_design.png",
+              "images/keo/15_keo_product_design.png",
+              "images/keo/16_keo_product_design.png",
+              "images/keo/17_keo_product_design.png",
+              "images/keo/18_keo_product_design.png",
+              "images/keo/19_keo_product_design.png",
+              "images/keo/6_keo_product_design.png",
+              "images/keo/4_keo_product_design.png",
+              { group: "pair", src: "images/keo/9_keo_product_design.png" },
+              { group: "pair", src: "images/keo/3_keo_product_design.png" }
+            ] }
           ]
         },
         {
-          name: "BRANDING",
+          name: "SOCIAL MEDIA",
+          headline: "SOCIAL MEDIA",
+          theme: "green",
+          backgroundColor: "#0D2823",
+          cursorColor: "#F6D087",
           projects: [
-            { title: "Forma Identity", label: "FORMA", detail: "Brand strategy", tone: "forma", cover: "" },
-            { title: "North Objects", label: "NORTH", detail: "Visual identity", tone: "north", cover: "" }
+            { title: "Mi espacio cero", label: "MI ESPACIO CERO", detail: "Social media", tone: "objects", cover: "images/mi-espacio-cero/2_mi_espacio_cero_social_media.jpg", gallery: [
+              "images/mi-espacio-cero/1_mi_espacio_cero_social_media.gif",
+              "images/mi-espacio-cero/2_mi_espacio_cero_social_media.jpg",
+              "images/mi-espacio-cero/3_mi_espacio_cero_social_media.jpg",
+              "images/mi-espacio-cero/4_mi_espacio_cero_social_media.gif",
+              "images/mi-espacio-cero/5_mi_espacio_cero_social_media.jpg",
+              "images/mi-espacio-cero/6_mi_espacio_cero_social_media.gif",
+              { group: "trio", src: "images/mi-espacio-cero/7_mi_espacio_cero_social_media.png" },
+              { group: "trio", src: "images/mi-espacio-cero/8_mi_espacio_cero_social_media.png" },
+              { group: "trio", src: "images/mi-espacio-cero/9_mi_espacio_cero_social_media.png" },
+              "images/mi-espacio-cero/10_mi_espacio_cero_social_media.jpg",
+              "images/mi-espacio-cero/11_mi_espacio_cero_social_media.jpg",
+              "images/mi-espacio-cero/12_mi_espacio_cero_social_media.jpg"
+            ] }
+          ]
+        },
+        {
+          name: "ILUSTRACIÓN",
+          headline: "ILLUSTRATION",
+          theme: "gray",
+          backgroundColor: "#D9D9D9",
+          cursorColor: "#333333",
+          projects: [
+            { title: "Material Characters", label: "MATERIAL", detail: "Illustration", tone: "material", cover: "" }
+          ]
+        },
+        {
+          name: "RENDER 3D",
+          headline: "3D RENDER",
+          theme: "brown",
+          backgroundColor: "#3C2A20",
+          cursorColor: "#F6D087",
+          projects: [
+            { title: "Bathroom Model 3D", label: "BATHROOM", detail: "3D render", tone: "bathroom-3d", cover: "images/bathroom-3d/2_bathroom_3d_render.png", gallery: [
+              "images/bathroom-3d/1_bathroom_3d_render.png",
+              "images/bathroom-3d/2_bathroom_3d_render.png",
+              "images/bathroom-3d/3_bathroom_3d_render.png"
+            ] },
+            { title: "Bedroom Model 3D", label: "BEDROOM", detail: "3D render", tone: "bedroom-3d", cover: "images/bedroom-3d/1_bedroom_3d_render.png", gallery: [
+              "images/bedroom-3d/1_bedroom_3d_render.png",
+              "images/bedroom-3d/2_bedroom_3d_render.png",
+              "images/bedroom-3d/3_bedroom_3d_render.png",
+              "images/bedroom-3d/4_bedroom_3d_render.png",
+              "images/bedroom-3d/5_bedroom_3d_render.png",
+              "images/bedroom-3d/6_bedroom_3d_render.png",
+              "images/bedroom-3d/7_bedroom_3d_render.png",
+              "images/bedroom-3d/8_bedroom_3d_render.png",
+              "images/bedroom-3d/9_bedroom_3d_render.png"
+            ] },
+            { title: "Kitchen Model 3D", label: "KITCHEN", detail: "3D render", tone: "kitchen-3d", cover: "images/kitchen-3d/1_kitchen_3d_render.png", gallery: [
+              "images/kitchen-3d/1_kitchen_3d_render.png",
+              "images/kitchen-3d/2_kitchen_3d_render.png",
+              "images/kitchen-3d/3_kitchen_3d_render.png",
+              "images/kitchen-3d/4_kitchen_3d_render.png"
+            ] }
           ]
         }
       ];
@@ -174,41 +1079,598 @@
       const orbit = document.querySelector("[data-projects-orbit]");
       if (!orbit) return;
 
+      const workSection = orbit.closest(".projects-section");
+
+      const projectDescriptions = {
+        "Sago Packaging Solutions": "A refined B2B digital platform that brings structure, clarity and a stronger brand presence to packaging decisions.",
+        "Be Your Packer": "An e-commerce experience designed to make product discovery, comparison and conversion feel more direct and intuitive.",
+        "Oryzo Wearable": "A product experience that connects a portable object with a clear, human and distinctive digital story.",
+        "Donuts": "A web design project for Donuts, presented as a continuous visual story from concept and research to the final interface.",
+        "SÜSS": "A product design and visual identity study for SÜSS, shaped through material, scent and tactile packaging.",
+        "CIENTO DIECIOCHO": "A product design project exploring a tactile system of utensils and packaging for chocolate.",
+        "Mi espacio cero": "A social media identity and content system for communicating wellbeing, reflection and personal growth with clarity and warmth.",
+        "Material Characters": "A set of illustrated forms that explores personality, materiality and playful product expression.",
+        "Bathroom Model 3D": "A warm industrial bathroom study balancing natural light, exposed brick, tile and black metal details.",
+        "Bedroom Model 3D": "A calm, material-led interior visualization focused on warmth, soft light and architectural detail.",
+        "Kitchen Model 3D": "A contemporary kitchen visualization where dark cabinetry, stone and wood frame an open social space."
+      };
+
       const stage = orbit.querySelector(".projects-orbit-stage");
       const track = orbit.querySelector(".projects-track");
-      const categoryLabel = orbit.querySelector(".projects-category");
+      const categoryTitle = orbit.querySelector(".projects-orbit-title");
+      const projectsHeadingTitle = document.querySelector("#work-title");
       const indexLabel = orbit.querySelector(".projects-index");
+      const projectsHeading = document.querySelector(".projects-heading");
+      const workWavePath = orbit.querySelector(".projects-wave-path");
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const items = categories.flatMap((category) => category.projects.map((project) => ({ ...project, category: category.name })));
+      // Projects without a dedicated cover use one neutral fallback so the
+      // carousel geometry and interaction remain consistent.
+      const orbitDefaultCover = "images/beyourpacker/portada beyourpacke.jpg";
+      const items = categories.flatMap((category) => category.projects
+        .filter((project) => !project.hidden)
+        .map((project) => ({
+          ...project,
+          cover: project.cover || orbitDefaultCover,
+          description: projectDescriptions[project.title] || project.detail,
+          category: category.name,
+          categoryHeadline: category.headline,
+          categoryTheme: category.theme,
+          backgroundColor: category.backgroundColor,
+          cursorColor: category.cursorColor
+        })));
+      let workHeadingShowsProject = false;
+      let hoveredProjectIndex = null;
+      const syncWorkHeading = () => {
+        if (!projectsHeadingTitle) return;
+        const project = items[hoveredProjectIndex ?? activeIndex];
+        const name = workHeadingShowsProject && project
+          ? project.title.toUpperCase()
+          : "MY WORK";
+        projectsHeadingTitle.textContent = `[${name}]`;
+      };
       const lastIndex = Math.max(items.length - 1, 0);
+      const introUnits = 2.55;
+      const exitUnits = .9;
+      const timelineMax = introUnits + lastIndex + exitUnits;
       let targetPosition = 0;
       let currentPosition = 0;
-      let sectionTop = 0;
-      let scrollRange = 1;
       let activeIndex = -1;
+      let activeCategory = "";
       let rafId = 0;
+      let previousRenderTime = 0;
+      let handoffTitleTravel = 0;
+      let isWorkFluidActive = false;
+      let activeFluidPalette = "";
+      const setWorkFluidPalette = (item) => {
+        window.dispatchEvent(new CustomEvent("portfolio:fluid-palette", {
+          detail: {
+            primary: item?.backgroundColor || "#333333",
+            secondary: item?.cursorColor || "#275485"
+          }
+        }));
+      };
+      const setAboutHandoffFluidPalette = () => {
+        window.dispatchEvent(new CustomEvent("portfolio:fluid-palette", {
+          detail: { primary: "#FFFCF8", secondary: "#3C2A20" }
+        }));
+      };
+      const syncWorkFluidColor = (position) => {
+        if (position >= timelineMax - exitUnits) {
+          if (activeFluidPalette === "about-handoff") return;
+          activeFluidPalette = "about-handoff";
+          setAboutHandoffFluidPalette();
+          return;
+        }
+        const index = clamp(Math.round(clamp(position - introUnits, 0, lastIndex)), 0, lastIndex);
+        const item = items[index];
+        const palette = item ? `${item.backgroundColor}:${item.cursorColor}` : "";
+        if (!item || palette === activeFluidPalette) return;
+        activeFluidPalette = palette;
+        setWorkFluidPalette(item);
+      };
+      const setWorkFluidState = (active) => {
+        isWorkFluidActive = active;
+        activeFluidPalette = "";
+        if (active) syncWorkFluidColor(targetPosition);
+        else setWorkFluidPalette(null);
+      };
 
+      const workAboutHandoff = document.createElement("div");
+      workAboutHandoff.className = "work-about-handoff";
+      workAboutHandoff.setAttribute("aria-hidden", "true");
+      workAboutHandoff.innerHTML = `
+        <div class="work-about-handoff-backdrop"></div>
+        <div class="work-about-handoff-title">
+          <span class="work-about-handoff-copy work-about-handoff-copy--source">3D RENDER</span>
+          <span class="work-about-handoff-copy work-about-handoff-copy--about">[ ABOUT ME ]</span>
+          <p class="work-about-handoff-subtitle">
+            I’ve always been <span class="about-keyword" data-image="images/about-hover/curious.png">curious</span> about how things work, why they look the way they do and what could make them better. I <span class="about-keyword" data-image="images/about-hover/eye.png">observe</span>, question and connect the dots, <span class="about-keyword" data-image="images/about-hover/something.png">somewhere</span> between intuition, <span class="about-keyword" data-image="images/about-hover/product.png">experimentation</span> and a slight obsession with <span class="about-keyword" data-image="images/about-hover/behind.png">details</span>.
+          </p>
+        </div>
+      `;
+      stage.append(workAboutHandoff);
+      const handoffTitle = workAboutHandoff.querySelector(".work-about-handoff-title");
+      const handoffSourceCopy = workAboutHandoff.querySelector(".work-about-handoff-copy--source");
+      const handoffAboutCopy = workAboutHandoff.querySelector(".work-about-handoff-copy--about");
       orbit.style.setProperty("--project-count", items.length);
+      activeCategory = categories[0].name;
+      workSection?.setAttribute("data-work-theme", categories[0].theme);
+      header?.setAttribute("data-work-theme", categories[0].theme);
+      categoryTitle.textContent = categories[0].headline;
+      categoryTitle.classList.toggle("is-multiline", categories[0].headline.includes("\n"));
 
       track.innerHTML = items.map((project, index) => `
-        <article class="orbit-card orbit-card-${project.tone}" data-project-index="${index}" aria-label="${project.title}">
-          <div class="orbit-card-media">${project.cover ? `<img src="${project.cover}" alt="" loading="lazy" />` : ""}<span>${project.label}</span></div>
-          <div class="orbit-card-meta"><strong>${project.title}</strong><small>${project.detail}</small></div>
+        <article class="orbit-card orbit-card-${project.tone}" data-project-index="${index}" aria-label="${project.title}" tabindex="0">
+          <div class="orbit-card-media">
+            ${project.cover ? `<img src="${project.cover}" alt="${project.title}" loading="lazy" decoding="async" />` : ""}
+          </div>
+          <strong class="orbit-card-title">
+            <span class="orbit-card-bracket">[</span>
+            <span class="orbit-card-name">${project.title}</span>
+            <span class="orbit-card-bracket">]</span>
+          </strong>
         </article>
       `).join("");
 
       const cards = [...track.querySelectorAll(".orbit-card")];
+      const cardVisuals = cards.map((card) => ({
+        title: card.querySelector(".orbit-card-name"),
+        image: card.querySelector(".orbit-card-media img")
+      }));
+      const activeDescription = stage.querySelector(".projects-active-description");
+      let revealedProjectIndex = null;
+      let projectOverlay = null;
+      let projectOriginCard = null;
+      let projectOriginIndex = null;
+      let projectScrollPosition = 0;
+      let projectTransitionClone = null;
+      let projectTransitionTimeline = null;
+      let isProjectTransitioning = false;
 
-      const measure = () => {
-        const step = Math.max(window.innerHeight * 0.78, 520);
-        orbit.style.height = `${stage.offsetHeight + lastIndex * step}px`;
-        sectionTop = orbit.getBoundingClientRect().top + window.scrollY;
-        scrollRange = Math.max(orbit.offsetHeight - stage.offsetHeight, 1);
+      const projectClip = "inset(6% 5% 6% 5% round 12px)";
+      const getProjectNeighbours = (index) => [cards[index - 1], cards[index + 1]].filter(Boolean);
+      const luminanceCanvas = document.createElement("canvas");
+      const sampleSize = 12;
+      luminanceCanvas.width = sampleSize;
+      luminanceCanvas.height = sampleSize;
+      const luminanceContext = luminanceCanvas.getContext("2d", { willReadFrequently: true });
+      const sampleImageLuminance = (image, clientX, clientY, rect = image.getBoundingClientRect()) => {
+        if (!image.complete || !image.naturalWidth || !image.naturalHeight || clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) return null;
+        const style = getComputedStyle(image);
+        const fit = style.objectFit;
+        const naturalRatio = image.naturalWidth / image.naturalHeight;
+        const boxRatio = rect.width / rect.height;
+        let sourceX = ((clientX - rect.left) / rect.width) * image.naturalWidth;
+        let sourceY = ((clientY - rect.top) / rect.height) * image.naturalHeight;
+        if (fit === "cover") {
+          if (boxRatio > naturalRatio) {
+            const visibleHeight = image.naturalWidth / boxRatio;
+            sourceY = ((clientY - rect.top) / rect.height) * visibleHeight + (image.naturalHeight - visibleHeight) / 2;
+          } else {
+            const visibleWidth = image.naturalHeight * boxRatio;
+            sourceX = ((clientX - rect.left) / rect.width) * visibleWidth + (image.naturalWidth - visibleWidth) / 2;
+          }
+        }
+        if (!luminanceContext) return null;
+        luminanceContext.clearRect(0, 0, sampleSize, sampleSize);
+        luminanceContext.drawImage(image, Math.max(0, sourceX - sampleSize / 2), Math.max(0, sourceY - sampleSize / 2), sampleSize, sampleSize, 0, 0, sampleSize, sampleSize);
+        const pixels = luminanceContext.getImageData(0, 0, sampleSize, sampleSize).data;
+        let luminance = 0;
+        for (let pixel = 0; pixel < pixels.length; pixel += 4) luminance += (pixels[pixel] * .2126 + pixels[pixel + 1] * .7152 + pixels[pixel + 2] * .0722) / 255;
+        return luminance / (pixels.length / 4);
       };
 
-      const updateTarget = () => {
-        const progress = clamp((window.scrollY - sectionTop) / scrollRange, 0, 1);
-        targetPosition = progress * lastIndex;
+      const getProjectOverlay = () => {
+        if (projectOverlay) return projectOverlay;
+
+        projectOverlay = document.createElement("section");
+        projectOverlay.className = "project-view-overlay";
+        projectOverlay.setAttribute("aria-hidden", "true");
+        projectOverlay.innerHTML = `
+          <div class="project-view-visual"><img alt="" /></div>
+          <div class="project-view-content">
+            <p class="project-view-kicker">SELECTED PROJECT</p>
+            <h2></h2>
+            <p></p>
+          </div>
+          <button class="project-view-close" type="button" aria-label="Cerrar proyecto"><span class="close-brace close-brace-left">[</span><span class="close-word">CLOSE</span><span class="close-brace close-brace-right">]</span></button>
+          <div class="project-view-navigation" aria-label="Navegación de proyectos">
+            <button class="project-view-nav project-view-prev" type="button">PREVIOUS</button>
+            <button class="project-view-nav project-view-next" type="button">NEXT</button>
+          </div>
+        `;
+        document.body.append(projectOverlay);
+        projectOverlay.querySelector(".project-view-close")?.addEventListener("click", closeProject);
+        projectOverlay.querySelector(".project-view-prev")?.addEventListener("click", () => navigateProject(projectOriginIndex - 1));
+        projectOverlay.querySelector(".project-view-next")?.addEventListener("click", () => navigateProject(projectOriginIndex + 1));
+        return projectOverlay;
+      };
+
+      const populateProjectOverlay = (overlay, index) => {
+        const project = items[index];
+        const card = cards[index];
+        const media = card?.querySelector(".orbit-card-media");
+        if (!project || !media) return false;
+
+        const visual = overlay.querySelector(".project-view-visual");
+        overlay.querySelector(".project-view-close").classList.remove("is-closing");
+        overlay.querySelector(".project-view-prev").disabled = index <= 0;
+        overlay.querySelector(".project-view-next").disabled = index >= cards.length - 1;
+        visual.classList.toggle("is-gallery", Boolean(project.gallery?.length));
+        const galleryEntries = project.gallery?.length ? project.gallery : [media.querySelector("img")?.currentSrc || media.querySelector("img")?.src];
+        let galleryHtml = "";
+        let inCollage = false;
+        galleryEntries.forEach((entry, imageIndex) => {
+          const src = typeof entry === "string" ? entry : entry.src;
+          const group = typeof entry === "string" ? "" : (entry.group || "");
+          if (group === "collage" && !inCollage) {
+            galleryHtml += '<div class="gallery-collage">';
+            inCollage = true;
+          } else if (group !== "collage" && inCollage) {
+            galleryHtml += "</div>";
+            inCollage = false;
+          }
+          if (typeof entry !== "string" && entry.type === "video") {
+            const ratio = entry.width && entry.height ? `${entry.width} / ${entry.height}` : "16 / 9";
+            galleryHtml += `<iframe class="project-gallery-video" src="${src}" title="${project.title} — vídeo ${imageIndex + 1}" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" frameborder="0" sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox" style="aspect-ratio: ${ratio};"></iframe>`;
+          } else {
+            const loading = imageIndex === 0 ? "eager" : "lazy";
+            galleryHtml += `<img src="${src}" alt="${project.title} — imagen ${imageIndex + 1}" loading="${loading}" decoding="async" data-gallery-group="${group}" />`;
+          }
+        });
+        if (inCollage) galleryHtml += "</div>";
+        visual.innerHTML = galleryHtml;
+        visual.classList.toggle("is-suss-gallery", project.title === "SÜSS");
+        visual.classList.toggle("is-ciento-gallery", project.title === "CIENTO DIECIOCHO");
+        visual.querySelectorAll("img[data-gallery-group='pair']").forEach((img) => img.classList.add("gallery-pair-image"));
+        visual.querySelectorAll("img[data-gallery-group='trio']").forEach((img) => img.classList.add("gallery-trio-image"));
+
+        const galleryImages = Array.from(visual.querySelectorAll("img"));
+        const galleryContent = overlay.querySelector(".project-view-content");
+        const galleryNavigation = Array.from(overlay.querySelectorAll(".project-view-nav"));
+        const updateGalleryTitle = () => {
+          const progress = Math.min(1, visual.scrollTop / Math.max(visual.clientHeight * .42, 1));
+          galleryContent?.style.setProperty("--gallery-title-progress", progress);
+        };
+        const updateNavigationContrast = () => {
+          const imageRects = galleryImages.map((image) => ({
+            image,
+            rect: image.getBoundingClientRect()
+          }));
+          galleryNavigation.forEach((button) => {
+            const bounds = button.getBoundingClientRect();
+            const x = bounds.left + bounds.width / 2;
+            const y = bounds.top + bounds.height / 2;
+            const target = imageRects.find(({ rect }) => {
+              return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+            });
+            const luminance = target ? sampleImageLuminance(target.image, x, y, target.rect) : null;
+            button.dataset.contrast = luminance === null || luminance < .54 ? "light" : "dark";
+          });
+        };
+        let overlayScrollFrame = 0;
+        const updateOverlayChrome = () => {
+          overlayScrollFrame = 0;
+          updateGalleryTitle();
+          updateNavigationContrast();
+        };
+        const requestOverlayChrome = () => {
+          if (overlayScrollFrame) return;
+          overlayScrollFrame = requestAnimationFrame(updateOverlayChrome);
+        };
+        visual.removeEventListener("scroll", visual._overlayChromeHandler);
+        visual._overlayChromeHandler = requestOverlayChrome;
+        visual.addEventListener("scroll", requestOverlayChrome, { passive: true });
+        galleryImages.forEach((image) => {
+          if (image.complete) requestOverlayChrome();
+          else image.addEventListener("load", requestOverlayChrome, { once: true });
+        });
+        updateOverlayChrome();
+        overlay.querySelector("h2").textContent = project.title;
+        overlay.querySelector(".project-view-content p:last-child").textContent = project.description;
+        overlay.style.setProperty("--project-overlay-theme", getComputedStyle(media).backgroundColor);
+        return true;
+      };
+
+      const navigateProject = (index) => {
+        if (isProjectTransitioning || !projectOverlay || index < 0 || index >= cards.length) return;
+        projectOriginCard?.classList.remove("is-project-transition-source");
+        projectOriginIndex = index;
+        projectOriginCard = cards[index];
+        projectOriginCard?.classList.add("is-project-transition-source");
+        populateProjectOverlay(projectOverlay, index);
+      };
+
+      const makeProjectClone = (rect, source) => {
+        const clone = document.createElement("div");
+        clone.className = "project-transition-clone";
+        clone.innerHTML = `<img src="${source}" alt="" />`;
+        Object.assign(clone.style, {
+          left: `${rect.left}px`,
+          top: `${rect.top}px`,
+          width: `${rect.width}px`,
+          height: `${rect.height}px`,
+          clipPath: "inset(0% 0% 0% 0% round 0px)"
+        });
+        document.body.append(clone);
+        return clone;
+      };
+
+      const openProject = (index) => {
+        const card = cards[index];
+        const media = card?.querySelector(".orbit-card-media");
+        const image = media?.querySelector("img");
+        const project = items[index];
+        if (stage.classList.contains("is-handing-off") || isProjectTransitioning || !card || !media || !image || !project) return;
+
+        isProjectTransitioning = true;
+        projectOriginCard = card;
+        projectOriginIndex = index;
+        projectScrollPosition = window.scrollY;
+        const neighbours = getProjectNeighbours(index);
+
+        const rect = media.getBoundingClientRect();
+        const source = image.currentSrc || image.src;
+        const overlay = getProjectOverlay();
+        populateProjectOverlay(overlay, index);
+        overlay.setAttribute("aria-hidden", "false");
+
+        projectTransitionClone = makeProjectClone(rect, source);
+        card.classList.add("is-project-transition-source");
+        document.body.classList.add("is-project-open");
+
+        const finishOpen = () => {
+          projectTransitionClone?.remove();
+          projectTransitionClone = null;
+          projectTransitionTimeline = null;
+          isProjectTransitioning = false;
+          overlay.querySelector(".project-view-visual")?.classList.add("is-ready");
+          overlay.querySelector(".project-view-close")?.focus();
+        };
+
+        if (prefersReducedMotion) {
+          gsap.set(overlay, { display: "grid", autoAlpha: 1 });
+          finishOpen();
+          return;
+        }
+
+        projectTransitionTimeline?.kill();
+        gsap.killTweensOf(neighbours);
+        projectTransitionTimeline = gsap.timeline({ onComplete: finishOpen })
+          .set(overlay, { display: "grid", autoAlpha: 0 })
+          .to(neighbours, {
+            "--project-neighbor-scale": .98,
+            "--project-neighbor-opacity": .84,
+            duration: .52,
+            ease: "power3.inOut"
+          }, .06)
+          .to(projectTransitionClone, { clipPath: projectClip, duration: .3, ease: "power3.inOut" }, 0)
+          .to(projectTransitionClone, {
+            left: 0,
+            top: 0,
+            width: "100vw",
+            height: "100vh",
+            clipPath: "inset(0% 0% 0% 0% round 0px)",
+            duration: 1.04,
+            ease: "power3.inOut"
+          }, .08)
+          .to(overlay, { autoAlpha: 1, duration: .24, ease: "power2.out" }, .86)
+          .fromTo(overlay.querySelectorAll(".project-view-content, .project-view-close"),
+            { autoAlpha: 0, y: 16 },
+            { autoAlpha: 1, y: 0, duration: .34, stagger: .05, ease: "power3.out" }, .92);
+
+        neighbours.forEach((neighbour) => {
+          const direction = Number(neighbour.dataset.projectIndex) < index ? -1 : 1;
+          projectTransitionTimeline.to(neighbour, {
+            "--project-neighbor-x": `${direction * 38}px`,
+            duration: .5,
+            ease: "power3.inOut",
+            overwrite: "auto"
+          }, .1);
+        });
+      };
+
+      const openProjectFromExperience = event => {
+        const title = event.detail?.title;
+        const index = items.findIndex(project => project.title === title);
+        const card = cards[index];
+        if (index < 0 || !card || isProjectTransitioning) return;
+
+        projectOriginCard = card;
+        projectOriginIndex = index;
+        projectScrollPosition = window.scrollY;
+        const overlay = getProjectOverlay();
+        if (!populateProjectOverlay(overlay, index)) return;
+
+        overlay.setAttribute("aria-hidden", "false");
+        document.body.classList.add("is-project-open");
+        gsap.set(overlay, { display: "grid", autoAlpha: 1 });
+        overlay.querySelector(".project-view-visual")?.classList.add("is-ready");
+        overlay.querySelector(".project-view-close")?.focus();
+      };
+      window.addEventListener("portfolio:open-project", openProjectFromExperience);
+
+      function closeProject() {
+        if (isProjectTransitioning || !projectOverlay || !projectOriginCard) return;
+        const media = projectOriginCard.querySelector(".orbit-card-media");
+        const sourceImage = media?.querySelector("img");
+        if (!media || !sourceImage) return;
+
+        isProjectTransitioning = true;
+        projectOverlay.querySelector(".project-view-close").classList.add("is-closing");
+        window.scrollTo(0, projectScrollPosition);
+        const rect = media.getBoundingClientRect();
+        const source = sourceImage.currentSrc || sourceImage.src;
+        const neighbours = getProjectNeighbours(projectOriginIndex);
+        projectTransitionClone = makeProjectClone({ left: 0, top: 0, width: window.innerWidth, height: window.innerHeight }, source);
+        projectOverlay.setAttribute("aria-hidden", "true");
+
+        const finishClose = () => {
+          projectTransitionClone?.remove();
+          projectTransitionClone = null;
+          projectTransitionTimeline = null;
+          gsap.set(projectOverlay, { display: "none", autoAlpha: 0 });
+          projectOriginCard?.classList.remove("is-project-transition-source");
+          document.body.classList.remove("is-project-open");
+          projectOriginCard?.focus({ preventScroll: true });
+          projectOriginCard = null;
+          projectOriginIndex = null;
+          isProjectTransitioning = false;
+          projectOverlay.querySelector(".project-view-visual")?.classList.remove("is-ready");
+        };
+
+        if (prefersReducedMotion) {
+          finishClose();
+          return;
+        }
+
+        projectTransitionTimeline?.kill();
+        gsap.killTweensOf(neighbours);
+        projectTransitionTimeline = gsap.timeline({ onComplete: finishClose })
+          .to(projectOverlay.querySelectorAll(".project-view-content, .project-view-close"),
+            { autoAlpha: 0, y: 12, duration: .24, ease: "power2.inOut" }, 0)
+          .to(projectOverlay, { autoAlpha: 0, duration: .26, ease: "power2.inOut" }, .08)
+          .to(projectTransitionClone, { clipPath: projectClip, duration: .3, ease: "power3.inOut" }, .08)
+          .to(projectTransitionClone, {
+            left: rect.left,
+            top: rect.top,
+            width: rect.width,
+            height: rect.height,
+            clipPath: "inset(0% 0% 0% 0% round 0px)",
+            duration: .98,
+            ease: "power3.inOut"
+          }, .18)
+          .to(neighbours, {
+            "--project-neighbor-x": "0px",
+            "--project-neighbor-scale": 1,
+            "--project-neighbor-opacity": 1,
+            duration: .56,
+            ease: "power3.inOut"
+          }, .28);
+      }
+
+      const handleProjectKeydown = (event) => {
+        if (event.key === "Escape" && projectOverlay?.getAttribute("aria-hidden") === "false") closeProject();
+      };
+      document.addEventListener("keydown", handleProjectKeydown);
+
+      const hideProjectDescription = () => {
+        if (!activeDescription) return;
+        activeDescription.classList.remove("is-visible");
+        stage.classList.remove("has-active-description");
+        revealedProjectIndex = null;
+      };
+
+      // Native SVG equivalent of the supplied MorphSVG reference. The curve is
+      // derived directly from the existing scroll exit state, so it only appears
+      // between My Work and About and never competes with the project sequence.
+      const renderWorkWave = (progress) => {
+        if (!workWavePath) return;
+        const base = 500 - progress * 660;
+        const crest = Math.sin(progress * Math.PI) * 72;
+        const settle = Math.sin(progress * Math.PI * 2) * 18 * (1 - progress);
+        const path = [
+          `M0 ${base.toFixed(2)}`,
+          `C240 ${(base - crest + settle).toFixed(2)} 480 ${(base + crest).toFixed(2)} 720 ${base.toFixed(2)}`,
+          `S1200 ${(base - crest - settle).toFixed(2)} 1440 ${base.toFixed(2)}`,
+          "V480 H0 Z"
+        ].join(" ");
+        workWavePath.setAttribute("d", path);
+      };
+
+      const showProjectDescription = (index) => {
+        const card = cards[index];
+        const project = items[index];
+        if (!activeDescription || !card || !project) return;
+        activeDescription.querySelector("strong").textContent = project.title;
+        activeDescription.querySelector("span").textContent = project.description;
+        activeDescription.classList.add("is-visible");
+        stage.classList.add("has-active-description");
+        revealedProjectIndex = index;
+      };
+
+      const fineWorkPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+      cards.forEach((card, index) => {
+        const media = card.querySelector(".orbit-card-media");
+        if (!media) return;
+        let mediaBounds = null;
+        let pointerFrame = 0;
+        let pointerEvent = null;
+
+        media.addEventListener("pointerenter", () => {
+          mediaBounds = media.getBoundingClientRect();
+        });
+
+        media.addEventListener("pointermove", (event) => {
+          if (!fineWorkPointer.matches) return;
+          pointerEvent = event;
+          if (pointerFrame) return;
+          pointerFrame = requestAnimationFrame(() => {
+            pointerFrame = 0;
+            const bounds = mediaBounds || media.getBoundingClientRect();
+            const x = (pointerEvent.clientX - bounds.left) / bounds.width;
+            const y = (pointerEvent.clientY - bounds.top) / bounds.height;
+            media.style.setProperty("--pointer-x", `${x * 100}%`);
+            media.style.setProperty("--pointer-y", `${y * 100}%`);
+            media.style.setProperty("--image-shift-x", `${(x - .5) * 12}px`);
+            media.style.setProperty("--image-shift-y", `${(y - .5) * 12}px`);
+          });
+        });
+
+        media.addEventListener("pointerleave", () => {
+          mediaBounds = null;
+          cancelAnimationFrame(pointerFrame);
+          pointerFrame = 0;
+          media.style.setProperty("--image-shift-x", "0px");
+          media.style.setProperty("--image-shift-y", "0px");
+        });
+
+        card.addEventListener("pointerenter", () => {
+          hoveredProjectIndex = index;
+          syncWorkHeading();
+          showProjectDescription(index);
+        });
+        card.addEventListener("pointerleave", () => {
+          hoveredProjectIndex = null;
+          syncWorkHeading();
+          hideProjectDescription();
+        });
+        card.addEventListener("focusin", () => {
+          hoveredProjectIndex = index;
+          syncWorkHeading();
+          showProjectDescription(index);
+        });
+        card.addEventListener("focusout", () => {
+          hoveredProjectIndex = null;
+          syncWorkHeading();
+          hideProjectDescription();
+        });
+        card.addEventListener("click", () => openProject(index));
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openProject(index);
+          }
+        });
+      });
+
+      let workScrollTrigger = null;
+      let workDraggable = null;
+      const dragProxy = document.createElement("div");
+
+      const measure = () => {
+        const step = Math.max(window.innerHeight * 0.62, 500);
+        orbit.style.height = `${stage.offsetHeight + timelineMax * step}px`;
+        const handoffTitleHeight = Math.max(
+          handoffAboutCopy.offsetHeight,
+          handoffSourceCopy.offsetHeight
+        );
+        const handoffTitleCenter = handoffTitle.offsetTop + handoffTitleHeight / 2;
+        handoffTitleTravel = window.innerHeight * .20 - handoffTitleCenter;
+      };
+
+      const updateTarget = (progress) => {
+        targetPosition = progress * timelineMax;
         if (!rafId) rafId = requestAnimationFrame(render);
       };
 
@@ -216,52 +1678,600 @@
         const project = items[nearestIndex];
         if (!project || nearestIndex === activeIndex) return;
         activeIndex = nearestIndex;
-        indexLabel.textContent = `${String(nearestIndex + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
-        categoryLabel.classList.remove("is-changing");
-        void categoryLabel.offsetWidth;
-        categoryLabel.textContent = project.category;
-        categoryLabel.classList.add("is-changing");
+        indexLabel.textContent = `(${String(nearestIndex + 1).padStart(2, "0")})`;
+        syncWorkHeading();
+        if (project.category !== activeCategory) {
+          activeCategory = project.category;
+          workSection?.setAttribute("data-work-theme", project.categoryTheme);
+          header?.setAttribute("data-work-theme", project.categoryTheme);
+          categoryTitle.classList.remove("is-changing");
+          void categoryTitle.offsetWidth;
+          categoryTitle.textContent = project.categoryHeadline;
+          categoryTitle.classList.toggle("is-multiline", project.categoryHeadline.includes("\n"));
+          categoryTitle.classList.add("is-changing");
+        }
       };
 
-      const render = () => {
+      const render = (now = performance.now()) => {
         rafId = 0;
-        const ease = prefersReducedMotion ? 1 : 0.085;
+        const delta = previousRenderTime ? Math.min(now - previousRenderTime, 64) : 16;
+        const ease = prefersReducedMotion ? 1 : 1 - Math.exp(-delta / 112);
         currentPosition += (targetPosition - currentPosition) * ease;
+        previousRenderTime = now;
         const viewportWidth = stage.clientWidth;
         const mobile = viewportWidth < 700;
-        const radiusX = mobile ? Math.min(viewportWidth * 0.42, 180) : Math.min(viewportWidth * 0.34, 560);
-        const radiusY = mobile ? 42 : 112;
+        const smoothStep = (value) => {
+          const progress = clamp(value, 0, 1);
+          return progress * progress * (3 - 2 * progress);
+        };
+        const mix = (from, to, progress) => from + (to - from) * progress;
+
+        // Four readable chapters tied directly to scroll: deck, aligned row,
+        // horizontal opening, then a focused project rail.
+        const deckToRow = smoothStep((currentPosition - .2) / .72);
+        const rowOpening = smoothStep((currentPosition - .86) / .78);
+        const focusReveal = smoothStep((currentPosition - 1.55) / .82);
+        const focusPosition = clamp(currentPosition - introUnits, 0, lastIndex);
+        const workTitleProgress = smoothStep((currentPosition - .22) / 1.42);
+        const categoryFade = smoothStep((focusReveal - .26) / .74);
+        const nextWorkHeadingShowsProject = focusReveal >= .96;
+        if (nextWorkHeadingShowsProject !== workHeadingShowsProject) {
+          workHeadingShowsProject = nextWorkHeadingShowsProject;
+          syncWorkHeading();
+        }
+        const workTitleTravel = Math.max(stage.clientHeight - (mobile ? 180 : 190), 0);
+        const workTitleScale = 1 - workTitleProgress * (mobile ? .38 : .58);
+
+        stage.style.setProperty("--orbit-y", "0%");
+        stage.style.setProperty("--projects-category-opacity", categoryFade.toFixed(3));
+        stage.style.setProperty("--work-title-opacity", "1");
+        stage.style.setProperty("--work-title-blur", "0px");
+        stage.style.setProperty("--work-title-lift", `${(workTitleTravel * workTitleProgress).toFixed(2)}px`);
+        stage.style.setProperty("--work-title-scale", workTitleScale.toFixed(4));
+        // Complete the handoff before the sticky stage releases, leaving a brief
+        // resting frame where About and its paragraph can be read clearly.
+        const workExitProgress = clamp((currentPosition - (timelineMax - exitUnits)) / (exitUnits * .55), 0, 1);
+        const workAboutProgress = smoothStep(workExitProgress);
+        // Vertical handoff: the new background drops in while About rises into it.
+        const titleTravel = smoothStep((workAboutProgress - .04) / .28);
+        const sourceClosing = smoothStep((workAboutProgress - .12) / .18);
+        const backgroundProgress = smoothStep((workAboutProgress - .06) / .62);
+        const aboutOpening = smoothStep((workAboutProgress - .16) / .55);
+        const workUiOpacity = 1 - smoothStep((workAboutProgress - .18) / .28);
+        stage.style.setProperty("--work-exit-progress", workExitProgress.toFixed(3));
+        stage.style.setProperty("--work-exit-opacity", (1 - workExitProgress).toFixed(3));
+        stage.style.setProperty("--work-ui-opacity", workUiOpacity.toFixed(3));
+        stage.style.setProperty("--work-about-bridge-opacity", smoothStep(workAboutProgress / .12).toFixed(3));
+        stage.style.setProperty("--work-about-title-y", `${(handoffTitleTravel * titleTravel).toFixed(2)}px`);
+        stage.style.setProperty("--work-about-background-progress", backgroundProgress.toFixed(3));
+        stage.style.setProperty("--work-about-source-opacity", (1 - sourceClosing).toFixed(3));
+        stage.style.setProperty("--work-about-source-clip", `${(sourceClosing * 50).toFixed(2)}%`);
+        stage.style.setProperty("--work-about-source-scale", (1 - sourceClosing * .95).toFixed(3));
+        stage.style.setProperty("--work-about-opening", aboutOpening.toFixed(3));
+        stage.style.setProperty("--work-about-about-clip", `${((1 - aboutOpening) * 50).toFixed(2)}%`);
+        renderWorkWave(workExitProgress);
+        stage.classList.toggle("is-exiting", workExitProgress > .02);
+        stage.classList.toggle("is-handing-off", workExitProgress > .01);
+        header?.classList.toggle("is-work-exiting", workExitProgress > .02);
+
+        if (projectsHeading) {
+          projectsHeading.style.setProperty("--projects-heading-side-opacity", categoryFade);
+          projectsHeading.style.setProperty("--projects-heading-side-x", `${(1 - categoryFade) * 22}px`);
+        }
+
+        const compactSpacing = mobile ? Math.min(viewportWidth * .075, 26) : Math.min(viewportWidth * .068, 88);
+        // Desktop covers follow the Codrops DOM gallery proportions: 4:3 media
+        // at 60vh high, with a fixed editorial gutter between each visual.
+        const galleryCardWidth = Math.min(stage.clientHeight * .8, viewportWidth * .8);
+        const galleryGap = Math.min(Math.max(viewportWidth * .022, 18), 32);
+        const openSpacing = mobile ? Math.min(viewportWidth * .27, 108) : galleryCardWidth + galleryGap;
+        const focusSpacing = mobile ? Math.min(viewportWidth * .61, 238) : galleryCardWidth + galleryGap;
 
         cards.forEach((card, index) => {
-          const distance = index - currentPosition;
-          const absoluteDistance = Math.abs(distance);
-          const angle = distance * (mobile ? 0.72 : 0.54);
-          const depth = Math.cos(angle);
-          const x = Math.sin(angle) * radiusX;
-          const y = Math.sign(distance) * (1 - Math.cos(angle)) * radiusY;
-          const scale = clamp(0.52 + 0.48 * Math.exp(-absoluteDistance * 0.72), 0.42, 1);
-          const opacity = clamp(0.16 + 0.84 * Math.exp(-absoluteDistance * 0.72), 0.08, 1);
-          const rotation = Math.sin(angle) * (mobile ? -3 : -5);
-          const zIndex = Math.round(100 + depth * 100 - absoluteDistance * 4);
+          const isFirstProject = index === 0;
+          const stackX = isFirstProject ? 0 : ((index % 5) - 2) * (mobile ? 1.8 : 3.5);
+          const stackY = isFirstProject ? 0 : ((index % 4) - 1.5) * (mobile ? 2.4 : 4.5);
+          const stackScale = clamp(.98 - index * .008, .9, .98);
+          const stackRotation = isFirstProject ? 0 : ((index % 5) - 2) * (mobile ? 1.05 : 1.45);
+          const stackOpacity = clamp(.96 - index * .035, .62, .96);
+          const stackZ = 340 + cards.length - index;
 
-          card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotateZ(${rotation}deg)`;
-          card.style.opacity = opacity;
-          card.style.zIndex = zIndex;
-          card.classList.toggle("is-active", absoluteDistance < 0.5);
-          card.setAttribute("aria-current", absoluteDistance < 0.5 ? "true" : "false");
+          // The first project anchors the opening; every following card unfolds to its right.
+          const rowDistance = index;
+          const compactX = rowDistance * compactSpacing;
+          const openX = rowDistance * openSpacing;
+          const compactScale = mobile ? .62 : .5;
+          const openScale = mobile ? .72 : 1;
+
+          const focusedDistance = index - focusPosition;
+          const absoluteFocusDistance = Math.abs(focusedDistance);
+          const sideScale = mobile ? .66 : 1;
+          const focusedScale = sideScale + (1 - sideScale) * Math.exp(-absoluteFocusDistance * 2.5);
+          const focusedX = focusedDistance * focusSpacing;
+          const focusedY = mobile ? Math.min(absoluteFocusDistance * 9, 18) : 0;
+          const focusedRotation = Math.tanh(focusedDistance) * (mobile ? -1 : 0);
+          const focusedTurn = Math.tanh(focusedDistance) * (mobile ? -2.5 : 0);
+          const focusedOpacity = mobile ? clamp(.18 + .82 * Math.exp(-absoluteFocusDistance * .68), .16, 1) : 1;
+          const focusedZ = Math.round(300 - absoluteFocusDistance * 18);
+
+          const alignedX = mix(stackX, compactX, deckToRow);
+          const alignedY = mix(stackY, 0, deckToRow);
+          const alignedScale = mix(stackScale, compactScale, deckToRow);
+          const alignedRotation = mix(stackRotation, 0, deckToRow);
+          const alignedOpacity = mix(stackOpacity, .78, deckToRow);
+          const alignedZ = Math.round(mix(stackZ, 220 - Math.abs(rowDistance), deckToRow));
+
+          const openedX = mix(alignedX, openX, rowOpening);
+          const openedScale = mix(alignedScale, openScale, rowOpening);
+          const openedOpacity = mix(alignedOpacity, .84, rowOpening);
+
+          const finalX = mix(openedX, focusedX, focusReveal);
+          const finalY = mix(alignedY, focusedY, focusReveal);
+          const finalScale = mix(openedScale, focusedScale, focusReveal);
+          const finalRotation = mix(alignedRotation, focusedRotation, focusReveal);
+          const finalTurn = focusedTurn * focusReveal;
+          const finalOpacity = mix(openedOpacity, focusedOpacity, focusReveal);
+          const finalZ = Math.round(mix(alignedZ, focusedZ, focusReveal));
+          const titleProgress = focusReveal * clamp(1 - absoluteFocusDistance * 2.2, 0, 1);
+          const titleName = cardVisuals[index].title;
+          const coverImage = cardVisuals[index].image;
+
+          card.style.transform = `translate3d(calc(-50% + ${finalX}px + var(--project-neighbor-x, 0px)), calc(-50% + ${finalY}px), 0) scale(calc(${finalScale} * var(--project-neighbor-scale, 1))) rotateZ(${finalRotation}deg) rotateY(${finalTurn}deg)`;
+          card.style.setProperty("--orbit-card-opacity", finalOpacity);
+          card.style.zIndex = finalZ;
+          card.style.setProperty("--project-title-opacity", titleProgress);
+          titleName.style.maxWidth = `${titleProgress * 32}ch`;
+          titleName.style.marginInline = `${titleProgress * 0.28}em`;
+          titleName.style.opacity = titleProgress;
+
+          // Adapted from Codrops' CSS gallery: each cover counter-moves according
+          // to its horizontal distance from the viewport centre. The card and its
+          // title keep their existing transforms; only the image gets parallax.
+          if (coverImage) {
+            const centreDistance = clamp(finalX / Math.max(viewportWidth * .5, 1), -1, 1);
+            const maxCoverShift = mobile ? 5.5 : 10;
+            coverImage.style.setProperty("--cover-parallax-x", `${(-centreDistance * maxCoverShift).toFixed(3)}%`);
+          }
+
+          const isActive = focusReveal > .78 && absoluteFocusDistance < .5;
+          card.classList.toggle("is-active", isActive);
+          card.setAttribute("aria-current", isActive ? "true" : "false");
         });
 
-        updateCategory(clamp(Math.round(currentPosition), 0, lastIndex));
-        if (Math.abs(targetPosition - currentPosition) > 0.001) rafId = requestAnimationFrame(render);
+        if (revealedProjectIndex !== null && Math.abs(revealedProjectIndex - focusPosition) >= .5) {
+          hideProjectDescription();
+        }
+
+        updateCategory(clamp(Math.round(focusPosition), 0, lastIndex));
+        if (Math.abs(targetPosition - currentPosition) > 0.001) {
+          rafId = requestAnimationFrame(render);
+        } else {
+          currentPosition = targetPosition;
+          previousRenderTime = 0;
+        }
       };
 
-      measure();
-      window.addEventListener("scroll", updateTarget, { passive: true });
-      window.addEventListener("resize", () => {
+      const updateScrollFromPosition = (position) => {
+        if (!workScrollTrigger) return;
+        const progress = clamp(position / timelineMax, 0, 1);
+        workScrollTrigger.scroll(workScrollTrigger.start + (workScrollTrigger.end - workScrollTrigger.start) * progress);
+      };
+
+      const setupWorkMotion = () => {
         measure();
-        updateTarget();
+        workScrollTrigger?.kill();
+        workDraggable?.kill();
+        ScrollTrigger.getById("my-work-deck-scroll")?.kill();
+
+        workScrollTrigger = ScrollTrigger.create({
+          id: "my-work-deck-scroll",
+          trigger: orbit,
+          start: "top top",
+          end: "bottom bottom",
+          invalidateOnRefresh: true,
+          onEnter: () => setWorkFluidState(true),
+          onEnterBack: () => setWorkFluidState(true),
+          onLeave: () => { isWorkFluidActive = false; },
+          onLeaveBack: () => setWorkFluidState(false),
+          onUpdate: self => {
+            const position = self.progress * timelineMax;
+            if (isWorkFluidActive) syncWorkFluidColor(position);
+            updateTarget(self.progress);
+          },
+          onRefresh: self => {
+            const position = self.progress * timelineMax;
+            if (isWorkFluidActive) syncWorkFluidColor(position);
+            updateTarget(self.progress);
+          }
+        });
+
+        // Adapted from the supplied GSAP example: the proxy receives the drag
+        // while the stage stays visually fixed and scroll remains the source of truth.
+        workDraggable = Draggable.create(dragProxy, {
+          type: "x",
+          trigger: stage,
+          allowNativeTouchScrolling: true,
+          minimumMovement: 6,
+          onPress() {
+            this.startPosition = targetPosition;
+            stage.classList.add("is-dragging");
+          },
+          onDrag() {
+            const sensitivity = Math.max(stage.clientWidth * .16, 210);
+            const nextPosition = clamp(this.startPosition - this.x / sensitivity, 0, timelineMax);
+            targetPosition = nextPosition;
+            updateScrollFromPosition(nextPosition);
+            if (!rafId) rafId = requestAnimationFrame(render);
+          },
+          onRelease() {
+            stage.classList.remove("is-dragging");
+          }
+        })[0];
+      };
+
+      setupWorkMotion();
+      let workResizeTimer = 0;
+      const resizeWorkMotion = () => {
+        window.clearTimeout(workResizeTimer);
+        workResizeTimer = window.setTimeout(() => {
+          measure();
+          ScrollTrigger.refresh();
+        }, 120);
+      };
+      window.addEventListener("resize", resizeWorkMotion, { passive: true });
+      onTeardown(() => {
+        window.removeEventListener("resize", resizeWorkMotion);
+        window.clearTimeout(workResizeTimer);
+        cancelAnimationFrame(rafId);
+        workScrollTrigger?.kill();
+        workDraggable?.kill();
+        projectTransitionTimeline?.kill();
+        projectTransitionClone?.remove();
+        document.removeEventListener("keydown", handleProjectKeydown);
+        window.removeEventListener("portfolio:open-project", openProjectFromExperience);
       });
-      updateTarget();
+    })();
+
+    (() => {
+      const education = document.querySelector(".education");
+      const cards = Array.from(education?.querySelectorAll(".education-card") || []);
+      const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+      if (!education || !cards.length) return;
+
+      const setEducationFluidPalette = () => {
+        const fluid = document.querySelector("#fluid-background");
+        if (fluid?.dataset.fluidPrimary === "#FFFCF8" && fluid?.dataset.fluidSecondary === "#D9D9D9") return;
+        window.dispatchEvent(new CustomEvent("portfolio:fluid-palette", {
+          detail: { primary: "#FFFCF8", secondary: "#D9D9D9" }
+        }));
+      };
+      const educationPaletteObserver = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) setEducationFluidPalette();
+      }, { threshold: .12 });
+      educationPaletteObserver.observe(education);
+      education.addEventListener("pointerenter", setEducationFluidPalette);
+      education.addEventListener("pointermove", setEducationFluidPalette, { passive: true });
+
+      let activeCard = null;
+      let autoScrollCard = null;
+      let autoScrollTween = null;
+      let pendingAutoScrollPointerHandler = null;
+      const clearPendingAutoScrollPointerHandler = () => {
+        if (!pendingAutoScrollPointerHandler) return;
+        window.removeEventListener("pointermove", pendingAutoScrollPointerHandler);
+        pendingAutoScrollPointerHandler = null;
+      };
+      const closeCard = card => {
+        const details = card.querySelector(".education-card-details");
+        const items = Array.from(details?.children || []);
+        if (!details) return;
+        gsap.killTweensOf([details, ...items]);
+        gsap.to(items, { opacity: 0, y: -8, duration: .18, ease: "power2.out", overwrite: true });
+        gsap.to(details, { height: 0, opacity: 0, duration: .34, ease: "power3.out", overwrite: true });
+      };
+      const openCard = card => {
+        if (!canHover.matches || activeCard === card) return;
+        clearPendingAutoScrollPointerHandler();
+        cards.forEach(other => { if (other !== card) closeCard(other); });
+        const details = card.querySelector(".education-card-details");
+        const items = Array.from(details?.children || []);
+        if (!details) return;
+        activeCard = card;
+        gsap.killTweensOf([details, ...items]);
+        gsap.set(details, { height: 0, opacity: 0 });
+        gsap.set(items, { opacity: 0, y: 18 });
+        gsap.to(details, {
+          height: "auto",
+          opacity: 1,
+          duration: .52,
+          ease: "power3.out",
+          overwrite: true,
+          onComplete: () => {
+            if (activeCard !== card) return;
+            const overflow = details.getBoundingClientRect().bottom - (window.innerHeight - 28);
+            if (overflow <= 0) return;
+            autoScrollCard = card;
+            autoScrollTween?.kill();
+            const scrollState = { y: window.scrollY };
+            autoScrollTween = gsap.to(scrollState, {
+              y: window.scrollY + overflow,
+              duration: 1.15,
+              ease: "power3.inOut",
+              overwrite: true,
+              onUpdate: () => window.scrollTo(0, scrollState.y),
+              onComplete: () => {
+                autoScrollTween = null;
+                autoScrollCard = null;
+                clearPendingAutoScrollPointerHandler();
+                pendingAutoScrollPointerHandler = () => {
+                  pendingAutoScrollPointerHandler = null;
+                  if (activeCard === card && !card.matches(":hover") && document.activeElement !== card) {
+                    activeCard = null;
+                    closeCard(card);
+                  }
+                };
+                window.addEventListener("pointermove", pendingAutoScrollPointerHandler, { once: true, passive: true });
+              }
+            });
+          }
+        });
+        gsap.to(items, { opacity: 1, y: 0, duration: .46, stagger: .055, delay: .08, ease: "power3.out", overwrite: true });
+      };
+      const closeActiveCard = card => {
+        if (activeCard !== card) return;
+        if (autoScrollCard === card) return;
+        activeCard = null;
+        closeCard(card);
+      };
+      const handlers = cards.map(card => {
+        const enter = () => openCard(card);
+        const leave = () => closeActiveCard(card);
+        const focus = () => openCard(card);
+        const blur = event => { if (!card.contains(event.relatedTarget)) closeActiveCard(card); };
+        card.addEventListener("pointerenter", enter);
+        card.addEventListener("pointerleave", leave);
+        card.addEventListener("focusin", focus);
+        card.addEventListener("focusout", blur);
+        return () => {
+          card.removeEventListener("pointerenter", enter);
+          card.removeEventListener("pointerleave", leave);
+          card.removeEventListener("focusin", focus);
+          card.removeEventListener("focusout", blur);
+        };
+      });
+      const onCapabilityChange = () => {
+        if (canHover.matches) return;
+        activeCard = null;
+        cards.forEach(card => gsap.killTweensOf([card.querySelector(".education-card-details"), ...card.querySelectorAll(".education-card-details > *")]));
+      };
+      canHover.addEventListener("change", onCapabilityChange);
+      onTeardown(() => {
+        autoScrollTween?.kill();
+        clearPendingAutoScrollPointerHandler();
+        educationPaletteObserver.disconnect();
+        education.removeEventListener("pointerenter", setEducationFluidPalette);
+        education.removeEventListener("pointermove", setEducationFluidPalette);
+        handlers.forEach(remove => remove());
+        canHover.removeEventListener("change", onCapabilityChange);
+        cards.forEach(card => gsap.killTweensOf([card.querySelector(".education-card-details"), ...card.querySelectorAll(".education-card-details > *")]));
+      });
+    })();
+
+    (() => {
+      const about = document.querySelector(".about");
+      if (!about) return;
+      about.classList.add("is-editorial");
+      const clampAbout = (value, min, max) => Math.min(Math.max(value, min), max);
+      const setAboutFluidPalette = (active) => {
+        window.dispatchEvent(new CustomEvent("portfolio:fluid-palette", {
+          detail: active
+            ? { primary: "#FFFCF8", secondary: "#3C2A20" }
+            : { primary: "#333333", secondary: "#275485" }
+        }));
+      };
+      const setAboutEditorialPalette = (active) => {
+        about.classList.toggle("is-inverted", active);
+        window.dispatchEvent(new CustomEvent("portfolio:fluid-palette", {
+          detail: active
+            ? { primary: "#3C2A20", secondary: "#FFFCF8" }
+            : { primary: "#FFFCF8", secondary: "#3C2A20" }
+        }));
+      };
+
+      const renderAboutReveal = (journey) => {
+        const initialHold = .08;
+        const textRevealDuration = .22;
+        const progress = clampAbout((journey - initialHold) / textRevealDuration, 0, 1);
+        about.classList.add("is-editorial");
+        const imageProgress = clampAbout(journey / .18, 0, 1);
+        const shift = Math.min(about.clientWidth * .28, 390) * (1 - imageProgress);
+        const imageVerticalProgress = clampAbout(journey / .32, 0, 1);
+        const imageTop = 20 + imageVerticalProgress * 30;
+        about.style.setProperty("--about-reveal", progress.toFixed(3));
+        about.style.setProperty("--about-image-shift", `${shift.toFixed(1)}px`);
+        about.style.setProperty("--about-image-top", `${imageTop.toFixed(2)}%`);
+        about.style.setProperty("--about-copy-offset", `${((1 - progress) * 28).toFixed(1)}px`);
+        about.style.setProperty("--about-title-offset", `${((1 - progress) * 20).toFixed(1)}px`);
+        about.style.setProperty("--about-backdrop-opacity", `${(.14 + progress * .86).toFixed(3)}`);
+        about.style.setProperty("--about-editorial-progress", "1");
+      };
+
+      const aboutMotion = gsap.matchMedia();
+      ScrollTrigger.getById("about-fluid-palette")?.kill();
+      ScrollTrigger.create({
+        id: "about-fluid-palette",
+        trigger: about,
+        start: "top 78%",
+        end: "bottom 22%",
+        onEnter: () => setAboutFluidPalette(true),
+        onEnterBack: () => setAboutFluidPalette(true),
+        onLeave: () => setAboutFluidPalette(false),
+        onLeaveBack: () => setAboutFluidPalette(false),
+        onRefresh: self => setAboutFluidPalette(self.isActive)
+      });
+      ScrollTrigger.getById("about-editorial-invert")?.kill();
+      ScrollTrigger.create({
+        id: "about-editorial-invert",
+        trigger: about,
+        start: "top top",
+        end: "bottom top",
+        onEnter: () => setAboutEditorialPalette(true),
+        onEnterBack: () => setAboutEditorialPalette(true),
+        onLeaveBack: () => setAboutEditorialPalette(false),
+        onLeave: () => {
+          about.classList.remove("is-inverted");
+          setAboutFluidPalette(false);
+        },
+        onRefresh: self => {
+          if (self.isActive) setAboutEditorialPalette(true);
+          else about.classList.remove("is-inverted");
+        }
+      });
+      ScrollTrigger.getById("about-editorial-reveal")?.kill();
+      aboutMotion.add("(prefers-reduced-motion: no-preference)", () => {
+        const aboutState = { journey: 0 };
+        const revealTween = gsap.to(aboutState, {
+          journey: 1,
+          ease: "none",
+          onUpdate: () => renderAboutReveal(aboutState.journey),
+          scrollTrigger: {
+            id: "about-editorial-reveal",
+            trigger: about,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: .16,
+            invalidateOnRefresh: true,
+            onRefresh: trigger => renderAboutReveal(trigger.progress)
+          }
+        });
+        return () => revealTween.kill();
+      });
+
+      aboutMotion.add("(prefers-reduced-motion: reduce)", () => {
+        about.style.setProperty("--about-reveal", "1");
+        about.style.setProperty("--about-image-shift", "0px");
+        about.style.setProperty("--about-copy-offset", "0px");
+        about.style.setProperty("--about-title-offset", "0px");
+        about.style.setProperty("--about-backdrop-opacity", "1");
+        about.style.setProperty("--about-editorial-progress", "1");
+      });
+
+      const hoverCapability = window.matchMedia("(hover: hover) and (pointer: fine)");
+      let removeKeywordHover = () => {};
+      const setupKeywordHover = () => {
+        removeKeywordHover();
+        if (!hoverCapability.matches) return;
+
+        const keywordRoot = document.querySelector(".work-about-handoff-subtitle");
+        const keywords = Array.from(keywordRoot?.querySelectorAll(".about-keyword[data-image]") || []);
+        if (!keywords.length) return;
+
+        const preview = document.createElement("figure");
+        const previewImage = document.createElement("img");
+        preview.className = "about-keyword-preview";
+        preview.setAttribute("aria-hidden", "true");
+        preview.append(previewImage);
+        document.body.append(preview);
+
+        let activeKeyword = null;
+        let closeTimer = 0;
+        let pointerX = 0;
+        let pointerY = 0;
+        let pointerFrame = 0;
+        let imageReady = false;
+
+        const positionPreview = keyword => {
+          const keywordRect = keyword.getBoundingClientRect();
+          const width = Math.min(240, Math.max(180, window.innerWidth * .15));
+          const left = Math.max(12, Math.min(window.innerWidth - width - 12, keywordRect.left + keywordRect.width / 2 - width / 2));
+          const top = Math.max(12, keywordRect.top - width * .72);
+          preview.style.setProperty("--about-preview-left", `${left}px`);
+          preview.style.setProperty("--about-preview-top", `${top}px`);
+          preview.style.setProperty("--about-preview-size", `${width}px`);
+        };
+
+        const hidePreview = () => {
+          activeKeyword = null;
+          gsap.killTweensOf(preview);
+          gsap.to(preview, {
+            autoAlpha: 0,
+            scale: .9,
+            y: -4,
+            duration: .18,
+            ease: "power2.out",
+            overwrite: true,
+            onComplete: () => {
+              if (!activeKeyword) previewImage.removeAttribute("src");
+            }
+          });
+        };
+
+        const showPreview = keyword => {
+          window.clearTimeout(closeTimer);
+          const image = keyword.dataset.image;
+          if (!image) return;
+          const isNewKeyword = activeKeyword !== keyword;
+          activeKeyword = keyword;
+          positionPreview(keyword);
+          if (isNewKeyword || previewImage.getAttribute("src") !== image) {
+            imageReady = false;
+            previewImage.src = image;
+          }
+          gsap.killTweensOf(preview);
+          gsap.set(preview, { autoAlpha: 1, transformOrigin: "50% 100%" });
+          gsap.fromTo(preview,
+            { scale: .74, y: 15, rotation: keyword.dataset.rotation || -3 },
+            { scale: 1, y: 0, rotation: 0, duration: .44, ease: "back.out(1.2)", overwrite: true }
+          );
+        };
+
+        const onPointerMove = event => {
+          pointerX = event.clientX;
+          pointerY = event.clientY;
+          if (pointerFrame) return;
+          pointerFrame = requestAnimationFrame(() => {
+            pointerFrame = 0;
+            if (!activeKeyword || !imageReady) return;
+            const rect = activeKeyword.getBoundingClientRect();
+            const x = ((pointerX - rect.left) / rect.width - .5) * 5;
+            const y = ((pointerY - rect.top) / rect.height - .5) * 4;
+            gsap.to(previewImage, { x, y, duration: .28, ease: "power2.out", overwrite: "auto" });
+          });
+        };
+
+        const listeners = keywords.map((keyword, index) => {
+          keyword.dataset.rotation = index % 2 ? "3" : "-3";
+          const enter = () => showPreview(keyword);
+          const leave = () => { closeTimer = window.setTimeout(hidePreview, 36); };
+          keyword.addEventListener("pointerenter", enter);
+          keyword.addEventListener("pointerleave", leave);
+          return () => {
+            keyword.removeEventListener("pointerenter", enter);
+            keyword.removeEventListener("pointerleave", leave);
+          };
+        });
+        previewImage.addEventListener("load", () => { imageReady = true; });
+        keywordRoot.addEventListener("pointermove", onPointerMove, { passive: true });
+
+        removeKeywordHover = () => {
+          window.clearTimeout(closeTimer);
+          listeners.forEach(remove => remove());
+          keywordRoot.removeEventListener("pointermove", onPointerMove);
+          cancelAnimationFrame(pointerFrame);
+          gsap.killTweensOf([preview, previewImage]);
+          preview.remove();
+        };
+      };
+      hoverCapability.addEventListener("change", setupKeywordHover);
+      setupKeywordHover();
+      onTeardown(() => {
+        hoverCapability.removeEventListener("change", setupKeywordHover);
+        removeKeywordHover();
+        aboutMotion.revert();
+        ScrollTrigger.getById("about-fluid-palette")?.kill();
+        ScrollTrigger.getById("about-editorial-invert")?.kill();
+        ScrollTrigger.getById("about-editorial-reveal")?.kill();
+      });
     })();
   </script>
   </body>
