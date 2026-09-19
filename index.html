@@ -48,7 +48,10 @@
         <span class="header-identity-name"><span>SEBASTIAN</span><span>SOLANILLA</span></span>
         <span class="header-identity-bracket" aria-hidden="true">]</span>
       </a>
-      <nav aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-navigation">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav id="main-navigation" aria-label="Main navigation">
         <a href="#work">PROJECTS</a>
         <a href="#about">ABOUT ME</a>
         <a href="#experience">EXP.</a>
@@ -72,9 +75,9 @@
             <h1 id="hero-editorial-title">GOOD IDEAS<br />DESERVE TO<br />EXIST.</h1>
             <img src="images/hero-portrait.png" alt="Portrait of Sebastian Solanilla" />
           </div>
-          <p class="hero-editorial__disciplines">PRODUCT / DIGITAL / VISUAL</p>
+          <p class="hero-editorial__disciplines">UX/UI · INFORMATION ARCHITECTURE · B2B</p>
           <div class="hero-editorial__footer">
-            <p class="hero-editorial__intro">I like turning ideas into things people can actually see, use and experience. From digital products and websites to visual identities and physical objects, I move between thinking and making, exploring, refining and finding the details that make each project feel just right.</p>
+            <p class="hero-editorial__intro">I’m a Product Designer working across B2B, e-commerce and digital products, combining UX/UI, information architecture and visual craft to turn complex systems into clear, intuitive experiences.</p>
             <p class="hero-editorial__scroll projects-hint">SCROLL TO EXPLORE</p>
           </div>
         </div>
@@ -92,6 +95,10 @@
             <div class="projects-orbit-title" aria-hidden="true"></div>
             <div class="projects-track" aria-live="polite"></div>
             <p class="projects-active-description" aria-live="polite"><strong></strong><span></span></p>
+            <div class="projects-mobile-navigation" aria-label="Navegación de proyectos">
+              <button class="projects-mobile-nav projects-mobile-prev" type="button" aria-label="Proyecto anterior">PREVIOUS</button>
+              <button class="projects-mobile-nav projects-mobile-next" type="button" aria-label="Proyecto siguiente">NEXT</button>
+            </div>
             <div class="projects-caption">
               <span class="projects-index">01 / 10</span>
               <span class="projects-hint">SCROLL TO EXPLORE</span>
@@ -118,7 +125,15 @@
             <p>The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication. It expanded my perspective beyond product development, allowing me to explore how design can respond to complex problems, communicate ideas clearly, and create meaningful experiences.</p>
           </div>
           <div class="about-editorial" aria-label="About Sebastian Solanilla">
-            <p class="about-editorial-lead">Curious by nature, a little obsessed with details, and always interested in understanding why things work the way they do and how they could work better.<br /><br />My background is in Industrial Design, but I've never really stayed in just one side of design. I've moved between physical and digital products, visual design, 3D, branding and, eventually, UX/UI and digital experiences. It wasn't a perfectly planned path more a mix of curiosity, experimentation and following the things that genuinely interested me.<br /><br />What I enjoy most is seeing an idea become real. That moment when a thought becomes a sketch, a sketch becomes a concept, and eventually something you can see, touch or interact with. I like experimenting, questioning, refining and finding that little something that gives each project its own personality.</p>
+            <p class="about-editorial-lead about-editorial-lead--desktop">Curious by nature, a little obsessed with details, and always interested in understanding why things work the way they do and how they could work better.<br /><br />My background is in Industrial Design, but I've never really stayed in just one side of design. I've moved between physical and digital products, visual design, 3D, branding and, eventually, UX/UI and digital experiences. It wasn't a perfectly planned path more a mix of curiosity, experimentation and following the things that genuinely interested me.<br /><br />What I enjoy most is seeing an idea become real. That moment when a thought becomes a sketch, a sketch becomes a concept, and eventually something you can see, touch or interact with. I like experimenting, questioning, refining and finding that little something that gives each project its own personality.</p>
+            <div class="about-editorial-mobile">
+              <p class="about-editorial-lead">Curious by nature, a little obsessed with details, and always interested in understanding why things work the way they do and how they could work better.</p>
+              <details class="about-editorial-more">
+                <summary>READ MORE</summary>
+                <p>My background is in Industrial Design, but I've never really stayed in just one side of design. I've moved between physical and digital products, visual design, 3D, branding and, eventually, UX/UI and digital experiences. It wasn't a perfectly planned path more a mix of curiosity, experimentation and following the things that genuinely interested me.</p>
+                <p>What I enjoy most is seeing an idea become real. That moment when a thought becomes a sketch, a sketch becomes a concept, and eventually something you can see, touch or interact with. I like experimenting, questioning, refining and finding that little something that gives each project its own personality.</p>
+              </details>
+            </div>
             <div class="about-editorial-columns">
               <p><strong>Approach</strong><br />I connect research, structure and visual craft to shape digital products that feel considered from the first interaction to the final detail.</p>
               <p><strong>Perspective</strong><br />My industrial design background brings systems thinking, material sensitivity and a human point of view to every interface and brand experience.</p>
@@ -133,7 +148,16 @@
           <div class="experience-lead__inner">
             <div class="experience-lead__intro">
               <p class="experience-lead__eyebrow">[EXP.]</p>
-              <p class="experience-lead__copy">Almost eight years of designing, learning, changing perspectives and figuring things out along the way.<br /><br />My journey has taken me through different sides of design, from physical products, packaging and visual communication to branding, e-commerce, UX/UI and digital products. Each role has brought a different way of thinking, new people to learn from and new problems to solve.<br /><br />Working alongside developers, marketing teams, production, sales, content and other creatives has taught me that good design rarely happens in isolation. It comes from listening, asking the right questions, understanding different perspectives and connecting the dots.<br /><br />Over time, I’ve learned not only how to design things, but how to understand the systems, people and decisions behind them. Today, I bring all those experiences together in my work as a <strong>Product Designer,</strong> creating digital experiences for B2B and e-commerce while still carrying with me everything I learned from designing beyond the screen.</p>
+              <p class="experience-lead__copy experience-lead__copy--desktop">Almost eight years of designing, learning, changing perspectives and figuring things out along the way.<br /><br />My journey has taken me through different sides of design, from physical products, packaging and visual communication to branding, e-commerce, UX/UI and digital products. Each role has brought a different way of thinking, new people to learn from and new problems to solve.<br /><br />Working alongside developers, marketing teams, production, sales, content and other creatives has taught me that good design rarely happens in isolation. It comes from listening, asking the right questions, understanding different perspectives and connecting the dots.<br /><br />Over time, I’ve learned not only how to design things, but how to understand the systems, people and decisions behind them. Today, I bring all those experiences together in my work as a <strong>Product Designer,</strong> creating digital experiences for B2B and e-commerce while still carrying with me everything I learned from designing beyond the screen.</p>
+              <div class="experience-lead__copy experience-lead__copy--mobile">
+                <p>Almost eight years of designing, learning, changing perspectives and figuring things out along the way.</p>
+                <p>My journey has taken me through different sides of design, from physical products, packaging and visual communication to branding, e-commerce, UX/UI and digital products. Each role has brought a different way of thinking, new people to learn from and new problems to solve.</p>
+                <details class="experience-lead__more">
+                  <summary>READ MORE</summary>
+                  <p>Working alongside developers, marketing teams, production, sales, content and other creatives has taught me that good design rarely happens in isolation. It comes from listening, asking the right questions, understanding different perspectives and connecting the dots.</p>
+                  <p>Over time, I’ve learned not only how to design things, but how to understand the systems, people and decisions behind them. Today, I bring all those experiences together in my work as a <strong>Product Designer,</strong> creating digital experiences for B2B and e-commerce while still carrying with me everything I learned from designing beyond the screen.</p>
+                </details>
+              </div>
             </div>
             <h2 id="experience-title">Different <span class="experience-term" data-tags="PRODUCT DESIGN|UX/UI|WEB|VISUAL">roles</span>, different <span class="experience-term" data-tags="PHYSICAL → DIGITAL|INDUSTRIAL|BRANDING|E-COMMERCE">disciplines</span>, different <span class="experience-term" data-tags="DEVELOPERS|MARKETING|PRODUCTION|SALES|CREATIVES">people</span>,<br />all part of the same <span class="experience-term" data-tags="8 YEARS|LEARNING BY DOING|MADRID + BOGOTÁ|STILL CURIOUS">journey</span>.</h2>
           </div>
@@ -166,32 +190,44 @@
 
       <section class="education" id="education" aria-labelledby="education-title">
         <div class="education-intro">
-          <h2 id="education-title">[EDUCATION / BACKGROUND]</h2>
+          <h2 id="education-title"><span>[EDUCATION</span> <span>BACKGROUND]</span></h2>
           <p>My education has never been about learning just one side of design. It started with Industrial Design, where I learned how physical products are imagined, researched, developed, prototyped and brought to life understanding materials, manufacturing, functionality and the people they are made for. From there, I moved into Design, UX/UI and Web Design, expanding that same way of thinking into digital products, interfaces and experiences. Together, these disciplines gave me something I value most: an end-to-end understanding of the product design process.</p>
         </div>
         <div class="education-grid" aria-label="Education background">
-          <article class="education-card education-card--masters" tabindex="0">
-            <h3>MASTER</h3>
-            <p class="education-card-institution">Universidad Complutense de Madrid</p>
-            <p class="education-card-location">Madrid, <strong>Spain.</strong></p>
-            <p class="education-card-description">The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication. It expanded my perspective beyond product development, allowing me to explore how design can respond to complex problems, communicate ideas clearly, and create meaningful experiences.</p>
-            <p class="education-card-years">22’–23’</p>
+          <article class="education-card education-card--masters">
+            <button class="education-card-trigger" type="button" aria-expanded="false">
+              <h3>MASTER</h3>
+            </button>
+            <div class="education-card-details">
+              <p class="education-card-institution">Universidad Complutense de Madrid</p>
+              <p class="education-card-location">Madrid, <strong>Spain.</strong></p>
+              <p class="education-card-description">The Master’s in Design strengthened my ability to approach design through research, strategy, and visual communication. It expanded my perspective beyond product development, allowing me to explore how design can respond to complex problems, communicate ideas clearly, and create meaningful experiences.</p>
+              <p class="education-card-years">22’–23’</p>
+            </div>
             <p class="education-card-degree">IN DESIGN</p>
           </article>
-          <article class="education-card education-card--bachelor" tabindex="0">
-            <h3>BACHELOR</h3>
-            <p class="education-card-institution">Universidad El Bosque</p>
-            <p class="education-card-location">Bogotá, <strong>Colombia.</strong></p>
-            <p class="education-card-description">The Bachelor’s in Industrial Design gave me a strong foundation in research, ergonomics, materials, manufacturing, prototyping, and product development. It taught me to understand people, systems, and production constraints, turning observations and ideas into thoughtful physical solutions.</p>
-            <p class="education-card-years">14’–19’</p>
+          <article class="education-card education-card--bachelor">
+            <button class="education-card-trigger" type="button" aria-expanded="false">
+              <h3>BACHELOR</h3>
+            </button>
+            <div class="education-card-details">
+              <p class="education-card-institution">Universidad El Bosque</p>
+              <p class="education-card-location">Bogotá, <strong>Colombia.</strong></p>
+              <p class="education-card-description">The Bachelor’s in Industrial Design gave me a strong foundation in research, ergonomics, materials, manufacturing, prototyping, and product development. It taught me to understand people, systems, and production constraints, turning observations and ideas into thoughtful physical solutions.</p>
+              <p class="education-card-years">14’–19’</p>
+            </div>
             <p class="education-card-degree">IN DESIGN</p>
           </article>
-          <article class="education-card education-card--certificate" tabindex="0">
-            <h3>CERTIFICATE</h3>
-            <p class="education-card-institution">Grupo Aspasia</p>
-            <p class="education-card-location">Madrid, <strong>Spain.</strong></p>
-            <p class="education-card-description">The Certificate in Web Design expanded my digital practice into responsive interfaces, web structure, visual systems, and front-end fundamentals. It helped me connect design decisions with how experiences are built, tested, and adapted across devices.</p>
-            <p class="education-card-years">24’–25’</p>
+          <article class="education-card education-card--certificate">
+            <button class="education-card-trigger" type="button" aria-expanded="false">
+              <h3>CERTIFICATE</h3>
+            </button>
+            <div class="education-card-details">
+              <p class="education-card-institution">Grupo Aspasia</p>
+              <p class="education-card-location">Madrid, <strong>Spain.</strong></p>
+              <p class="education-card-description">The Certificate in Web Design expanded my digital practice into responsive interfaces, web structure, visual systems, and front-end fundamentals. It helped me connect design decisions with how experiences are built, tested, and adapted across devices.</p>
+              <p class="education-card-years">24’–25’</p>
+            </div>
             <p class="education-card-degree">IN WEB DESIGN</p>
           </article>
         </div>
@@ -229,6 +265,26 @@
     const teardownCallbacks = [];
     const onTeardown = (callback) => teardownCallbacks.push(callback);
 
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mainNavigation = document.querySelector("#main-navigation");
+    if (menuToggle && mainNavigation) {
+      const closeMenu = () => {
+        document.body.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Abrir menú");
+      };
+      menuToggle.addEventListener("click", () => {
+        const isOpen = document.body.classList.toggle("menu-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+      });
+      mainNavigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+      });
+      onTeardown(() => document.body.classList.remove("menu-open"));
+    }
+
     window.addEventListener("pagehide", (event) => {
       if (event.persisted) return;
       teardownCallbacks.splice(0).forEach((callback) => callback());
@@ -245,7 +301,6 @@
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         let introFailsafe = 0;
         let introFinished = false;
-        window.scrollTo(0, 0);
         const finishIntro = () => {
           if (introFinished) return;
           introFinished = true;
@@ -253,7 +308,6 @@
           document.body.classList.remove("is-loading");
           document.body.classList.add("is-loaded");
           loader.setAttribute("aria-hidden", "true");
-          window.scrollTo(0, 0);
           document.dispatchEvent(new CustomEvent("portfolio:intro-complete"));
         };
 
@@ -921,7 +975,7 @@
               { type: "video", src: "https://player.vimeo.com/video/1135304855?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0&background=1", width: 2800, height: 1575 },
               "images/be-your-packer/case-study-3.jpg"
             ] },
-            { title: "Donuts", label: "DONUTS", detail: "Web design", tone: "donuts", cover: "images/donuts/10_donuts_web_design_portada.jpg", gallery: [
+            { title: "Donuts", label: "DONUTS", detail: "Web design", tone: "donuts", cover: "images/donuts/10_donuts_web_design_portada.jpg", mobileCover: "images/mobile-covers/donuts.jpg", gallery: [
               "images/donuts/1_donuts_web_design.jpg.png",
               "images/donuts/2_donuts_web_design.jpg.png",
               "images/donuts/3_donuts_web_design.jpg.png",
@@ -932,7 +986,7 @@
               "images/donuts/8_donuts_web_design.jpg.jpg",
               "images/donuts/9_donuts_web_design.jpg"
             ] },
-            { title: "Luxenter", label: "LUXENTER", detail: "Web design", tone: "luxenter", cover: "images/luxenter/luxenter-cover.jpg", gallery: [
+            { title: "Luxenter", label: "LUXENTER", detail: "Web design", tone: "luxenter", cover: "images/luxenter/luxenter-cover.jpg", mobileCover: "images/mobile-covers/luxenter.jpg", gallery: [
               "images/luxenter/luxenter-web-1.jpg",
               "images/luxenter/luxenter-web-2.jpg",
               "images/luxenter/luxenter-web-3.jpg"
@@ -946,7 +1000,7 @@
           backgroundColor: "#F6D087",
           cursorColor: "#16564A",
           projects: [
-            { title: "SÜSS", label: "SÜSS", detail: "Product design", tone: "suss", cover: "images/suss/20_suss_product_design_portada.png", gallery: [
+            { title: "SÜSS", label: "SÜSS", detail: "Product design", tone: "suss", cover: "images/suss/20_suss_product_design_portada.png", mobileCover: "images/mobile-covers/suss.jpg", gallery: [
               "images/suss/1_suss_product_design.png",
               "images/suss/2_suss_product_design.png",
               { group: "pair", src: "images/suss/3_suss_product_design.png" },
@@ -966,7 +1020,7 @@
               "images/suss/17_suss_product_design.png",
               "images/suss/18_suss_product_design.png"
             ] },
-            { title: "CIENTO DIECIOCHO", label: "118", detail: "Product design", tone: "ciento-dieciocho", cover: "images/ciento-dieciocho/21_118_product_design_portada.jpg", gallery: [
+            { title: "CIENTO DIECIOCHO", label: "118", detail: "Product design", tone: "ciento-dieciocho", cover: "images/ciento-dieciocho/21_118_product_design_portada.jpg", mobileCover: "images/mobile-covers/ciento-dieciocho.jpg", gallery: [
               "images/ciento-dieciocho/20_118_product_design.png",
               "images/ciento-dieciocho/15_118_product_design.png",
               "images/ciento-dieciocho/16_118_product_design.png",
@@ -992,7 +1046,7 @@
               { group: "pair", src: "images/ciento-dieciocho/14_118_product_design.png" },
               "images/ciento-dieciocho/29_118_product_design.png"
             ] },
-            { title: "KEO", label: "KEO", detail: "Product design", tone: "keo", cover: "images/keo/20_keo_product_design.png", gallery: [
+            { title: "KEO", label: "KEO", detail: "Product design", tone: "keo", cover: "images/keo/20_keo_product_design.png", mobileCover: "images/mobile-covers/keo.jpg", gallery: [
               "images/keo/2_keo_product_design.png",
               "images/keo/11_keo_product_design.png",
               "images/keo/12_keo_product_design.png",
@@ -1017,7 +1071,7 @@
           backgroundColor: "#0D2823",
           cursorColor: "#F6D087",
           projects: [
-            { title: "Mi espacio cero", label: "MI ESPACIO CERO", detail: "Social media", tone: "objects", cover: "images/mi-espacio-cero/2_mi_espacio_cero_social_media.jpg", gallery: [
+            { title: "Mi espacio cero", label: "MI ESPACIO CERO", detail: "Social media", tone: "objects", cover: "images/mi-espacio-cero/2_mi_espacio_cero_social_media.jpg", mobileCover: "images/mobile-covers/mi-espacio-cero.jpg", gallery: [
               "images/mi-espacio-cero/1_mi_espacio_cero_social_media.gif",
               "images/mi-espacio-cero/2_mi_espacio_cero_social_media.jpg",
               "images/mi-espacio-cero/3_mi_espacio_cero_social_media.jpg",
@@ -1034,28 +1088,18 @@
           ]
         },
         {
-          name: "ILUSTRACIÓN",
-          headline: "ILLUSTRATION",
-          theme: "gray",
-          backgroundColor: "#D9D9D9",
-          cursorColor: "#333333",
-          projects: [
-            { title: "Material Characters", label: "MATERIAL", detail: "Illustration", tone: "material", cover: "" }
-          ]
-        },
-        {
           name: "RENDER 3D",
           headline: "3D RENDER",
           theme: "brown",
           backgroundColor: "#3C2A20",
           cursorColor: "#F6D087",
           projects: [
-            { title: "Bathroom Model 3D", label: "BATHROOM", detail: "3D render", tone: "bathroom-3d", cover: "images/bathroom-3d/2_bathroom_3d_render.png", gallery: [
+            { title: "Bathroom Model 3D", label: "BATHROOM", detail: "3D render", tone: "bathroom-3d", cover: "images/bathroom-3d/2_bathroom_3d_render.png", mobileCover: "images/mobile-covers/bathroom-3d.jpg", gallery: [
               "images/bathroom-3d/1_bathroom_3d_render.png",
               "images/bathroom-3d/2_bathroom_3d_render.png",
               "images/bathroom-3d/3_bathroom_3d_render.png"
             ] },
-            { title: "Bedroom Model 3D", label: "BEDROOM", detail: "3D render", tone: "bedroom-3d", cover: "images/bedroom-3d/1_bedroom_3d_render.png", gallery: [
+            { title: "Bedroom Model 3D", label: "BEDROOM", detail: "3D render", tone: "bedroom-3d", cover: "images/bedroom-3d/1_bedroom_3d_render.png", mobileCover: "images/mobile-covers/bedroom-3d.jpg", gallery: [
               "images/bedroom-3d/1_bedroom_3d_render.png",
               "images/bedroom-3d/2_bedroom_3d_render.png",
               "images/bedroom-3d/3_bedroom_3d_render.png",
@@ -1066,7 +1110,7 @@
               "images/bedroom-3d/8_bedroom_3d_render.png",
               "images/bedroom-3d/9_bedroom_3d_render.png"
             ] },
-            { title: "Kitchen Model 3D", label: "KITCHEN", detail: "3D render", tone: "kitchen-3d", cover: "images/kitchen-3d/1_kitchen_3d_render.png", gallery: [
+            { title: "Kitchen Model 3D", label: "KITCHEN", detail: "3D render", tone: "kitchen-3d", cover: "images/kitchen-3d/1_kitchen_3d_render.png", mobileCover: "images/mobile-covers/kitchen-3d.jpg", gallery: [
               "images/kitchen-3d/1_kitchen_3d_render.png",
               "images/kitchen-3d/2_kitchen_3d_render.png",
               "images/kitchen-3d/3_kitchen_3d_render.png",
@@ -1083,16 +1127,18 @@
 
       const projectDescriptions = {
         "Sago Packaging Solutions": "A refined B2B digital platform that brings structure, clarity and a stronger brand presence to packaging decisions.",
-        "Be Your Packer": "An e-commerce experience designed to make product discovery, comparison and conversion feel more direct and intuitive.",
+        "Be Your Packer": "Redesigning a packaging e-commerce experience through clearer navigation, product discovery and a more consistent visual system.",
         "Oryzo Wearable": "A product experience that connects a portable object with a clear, human and distinctive digital story.",
-        "Donuts": "A web design project for Donuts, presented as a continuous visual story from concept and research to the final interface.",
-        "SÜSS": "A product design and visual identity study for SÜSS, shaped through material, scent and tactile packaging.",
-        "CIENTO DIECIOCHO": "A product design project exploring a tactile system of utensils and packaging for chocolate.",
-        "Mi espacio cero": "A social media identity and content system for communicating wellbeing, reflection and personal growth with clarity and warmth.",
+        "Donuts": "A playful brand and packaging concept combining bold graphics, colour and personality to create a distinctive product experience.",
+        "Luxenter": "Creating digital experiences and visual content for a jewellery brand across e-commerce, campaigns and editorial touchpoints.",
+        "SÜSS": "Building a bold visual identity through typography, colour and graphic elements designed to give the brand a distinctive personality.",
+        "CIENTO DIECIOCHO": "An editorial project exploring typography, composition and visual rhythm to transform content into a distinctive reading experience.",
+        "KEO": "A brand identity and packaging system exploring form, colour and graphic language to create a cohesive and recognisable visual world.",
+        "Mi espacio cero": "Developing a cohesive visual identity across digital content, campaigns and social media to strengthen the brand’s online presence.",
         "Material Characters": "A set of illustrated forms that explores personality, materiality and playful product expression.",
-        "Bathroom Model 3D": "A warm industrial bathroom study balancing natural light, exposed brick, tile and black metal details.",
-        "Bedroom Model 3D": "A calm, material-led interior visualization focused on warmth, soft light and architectural detail.",
-        "Kitchen Model 3D": "A contemporary kitchen visualization where dark cabinetry, stone and wood frame an open social space."
+        "Bathroom Model 3D": "A bathroom visualization focused on materiality, lighting and spatial balance to create a clean and realistic interior environment.",
+        "Bedroom Model 3D": "A bedroom visualization exploring materials, lighting and composition to create a warm and realistic interior atmosphere.",
+        "Kitchen Model 3D": "A kitchen visualization combining materials, lighting and spatial composition to communicate a functional and contemporary interior concept."
       };
 
       const stage = orbit.querySelector(".projects-orbit-stage");
@@ -1102,6 +1148,8 @@
       const indexLabel = orbit.querySelector(".projects-index");
       const projectsHeading = document.querySelector(".projects-heading");
       const workWavePath = orbit.querySelector(".projects-wave-path");
+      const mobilePreviousButton = orbit.querySelector(".projects-mobile-prev");
+      const mobileNextButton = orbit.querySelector(".projects-mobile-next");
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       // Projects without a dedicated cover use one neutral fallback so the
       // carousel geometry and interaction remain consistent.
@@ -1141,6 +1189,17 @@
       let handoffTitleTravel = 0;
       let isWorkFluidActive = false;
       let activeFluidPalette = "";
+      const changeProject = (direction) => {
+        const mobileProjects = window.matchMedia("(max-width: 700px)").matches;
+        const currentIndex = clamp(Math.round(targetPosition - introUnits), 0, lastIndex);
+        const nextIndex = clamp(currentIndex + direction, 0, lastIndex);
+        if (nextIndex === currentIndex) return;
+        targetPosition = introUnits + nextIndex;
+        if (!mobileProjects) updateScrollFromPosition(targetPosition);
+        if (!rafId) rafId = requestAnimationFrame(render);
+      };
+      mobilePreviousButton?.addEventListener("click", () => changeProject(-1));
+      mobileNextButton?.addEventListener("click", () => changeProject(1));
       const setWorkFluidPalette = (item) => {
         window.dispatchEvent(new CustomEvent("portfolio:fluid-palette", {
           detail: {
@@ -1202,7 +1261,7 @@
       track.innerHTML = items.map((project, index) => `
         <article class="orbit-card orbit-card-${project.tone}" data-project-index="${index}" aria-label="${project.title}" tabindex="0">
           <div class="orbit-card-media">
-            ${project.cover ? `<img src="${project.cover}" alt="${project.title}" loading="lazy" decoding="async" />` : ""}
+            ${project.cover ? `<picture>${project.mobileCover ? `<source media="(max-width: 700px)" srcset="${project.mobileCover}" />` : ""}<img src="${project.cover}" alt="${project.title}" loading="lazy" decoding="async" /></picture>` : ""}
           </div>
           <strong class="orbit-card-title">
             <span class="orbit-card-bracket">[</span>
@@ -1656,6 +1715,7 @@
 
       let workScrollTrigger = null;
       let workDraggable = null;
+      let mobileWorkObserver = null;
       const dragProxy = document.createElement("div");
 
       const measure = () => {
@@ -1719,7 +1779,9 @@
           workHeadingShowsProject = nextWorkHeadingShowsProject;
           syncWorkHeading();
         }
-        const workTitleTravel = Math.max(stage.clientHeight - (mobile ? 180 : 190), 0);
+        // Leave a safe top inset on phones so the moving project title never
+        // crosses the clipped edge of the stage.
+        const workTitleTravel = Math.max(stage.clientHeight - 190, 0);
         const workTitleScale = 1 - workTitleProgress * (mobile ? .38 : .58);
 
         stage.style.setProperty("--orbit-y", "0%");
@@ -1786,7 +1848,8 @@
           const focusedDistance = index - focusPosition;
           const absoluteFocusDistance = Math.abs(focusedDistance);
           const sideScale = mobile ? .66 : 1;
-          const focusedScale = sideScale + (1 - sideScale) * Math.exp(-absoluteFocusDistance * 2.5);
+          const focusScale = mobile ? .80 : 1.08;
+          const focusedScale = sideScale + (focusScale - sideScale) * Math.exp(-absoluteFocusDistance * 2.5);
           const focusedX = focusedDistance * focusSpacing;
           const focusedY = mobile ? Math.min(absoluteFocusDistance * 9, 18) : 0;
           const focusedRotation = Math.tanh(focusedDistance) * (mobile ? -1 : 0);
@@ -1838,11 +1901,26 @@
           card.setAttribute("aria-current", isActive ? "true" : "false");
         });
 
-        if (revealedProjectIndex !== null && Math.abs(revealedProjectIndex - focusPosition) >= .5) {
+        if (mobile && activeDescription) {
+          const mobileProjectIndex = clamp(Math.round(focusPosition), 0, lastIndex);
+          const mobileProject = items[mobileProjectIndex];
+          activeDescription.querySelector("strong").textContent = mobileProject.title;
+          activeDescription.querySelector("span").textContent = mobileProject.description;
+          activeDescription.classList.add("is-visible");
+          stage.classList.add("has-active-description");
+          revealedProjectIndex = mobileProjectIndex;
+          if (mobilePreviousButton) mobilePreviousButton.disabled = mobileProjectIndex <= 0;
+          if (mobileNextButton) mobileNextButton.disabled = mobileProjectIndex >= lastIndex;
+        } else if (revealedProjectIndex !== null && Math.abs(revealedProjectIndex - focusPosition) >= .5) {
           hideProjectDescription();
         }
 
-        updateCategory(clamp(Math.round(focusPosition), 0, lastIndex));
+        const currentProjectIndex = clamp(Math.round(focusPosition), 0, lastIndex);
+        if (mobilePreviousButton) mobilePreviousButton.disabled = currentProjectIndex <= 0;
+        if (mobileNextButton) mobileNextButton.disabled = currentProjectIndex >= lastIndex;
+
+        updateCategory(currentProjectIndex);
+        if (isWorkFluidActive) syncWorkFluidColor(currentPosition);
         if (Math.abs(targetPosition - currentPosition) > 0.001) {
           rafId = requestAnimationFrame(render);
         } else {
@@ -1861,9 +1939,28 @@
         measure();
         workScrollTrigger?.kill();
         workDraggable?.kill();
+        mobileWorkObserver?.disconnect();
+        mobileWorkObserver = null;
         ScrollTrigger.getById("my-work-deck-scroll")?.kill();
 
-        workScrollTrigger = ScrollTrigger.create({
+        // On touch screens the project rail is a horizontal interaction. Keep
+        // the section at one viewport height so a vertical swipe can continue
+        // naturally into the next section instead of scrubbing every project.
+        const mobileProjects = window.matchMedia("(max-width: 700px)").matches;
+        if (mobileProjects) {
+          orbit.style.height = `${stage.offsetHeight}px`;
+          targetPosition = introUnits;
+          currentPosition = introUnits;
+          previousRenderTime = 0;
+          render();
+
+          mobileWorkObserver = new IntersectionObserver(([entry]) => {
+            setWorkFluidState(entry.isIntersecting);
+          }, { threshold: .01 });
+          mobileWorkObserver.observe(workSection);
+        }
+
+        workScrollTrigger = mobileProjects ? null : ScrollTrigger.create({
           id: "my-work-deck-scroll",
           trigger: orbit,
           start: "top top",
@@ -1895,12 +1992,15 @@
           onPress() {
             this.startPosition = targetPosition;
             stage.classList.add("is-dragging");
+            setWorkFluidState(true);
           },
           onDrag() {
             const sensitivity = Math.max(stage.clientWidth * .16, 210);
-            const nextPosition = clamp(this.startPosition - this.x / sensitivity, 0, timelineMax);
+            const minPosition = mobileProjects ? introUnits : 0;
+            const maxPosition = mobileProjects ? introUnits + lastIndex : timelineMax;
+            const nextPosition = clamp(this.startPosition - this.x / sensitivity, minPosition, maxPosition);
             targetPosition = nextPosition;
-            updateScrollFromPosition(nextPosition);
+            if (!mobileProjects) updateScrollFromPosition(nextPosition);
             if (!rafId) rafId = requestAnimationFrame(render);
           },
           onRelease() {
@@ -1914,7 +2014,10 @@
       const resizeWorkMotion = () => {
         window.clearTimeout(workResizeTimer);
         workResizeTimer = window.setTimeout(() => {
-          measure();
+          // Safari fires resize while its browser chrome expands/collapses.
+          // Rebuild the mode so mobile keeps the orbit to one viewport tall
+          // instead of restoring the desktop multi-project scroll distance.
+          setupWorkMotion();
           ScrollTrigger.refresh();
         }, 120);
       };
@@ -1925,6 +2028,7 @@
         cancelAnimationFrame(rafId);
         workScrollTrigger?.kill();
         workDraggable?.kill();
+        mobileWorkObserver?.disconnect();
         projectTransitionTimeline?.kill();
         projectTransitionClone?.remove();
         document.removeEventListener("keydown", handleProjectKeydown);
@@ -2039,6 +2143,18 @@
           card.removeEventListener("focusout", blur);
         };
       });
+      const mobileEducation = window.matchMedia("(max-width: 800px)");
+      const educationTriggers = cards.map(card => card.querySelector(".education-card-trigger")).filter(Boolean);
+      const toggleMobileEducationCard = event => {
+        if (!mobileEducation.matches) return;
+        const card = event.currentTarget.closest(".education-card");
+        const shouldOpen = !card.classList.contains("is-expanded");
+        cards.forEach(other => {
+          other.classList.toggle("is-expanded", other === card && shouldOpen);
+          other.querySelector(".education-card-trigger")?.setAttribute("aria-expanded", String(other === card && shouldOpen));
+        });
+      };
+      educationTriggers.forEach(trigger => trigger.addEventListener("click", toggleMobileEducationCard));
       const onCapabilityChange = () => {
         if (canHover.matches) return;
         activeCard = null;
@@ -2052,6 +2168,7 @@
         education.removeEventListener("pointerenter", setEducationFluidPalette);
         education.removeEventListener("pointermove", setEducationFluidPalette);
         handlers.forEach(remove => remove());
+        educationTriggers.forEach(trigger => trigger.removeEventListener("click", toggleMobileEducationCard));
         canHover.removeEventListener("change", onCapabilityChange);
         cards.forEach(card => gsap.killTweensOf([card.querySelector(".education-card-details"), ...card.querySelectorAll(".education-card-details > *")]));
       });
